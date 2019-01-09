@@ -10,6 +10,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     private UIItem selectedItem;
     private Tooltip tooltip;
     public SelectedEquip SelectedEquip;
+    public SelectedDelete SelectedDelete;
     int SpriteID;
     string SpriteName;
     bool PointerOn = false;
@@ -19,6 +20,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         tooltip = GameObject.Find("Tooltip").GetComponent<Tooltip>();
         spriteImage = GetComponent<Image>();
         SelectedEquip = GameObject.Find("SelectedEquip").GetComponent<SelectedEquip>();
+        SelectedDelete = GameObject.Find("SelectedDelete").GetComponent<SelectedDelete>();
         UpdateItem(null);
     }
     void Update(){
@@ -37,6 +39,19 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                 print("The item selected is" + SelectedEquip.EquippedId);
             }
         }
+        if(Input.GetKeyDown(KeyCode.D)){
+            if(PointerOn){
+                print("Selected item to delete" + SpriteName);
+                if(spriteImage.color != Color.white){
+                    spriteImage.color = Color.white;
+                }
+                else{
+                    spriteImage.color = Color.red;
+                    //SelectedDelete.ItemsToDelete;
+                }
+            }
+        }
+
     }
     public void UpdateItem(Item item)
     {

@@ -44,10 +44,15 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                 print("Selected item to delete" + SpriteName);
                 if(spriteImage.color != Color.white){
                     spriteImage.color = Color.white;
+                    if(SelectedDelete.ItemsToDelete.Contains(SpriteID)){
+                        SelectedDelete.ItemsToDelete.Remove(SpriteID);
+                        print(SelectedDelete.ItemsToDelete.Count);
+                    }
                 }
                 else{
                     spriteImage.color = Color.red;
-                    //SelectedDelete.ItemsToDelete;
+                    SelectedDelete.ItemsToDelete.Add(SpriteID);
+                    print(SelectedDelete.ItemsToDelete.Count);
                 }
             }
         }

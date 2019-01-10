@@ -6,5 +6,5 @@ public class SelectedDelete : MonoBehaviour {
 
 	// Use this for initialization
 	public List<int> ItemsToDelete = new List<int>();
-
+	
 }

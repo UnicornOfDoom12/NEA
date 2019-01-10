@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour {
 		string CMDString = "SELECT MAX(id) from tblWeapon";
 		SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
 		int Data = int.Parse(CMD.ExecuteScalar().ToString());
-        int y = 29;
+        int y = 30;
         if (Data <= y){
             y = Data;
         }

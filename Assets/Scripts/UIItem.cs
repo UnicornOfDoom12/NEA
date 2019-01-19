@@ -11,6 +11,8 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
     private Tooltip tooltip;
     public SelectedEquip SelectedEquip;
     public SelectedDelete SelectedDelete;
+    public AudioClip SoundClip;
+    public AudioSource SoundSource;
     int SpriteID;
     string SpriteName;
     bool PointerOn = false;
@@ -21,11 +23,16 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         spriteImage = GetComponent<Image>();
         SelectedEquip = GameObject.Find("SelectedEquip").GetComponent<SelectedEquip>();
         SelectedDelete = GameObject.Find("SelectedDelete").GetComponent<SelectedDelete>();
+        SoundSource = GameObject.Find("SelectSound").GetComponent<AudioSource>();
+        SoundSource.clip = SoundClip;
         UpdateItem(null);
     }
     void Update(){
         if (SelectedEquip.EquippedId != SpriteID && this.item != null){
-            spriteImage.color = Color.white;
+            if (!SelectedDelete.ItemsToDelete.Contains(SpriteID)){
+                spriteImage.color = Color.white;
+            }
+            
         }
         if (Input.GetKeyDown(KeyCode.E)){
             if(PointerOn){
@@ -36,6 +43,7 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
                 else{
                     spriteImage.color = Color.green;
                     SelectedEquip.EquippedId = SpriteID;
+                    SoundSource.Play();
                 }
                 
                 

@@ -14,11 +14,15 @@ using System.Threading; // imports including sqlite
 public class DeleteSelectedItems : MonoBehaviour {
 	public SelectedDelete SelectedDelete;
 	public Inventory Inventory;
-	
+	public AudioClip SoundClip;
+	public AudioSource SoundSource;
 	public void DeleteFromArray(){
 		foreach (int i in SelectedDelete.ItemsToDelete){
 			Inventory.RemoveItem(i);
 		}
+	}
+	public void Start(){
+		SoundSource.clip = SoundClip;
 	}
 	public void DeleteFromTable(){
 		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
@@ -56,6 +60,7 @@ public class DeleteSelectedItems : MonoBehaviour {
 	}
 
 	public void DeleteAll(){
+		SoundSource.Play();
 		DeleteFromArray();
 		DeleteFromTable();
 	}

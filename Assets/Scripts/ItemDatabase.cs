@@ -44,21 +44,21 @@ public class ItemDatabase : MonoBehaviour {
             new Dictionary<string, int> {
                 { "Damage", 25 },
                 { "Fire Rate", 500 }
-            }),
+            }, 6f),
             new Item(1, "Big gun", "SMG",
             new Dictionary<string, int> {
                 { "Value", 300 }
-            }),
+            },6f),
             new Item(2, "Small gun", "Marksman Rifle",
             new Dictionary<string, int> {
                 { "Power", 5 },
                 { "Mining", 20}
-            }),
+            },6f),
             new Item(3, "Smaller gun", "Hand Cannon",
             new Dictionary<string, int> {
                 { "Power", 5 },
                 { "Mining", 20}
-            })
+            },6f)
         };
     }
     void BuildData2(int Id){
@@ -68,16 +68,16 @@ public class ItemDatabase : MonoBehaviour {
         SqliteCommand CMD = new SqliteCommand(CMDString,WeaponDB);
         CMD.Parameters.AddWithValue("@Id", Id);
         using(var reader = CMD.ExecuteReader()){ // executes the comman
-            print(Id);
+           // print(Id);
             string Name = Convert.ToString(reader["Name"]);
-            print("Name = " + Name);
+           // print("Name = " + Name);
             string Category = Convert.ToString(reader["Category"]);
 			int Damage = Convert.ToInt32(reader["Damage"]); // assings local variables to the correct value in the table
-            print(Damage.GetType().Name);
+            //print(Damage.GetType().Name);
 			int Magazine = Convert.ToInt32(reader["Magazine"]);
             int FireRate = Convert.ToInt32(reader["FireRate"]);
             float Inaccuracy = Convert.ToSingle(reader["Inaccuracy"]); // float = single?
-            items.Add(new Item(Id, Name, Category, new Dictionary<string, int> {{"Damage",Damage},{"Fire Rate",FireRate},{"Magazine",Magazine}}));
+            items.Add(new Item(Id, Name, Category, new Dictionary<string, int> {{"Damage",Damage},{"Fire Rate",FireRate},{"Magazine",Magazine}}, Inaccuracy));
         }
         
     }

@@ -85,6 +85,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedEquip: {fileID: 0}
+  SelectedDelete: {fileID: 0}
+  SoundClip: {fileID: 8300000, guid: 7f93336545504234cbf53ece595dba61, type: 3}
+  SoundSource: {fileID: 0}
 --- !u!114 &114909617901422044
 MonoBehaviour:
   m_ObjectHideFlags: 1

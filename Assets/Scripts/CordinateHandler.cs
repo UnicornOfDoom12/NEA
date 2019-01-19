@@ -26,20 +26,23 @@ public class CordinateHandler : MonoBehaviour {
 			Cordx +=1; // changes the variable
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();
-			PhysicalConnectionHandler1.DrawConnections();
+			/* PhysicalConnectionHandler1.DrawConnections();
 			PhysicalConnectionHandler2.DrawConnections();
 			PhysicalConnectionHandler3.DrawConnections();
 			PhysicalConnectionHandler4.DrawConnections();
+			*/
 		}
 		if ( Input.GetKeyDown(KeyCode.J) == true && Cordx > 0){ // detects inputs using ijkl instead of wasd
 			Cordx -=1;// changes the variable
 			
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();
+			/*
 			PhysicalConnectionHandler1.DrawConnections();
 			PhysicalConnectionHandler2.DrawConnections();
 			PhysicalConnectionHandler3.DrawConnections();
 			PhysicalConnectionHandler4.DrawConnections();
+			*/
 			
 			
 		}
@@ -47,10 +50,12 @@ public class CordinateHandler : MonoBehaviour {
 			Cordy -=1;// changes the variable
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();
+			/*
 			PhysicalConnectionHandler1.DrawConnections();
 			PhysicalConnectionHandler2.DrawConnections();
 			PhysicalConnectionHandler3.DrawConnections();
 			PhysicalConnectionHandler4.DrawConnections();
+			*/
 			
 			
 		}		
@@ -58,10 +63,12 @@ public class CordinateHandler : MonoBehaviour {
 			Cordy +=1;// changes the variable
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();
+			/*
 			PhysicalConnectionHandler1.DrawConnections();
 			PhysicalConnectionHandler2.DrawConnections();
 			PhysicalConnectionHandler3.DrawConnections();
-			PhysicalConnectionHandler4.DrawConnections();			
+			PhysicalConnectionHandler4.DrawConnections();
+			*/			
 			
 		}
 		if (Input.GetKeyDown(KeyCode.Escape) == true){

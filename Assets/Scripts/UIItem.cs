@@ -24,6 +24,9 @@ public class UIItem : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, 
         UpdateItem(null);
     }
     void Update(){
+        if (SelectedEquip.EquippedId != SpriteID && this.item != null){
+            spriteImage.color = Color.white;
+        }
         if (Input.GetKeyDown(KeyCode.E)){
             if(PointerOn){
                 print("He did the thing on a " + SpriteName);

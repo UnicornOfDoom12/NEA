@@ -1873,11 +1873,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 650119032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce134a2a275919c4191433d4b3a3f3bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 53bbd8f95bf45bb4d9543d41a06eeb80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponId: 0
-  SelectedEquip: {fileID: 977083731}
+  Category: 
+  Damage: 0
+  Magazine: 0
+  FireRate: 0
+  Inaccuracy: 0
+  EquippedWeapon: {fileID: 0}
+  PlayerMovement: {fileID: 650119033}
+  SelectedEquip: {fileID: 0}
 --- !u!1 &715425224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,6 +3662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce2426bafe31234aa6825ca07382b5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundSource: {fileID: 0}
+  SoundClip: {fileID: 0}
 --- !u!114 &2012367917 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114409063361669438, guid: 7d4762e8254a8134aa80138dab6c2d0a,

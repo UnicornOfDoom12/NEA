@@ -1,0 +1,387 @@
+fileFormatVersion: 2
+guid: 5e5da968d7d92f444b94848ef74de570
+timeCreated: 1547984518
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: IdleKnifeSheet.png 1_4
+    21300002: IdleKnifeSheet.png 1_5
+    21300004: IdleKnifeSheet.png 1_6
+    21300006: IdleKnifeSheet.png 1_7
+    21300008: IdleKnifeSheet.png 1_10
+    21300010: IdleKnifeSheet.png 1_11
+    21300012: IdleKnifeSheet.png 1_12
+    21300014: IdleKnifeSheet.png 1_13
+    21300016: IdleKnifeSheet.png 1_14
+    21300018: IdleKnifeSheet.png 1_15
+    21300020: IdleKnifeSheet.png 1_16
+    21300022: IdleKnifeSheet.png 1_17
+    21300024: IdleKnifeSheet.png 1_18
+    21300026: IdleKnifeSheet.png 1_19
+    21300028: IdleKnifeSheet.png 1_20
+    21300030: IdleKnifeSheet.png 1_21
+    21300032: IdleKnifeSheet.png 1_22
+    21300034: IdleKnifeSheet.png 1_23
+    21300036: IdleKnifeSheet.png 1_24
+    21300038: IdleKnifeSheet.png 1_25
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 976
+        width: 231
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_5
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 976
+        width: 231
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_6
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 974
+        width: 235
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_7
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 975
+        width: 233
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_10
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 740
+        width: 235
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_11
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 741
+        width: 235
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_12
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 741
+        width: 235
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_13
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 741
+        width: 234
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_14
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 507
+        width: 234
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_15
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 507
+        width: 233
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_16
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 507
+        width: 233
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_17
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 507
+        width: 235
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_18
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 274
+        width: 232
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_19
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 274
+        width: 232
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_20
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 274
+        width: 231
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_21
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 273
+        width: 235
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_22
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 40
+        width: 232
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_23
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 40
+        width: 232
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_24
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 39
+        width: 233
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: IdleKnifeSheet.png 1_25
+      rect:
+        serializedVersion: 2
+        x: 939
+        y: 38
+        width: 235
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

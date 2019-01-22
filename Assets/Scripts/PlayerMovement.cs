@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 	public float Walkspeed;
 	private Rigidbody2D rb;
-
+	//public Weapon EquippedWeapon;
 	static public bool ForwardFacing;
 
 	Animator Animator;
@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
 		Animator = GetComponent<Animator>();
+		
 	}
 	void WalkHandler (){
 		float xinput = Input.GetAxis("Horizontal");
@@ -64,8 +65,26 @@ public class PlayerMovement : MonoBehaviour {
 			Walkspeed = 10;
 			WalkHandler();
 		}
+		//ChangeImageValue();
 		
 		
+	}
+	public void ChangeImageValue(string Category){
+		print(Category.ToString());
+		int catint = 0;
+		if (Category == "Assault Rifle" || Category == "Marksman Rifle"){
+			catint = 1;
+			print("chaning weapon type to 1");
+		}
+		if (Category == "SMG"){
+			catint = 3;
+			print("chaning weapon type to 3");
+		}
+		if (Category == "Hand Cannon"){
+			catint = 2;
+			print("chaning weapon type to 2");
+		}
+		Animator.SetInteger("WeaponType", catint);
 	}
 	public void ToggleForward(){
 		if (ForwardFacing){

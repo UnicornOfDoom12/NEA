@@ -33,14 +33,18 @@ public class WeaponGenerate : MonoBehaviour {
 		string FullName = NamePt1 + NamePt2 + "-" + Category; // To be inserted as name
 		if (Category == "Assault Rifle"){
 			GenerateAR(id, FullName, Category);
+			
 		}
 		if (Category == "Marksman Rifle"){
 			GenerateMR(id, FullName, Category);
+			
 		}
 		if (Category == "SMG"){
 			GenerateSMG(id, FullName, Category);
+			
 		}
-		else{
+		if (Category == "Hand Cannon"){
+			//GenerateHC(id, FullName, Category);
 			GenerateHC(id, FullName, Category);
 		}
 
@@ -55,7 +59,6 @@ public class WeaponGenerate : MonoBehaviour {
 				BoxOpened = false;
 			}
 		}
-		print(BoxOpened);
 		if(!BoxOpened){
 			GenerateAndInsert();
 			BoxHandler.SpriteIndex += 6;
@@ -93,6 +96,7 @@ public class WeaponGenerate : MonoBehaviour {
 		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void Insert(int id, string name, string category, int Damage, int FireRate, float inaccuracy, int Magazine){
+		print(id);
 		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
 		WeaponDB.Open();
 		string InsertQuery = "INSERT INTO tblWeapon (id, Name, Category, Damage, FireRate, Inaccuracy, Magazine)VALUES(@id,@Name,@Category,@Damage,@FireRate,@Inaccuracy,@Magazine)";

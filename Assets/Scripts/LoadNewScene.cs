@@ -4,10 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadNewScene : MonoBehaviour {
-
+	public AudioSource SoundSource;
+	public AudioClip SoundClip;
+	// Use this for initialization
+	void Start () {
+		SoundSource.clip = SoundClip;
+	}
 	
 	public void LoadSceneByIndex (int scene)
 	{
+		SoundSource.Play();
 		SceneManager.LoadScene(scene);
 	}
 }

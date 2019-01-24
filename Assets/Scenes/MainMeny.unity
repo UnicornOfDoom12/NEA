@@ -918,6 +918,7 @@ GameObject:
   - component: {fileID: 364315137}
   - component: {fileID: 364315136}
   - component: {fileID: 364315135}
+  - component: {fileID: 364315138}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -1005,6 +1006,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 364315138}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &364315136
@@ -1041,6 +1053,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 364315133}
   m_CullTransparentMesh: 0
+--- !u!114 &364315138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 364315133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5925bff4e74f944b9df5529d25db1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundSource: {fileID: 279825892}
+  SoundClip: {fileID: 8300000, guid: 1b735f22c197f9446bc8b541eef1eaa8, type: 3}
 --- !u!1 &454454038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,12 +1391,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundSource: {fileID: 279825892}
-  SoundClip: {fileID: 8300000, guid: 012c7ae101b88df4d8ce2f71b79c6e00, type: 3}
+  SoundClip: {fileID: 8300000, guid: 1b735f22c197f9446bc8b541eef1eaa8, type: 3}
 --- !u!224 &605508055 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22400008, guid: b6a1cf4e3eeaf9a4ca38bf8acb910a6d,
     type: 2}
   m_PrefabInternal: {fileID: 1908391710}
+--- !u!1 &667282645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: 212619aea848509449704f41e4a1d3f2,
+    type: 2}
+  m_PrefabInternal: {fileID: 580684623}
+--- !u!114 &667282646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 667282645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5925bff4e74f944b9df5529d25db1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundSource: {fileID: 279825892}
+  SoundClip: {fileID: 8300000, guid: 518a14e59ab730448b8ed786b490415d, type: 3}
 --- !u!1 &955947849
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,6 +1773,7 @@ GameObject:
   - component: {fileID: 1121587288}
   - component: {fileID: 1121587287}
   - component: {fileID: 1121587286}
+  - component: {fileID: 1121587289}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -1817,6 +1861,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1121587289}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1121587287
@@ -1853,6 +1908,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1121587284}
   m_CullTransparentMesh: 0
+--- !u!114 &1121587289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1121587284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5925bff4e74f944b9df5529d25db1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundSource: {fileID: 279825892}
+  SoundClip: {fileID: 8300000, guid: 1b735f22c197f9446bc8b541eef1eaa8, type: 3}
 --- !u!1 &1377008055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,6 +2402,7 @@ GameObject:
   - component: {fileID: 1886417599}
   - component: {fileID: 1886417598}
   - component: {fileID: 1886417597}
+  - component: {fileID: 1886417600}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -2421,6 +2490,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1886417600}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1886417598
@@ -2457,6 +2537,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1886417595}
   m_CullTransparentMesh: 0
+--- !u!114 &1886417600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886417595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5925bff4e74f944b9df5529d25db1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundSource: {fileID: 279825892}
+  SoundClip: {fileID: 8300000, guid: 1b735f22c197f9446bc8b541eef1eaa8, type: 3}
 --- !u!1001 &1908391710
 Prefab:
   m_ObjectHideFlags: 0

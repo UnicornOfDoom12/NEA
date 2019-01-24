@@ -49,11 +49,11 @@ public class Weapon : MonoBehaviour {
 		SqliteCommand CMD = new SqliteCommand(CMDString,WeaponDB);
 		CMD.Parameters.AddWithValue("@id", SelectedEquip.EquippedId);
 		var reader = CMD.ExecuteReader();
-		string Category = Convert.ToString(reader["Category"]);
-		int Damage = Convert.ToInt32(reader["Damage"]);
-		float Inaccuracy = Convert.ToInt32(reader["Inaccuracy"]);
-		int Magazine = Convert.ToInt32(reader["Magazine"]);
-		int FireRate = Convert.ToInt32(reader["FireRate"]);
+		Category = Convert.ToString(reader["Category"]);
+		Damage = Convert.ToInt32(reader["Damage"]);
+		Inaccuracy = Convert.ToInt32(reader["Inaccuracy"]);
+		Magazine = Convert.ToInt32(reader["Magazine"]);
+		FireRate = Convert.ToInt32(reader["FireRate"]);
 		WeaponDB.Close();
 		Weapon EquippedWeapon = new Weapon(SelectedEquip.EquippedId, Category, Damage, Magazine, FireRate, Inaccuracy);
 		print(EquippedWeapon.Category);

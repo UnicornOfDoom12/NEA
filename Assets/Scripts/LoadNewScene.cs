@@ -14,7 +14,7 @@ public class LoadNewScene : MonoBehaviour {
 	public void LoadSceneByIndex (int scene)
 	{
 		SoundSource.Play();
-		WaitForTime(0.5f);
+		//WaitForTime(0.5f);
 		SceneManager.LoadScene(scene);
 	}
 	IEnumerator WaitForTime(float time)

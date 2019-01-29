@@ -58,6 +58,7 @@ public class Weapon : MonoBehaviour {
 		Weapon EquippedWeapon = new Weapon(SelectedEquip.EquippedId, Category, Damage, Magazine, FireRate, Inaccuracy);
 		print(EquippedWeapon.Category);
 		print(EquippedWeapon.Damage);
+		print(EquippedWeapon.Magazine);
 
 		PlayerMovement.ChangeImageValue(EquippedWeapon.Category);
 

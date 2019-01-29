@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour {
 		rb.MovePosition(NewPos);
 		if (xinput != 0 || yinput != 0){
 			Animator.SetBool("IsWalking",true);
+			// Play footstep
 		}
 		else{
 			Animator.SetBool("IsWalking",false);

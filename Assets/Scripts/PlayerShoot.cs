@@ -17,6 +17,9 @@ public class PlayerShoot : MonoBehaviour {
 	public float FireRate;
 	public float TimeSinceFire;
 	public int CurrentAmmo;
+	public AudioSource SoundSource;
+	public AudioClip ReloadClip;
+	public AudioClip ShootClip;
 
 	void Start(){
 		FireRate = Weapon.EquippedWeapon.FireRate;
@@ -25,6 +28,7 @@ public class PlayerShoot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButton(0)){
+			Animator.SetBool("IsShooting",false);
 			if (Time.time >= TimeSinceFire){
 				TimeSinceFire = Time.time + FireRate;
 				Fire();
@@ -40,25 +44,24 @@ public class PlayerShoot : MonoBehaviour {
 	void Fire(){
 		Animator.SetBool("IsReloading",false);
 		bool CanShoot = true;
-		print("====");
-		print(Weapon.Magazine);
-		print(CurrentAmmo);
-		print(Weapon.Category);
 		if (Weapon.Category == ""){
 			print("You got a knife so you melee attack");
 			CanShoot = false;
 			MeleeAttack();
 		}
 		else if (CurrentAmmo <= 0){
-			print("No ammo so you reload");
+			
 			CanShoot = false;
 			Reload();
 		}
 		if (CanShoot){
 			// Do projectile thingies
 			CurrentAmmo -= 1;
-			// Play shoot sound
+			SoundSource.clip = ShootClip;
+			SoundSource.Play();
+			Animator.SetBool("IsShooting",true);
 			print("BANG you have " + CurrentAmmo.ToString());
+			
 
 		}
 
@@ -67,9 +70,13 @@ public class PlayerShoot : MonoBehaviour {
 		// Play sound
 	}
 	void Reload(){
+		print("reload old ammo = " + CurrentAmmo.ToString());
 		// Play reload sound
+		SoundSource.clip = ReloadClip;
+		SoundSource.Play();
 		Animator.SetBool("IsReloading",true);
 		CurrentAmmo = Weapon.Magazine;
+		print("New ammo = " + CurrentAmmo.ToString());
 		
 	}
 }

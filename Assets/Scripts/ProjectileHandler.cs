@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class ProjectileHandler : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+	public GameObject Player;
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Start(){
+		Player = GameObject.Find("Player");
 	}
 
-	void OnCollisionEnter(Collision Hit)
+	public void OnCollisionEnter2D(Collision2D Hit)
 	{
+		print("Determining weather to ignore");
 		if (Hit.gameObject.tag == "Player")
 		{
-			Physics.IgnoreCollision(Player.collider, collider);
+			print("Ignoring collision");
+			Physics.IgnoreCollision(Player.GetComponent<Collider>(), GetComponent<Collider>());
 		}
 	}
 }

@@ -20,12 +20,12 @@ public class PlayerShoot : MonoBehaviour {
 	public AudioSource SoundSource;
 	public AudioClip ReloadClip;
 	public AudioClip ShootClip;
-	public Vector3 BarrelPos;
+	public GameObject Barrel;
 
 	void Start(){
 		FireRate = Weapon.EquippedWeapon.FireRate;
 		CurrentAmmo = Weapon.Magazine;
-		BarrelPos = new Vector3(transform.position.x + 1,transform.position.y - 0.35f,0);
+		
 	}
 	// Update is called once per frame
 	void Update () {
@@ -57,8 +57,9 @@ public class PlayerShoot : MonoBehaviour {
 			Reload();
 		}
 		if (CanShoot){
+
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			Rigidbody2D FiredBullet = Instantiate(Projectile, BarrelPos,Quaternion.LookRotation(transform.position - mousePos, Vector3.forward)) as Rigidbody2D;
+			Rigidbody2D FiredBullet = Instantiate(Projectile, Barrel.transform.position,Quaternion.LookRotation(transform.position - mousePos, Vector3.forward)) as Rigidbody2D;
 			FiredBullet.AddForce(transform.right * ProjectileSpeed);
 			CurrentAmmo -= 1;
 			SoundSource.clip = ShootClip;

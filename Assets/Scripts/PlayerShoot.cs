@@ -21,14 +21,27 @@ public class PlayerShoot : MonoBehaviour {
 	public AudioClip ReloadClip;
 	public AudioClip ShootClip;
 	public GameObject Barrel;
+	public GameObject MuzzleAnimation;
+	public bool Reloading;
+	public float ReloadTime = 2;
+	public float Timer = 0;
+	public float Inaccuracy;
 
 	void Start(){
-		FireRate = Weapon.EquippedWeapon.FireRate;
+		FireRate = Weapon.FireRate;
+		FireRate = FireRate / 60;
+		FireRate = 1/FireRate;
+		print("SUPER DUPER FIRE RATE = " + FireRate.ToString());
 		CurrentAmmo = Weapon.Magazine;
+		Reloading = false;
+		Inaccuracy = Weapon.Inaccuracy;
 		
 	}
 	// Update is called once per frame
 	void Update () {
+		if (Reloading){
+			Timer += Time.deltaTime;
+		}
 		if (Input.GetMouseButton(0)){
 			Animator.SetBool("IsShooting",false);
 			if (Time.time >= TimeSinceFire){
@@ -46,6 +59,13 @@ public class PlayerShoot : MonoBehaviour {
 	void Fire(){
 		Animator.SetBool("IsReloading",false);
 		bool CanShoot = true;
+		if (Timer < ReloadTime){
+			print("Still reloading");
+			CanShoot = false;
+		}
+		else{
+			Reloading = false;
+		}
 		if (Weapon.Category == ""){
 			print("You got a knife so you melee attack");
 			CanShoot = false;
@@ -60,12 +80,17 @@ public class PlayerShoot : MonoBehaviour {
 
 			Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			Rigidbody2D FiredBullet = Instantiate(Projectile, Barrel.transform.position,Quaternion.LookRotation(transform.position - mousePos, Vector3.forward)) as Rigidbody2D;
-			FiredBullet.AddForce(transform.right * ProjectileSpeed);
+			Vector3 BulletDirection = transform.right;
+			BulletDirection.x = BulletDirection.x + UnityEngine.Random.Range(-1 * (Inaccuracy/75),(Inaccuracy/75));
+			BulletDirection.y = BulletDirection.y + UnityEngine.Random.Range(-1 * (Inaccuracy/75),(Inaccuracy/75));
+			FiredBullet.AddForce(BulletDirection * ProjectileSpeed);
 			CurrentAmmo -= 1;
 			SoundSource.clip = ShootClip;
 			SoundSource.Play();
 			Animator.SetBool("IsShooting",true);
 			print("BANG you have " + CurrentAmmo.ToString());
+			var NewFlash = Instantiate(MuzzleAnimation, Barrel.transform.position,Barrel.transform.rotation);
+			Destroy(NewFlash,0.183f);
 			
 
 		}
@@ -75,6 +100,8 @@ public class PlayerShoot : MonoBehaviour {
 		// Play sound
 	}
 	void Reload(){
+		Reloading = true;
+		Timer = 0;
 		print("reload old ammo = " + CurrentAmmo.ToString());
 		// Play reload sound
 		SoundSource.clip = ReloadClip;

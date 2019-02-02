@@ -20,19 +20,22 @@ Inventory:
 	Sound when delete /
 	Intergrate innaccuracy /
 Full player functionality
-	Shooting (Aswell as the projectile that moves and collides with animations) sounds on collisions based on material
-	Reloading
+	Shooting (Aswell as the projectile that moves and collides with animations) sounds on collisions based on material///
+	Innacuraccy/ firerate ///
+	Reloading /
 	Melee attack
 	Dieing
-	Exit to menu
+	Exit to menu//
 	Sounds for all players (walking, shooting, reloading, melee, dieing)
-When a player has a different type of weapon change the model
+When a player has a different type of weapon change the model//
+Enemies:
+	sound for impact
+	animation for impact (use decal but change colour)
 Sound when exit
 Sound when open box
 music on menu, inventory and game
 Volume for all sounds adjustable
 Mouse button marker
-
 
 Idle animation fix so it one frame
 HandCannon Gen

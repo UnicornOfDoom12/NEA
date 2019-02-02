@@ -23,7 +23,33 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 0}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: SoundSource
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ImpactWall
+      value: 
+      objectReference: {fileID: 8300000, guid: 145dd300e164a7d4585bf554422921b5, type: 3}
+    - target: {fileID: 0}
+      propertyPath: ImpactWallDecal
+      value: 
+      objectReference: {fileID: 1977176443272236, guid: d009d10795af3fa4e835d70cc05ad000,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: ImpactEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: df5d36a3bed52044aa562bc74bad5043, type: 3}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1429620072218264}
   m_IsPrefabParent: 0
@@ -116,6 +142,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  SoundSource: {fileID: 0}
+  ImpactWall: {fileID: 8300000, guid: 145dd300e164a7d4585bf554422921b5, type: 3}
+  ImpactEnemy: {fileID: 8300000, guid: df5d36a3bed52044aa562bc74bad5043, type: 3}
+  ImpactWallDecal: {fileID: 1977176443272236, guid: d009d10795af3fa4e835d70cc05ad000,
+    type: 2}
 --- !u!212 &212255644221494738
 SpriteRenderer:
   m_ObjectHideFlags: 1

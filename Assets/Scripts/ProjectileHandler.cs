@@ -5,18 +5,35 @@ using UnityEngine;
 public class ProjectileHandler : MonoBehaviour {
 
 	public GameObject Player;
-	
+	public AudioSource SoundSource;
+	public AudioClip ImpactWall;
+	public AudioClip ImpactEnemy;
+	public GameObject ImpactWallDecal;
 	void Start(){
 		Player = GameObject.Find("Player");
+		SoundSource = GameObject.Find("BulletSoundSource").GetComponent<AudioSource>();
 	}
 
 	public void OnCollisionEnter2D(Collision2D Hit)
 	{
+		print("I just hit a " + Hit.gameObject.tag);
 		print("Determining weather to ignore");
 		if (Hit.gameObject.tag == "Player")
 		{
 			print("Ignoring collision");
-			Physics.IgnoreCollision(Player.GetComponent<Collider>(), GetComponent<Collider>());
+			Physics2D.IgnoreCollision(Player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+		}
+		else if(Hit.gameObject.tag == "Enemy"){
+			// play blood anim
+			print("Damaging an enemy");
+		}
+		else{
+			print("Destroying myself");
+			SoundSource.clip = ImpactWall;
+			SoundSource.Play();
+			var NewDecal = Instantiate(ImpactWallDecal, transform.position, transform.rotation);
+			Destroy(NewDecal,0.183f);
+			Destroy(gameObject);
 		}
 	}
 }

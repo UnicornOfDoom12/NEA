@@ -877,7 +877,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Press E to select an Item, then press the start button to enter the game.
-    Press D to select one ore more Item, then press delete to delete them. Use this
+    Press D to select one or more Item, then press delete to delete them. Use this
     if your inventory is getting full.
 --- !u!222 &461297652
 CanvasRenderer:

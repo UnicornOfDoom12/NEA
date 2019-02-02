@@ -16,11 +16,10 @@ public class ProjectileHandler : MonoBehaviour {
 
 	public void OnCollisionEnter2D(Collision2D Hit)
 	{
-		print("I just hit a " + Hit.gameObject.tag);
-		print("Determining weather to ignore");
+
 		if (Hit.gameObject.tag == "Player")
 		{
-			print("Ignoring collision");
+			
 			Physics2D.IgnoreCollision(Player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 		}
 		else if(Hit.gameObject.tag == "Enemy"){
@@ -28,7 +27,7 @@ public class ProjectileHandler : MonoBehaviour {
 			print("Damaging an enemy");
 		}
 		else{
-			print("Destroying myself");
+
 			SoundSource.clip = ImpactWall;
 			SoundSource.Play();
 			var NewDecal = Instantiate(ImpactWallDecal, transform.position, transform.rotation);

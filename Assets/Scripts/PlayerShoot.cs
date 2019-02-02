@@ -26,12 +26,14 @@ public class PlayerShoot : MonoBehaviour {
 	public float ReloadTime = 2;
 	public float Timer = 0;
 	public float Inaccuracy;
-
+	public float MeleeTimer = 0;
+	public float MeleeCooldown = 0.6f;
+	public bool MeleeAttacking = false;
+	public AudioClip MeleeClip;
 	void Start(){
 		FireRate = Weapon.FireRate;
 		FireRate = FireRate / 60;
 		FireRate = 1/FireRate;
-		print("SUPER DUPER FIRE RATE = " + FireRate.ToString());
 		CurrentAmmo = Weapon.Magazine;
 		Reloading = false;
 		Inaccuracy = Weapon.Inaccuracy;
@@ -39,9 +41,21 @@ public class PlayerShoot : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
+		float Passed = Time.deltaTime;
 		if (Reloading){
-			Timer += Time.deltaTime;
+			Timer += Passed;
 		}
+		if(MeleeAttacking){
+			MeleeTimer += Passed;
+		}
+		if (MeleeTimer >= MeleeCooldown){
+			Animator.SetBool("IsMelee",false);
+			MeleeAttacking = false;
+		}
+		if(Timer >= ReloadTime){
+			Animator.SetBool("IsReloading",false);
+		}
+
 		if (Input.GetMouseButton(0)){
 			Animator.SetBool("IsShooting",false);
 			if (Time.time >= TimeSinceFire){
@@ -52,19 +66,27 @@ public class PlayerShoot : MonoBehaviour {
 				//print("Attempted to fire " + Weapon.FireRate.ToString());
 			}
 		}
+		if (Input.GetKeyDown(KeyCode.V)){
+			MeleeAttack();
+		}
 		if (Input.GetKeyDown(KeyCode.R)){
 			Reload();
 		}
 	}
 	void Fire(){
-		Animator.SetBool("IsReloading",false);
+		
 		bool CanShoot = true;
+		print("been reloading for " + Timer.ToString());
 		if (Timer < ReloadTime){
 			print("Still reloading");
 			CanShoot = false;
 		}
 		else{
 			Reloading = false;
+		}
+		if (MeleeTimer < MeleeCooldown){
+			print("Still meleeing");
+			CanShoot = false;
 		}
 		if (Weapon.Category == ""){
 			print("You got a knife so you melee attack");
@@ -98,12 +120,23 @@ public class PlayerShoot : MonoBehaviour {
 	}
 	void MeleeAttack(){
 		// Play sound
+		print("doing melee");
+		Animator.SetBool("IsMelee", true);
+		MeleeAttacking = true;
+		MeleeTimer = 0;
+		SoundSource.clip = MeleeClip;
+		SoundSource.Play();
+		Vector2 RayPos = new Vector2(transform.position.x,transform.position.y);
+		Vector2 RayDir = new Vector2(0,transform.rotation.z);
+		RaycastHit2D Attack = Physics2D.Raycast(RayPos, RayDir);
+		if (Attack.collider != null && Attack.distance <= 0.5f && Attack.collider.ToString() != "Player"){
+			print("Hit a " + Attack.collider.ToString());
+		}
 	}
 	void Reload(){
 		Reloading = true;
 		Timer = 0;
 		print("reload old ammo = " + CurrentAmmo.ToString());
-		// Play reload sound
 		SoundSource.clip = ReloadClip;
 		SoundSource.Play();
 		Animator.SetBool("IsReloading",true);

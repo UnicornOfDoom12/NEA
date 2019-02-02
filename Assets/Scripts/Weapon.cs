@@ -47,6 +47,9 @@ public class Weapon : MonoBehaviour {
 		WeaponDB.Open();
 		string CMDString = "SELECT Category, Damage, Inaccuracy, Magazine, FireRate FROM tblWeapon WHERE id=@ID";
 		SqliteCommand CMD = new SqliteCommand(CMDString,WeaponDB);
+		if (SelectedEquip.EquippedId < 1){ // Temporary
+			SelectedEquip.EquippedId = 1;
+		}
 		CMD.Parameters.AddWithValue("@id", SelectedEquip.EquippedId);
 		var reader = CMD.ExecuteReader();
 		Category = Convert.ToString(reader["Category"]);

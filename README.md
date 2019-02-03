@@ -23,7 +23,7 @@ Full player functionality
 	Shooting (Aswell as the projectile that moves and collides with animations) sounds on collisions based on material///
 	Innacuraccy/ firerate ///
 	Reloading /
-	Melee attack
+	Melee attack////
 	Dieing
 	Exit to menu//
 	Sounds for all players (walking, shooting, reloading, melee, dieing)
@@ -31,6 +31,8 @@ When a player has a different type of weapon change the model//
 Enemies:
 	sound for impact
 	animation for impact (use decal but change colour)
+	Melee and projectile impacts, change sound e.t.c
+	Enemies do shit
 Sound when exit
 Sound when open box
 music on menu, inventory and game

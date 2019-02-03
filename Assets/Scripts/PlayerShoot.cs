@@ -29,7 +29,9 @@ public class PlayerShoot : MonoBehaviour {
 	public float MeleeTimer = 0;
 	public float MeleeCooldown = 0.6f;
 	public bool MeleeAttacking = false;
-	public AudioClip MeleeClip;
+	public AudioClip MeleeClipHit;
+	public AudioClip MeleeClipMiss;
+	public Collider2D PlayerCollider;
 	void Start(){
 		FireRate = Weapon.FireRate;
 		FireRate = FireRate / 60;
@@ -124,14 +126,17 @@ public class PlayerShoot : MonoBehaviour {
 		Animator.SetBool("IsMelee", true);
 		MeleeAttacking = true;
 		MeleeTimer = 0;
-		SoundSource.clip = MeleeClip;
-		SoundSource.Play();
-		Vector2 RayPos = new Vector2(transform.position.x,transform.position.y);
 		Vector2 RayDir = new Vector2(0,transform.rotation.z);
-		RaycastHit2D Attack = Physics2D.Raycast(RayPos, RayDir);
-		if (Attack.collider != null && Attack.distance <= 0.5f && Attack.collider.ToString() != "Player"){
+		RaycastHit2D Attack = Physics2D.Raycast(Barrel.transform.position, RayDir);
+		if (Attack.collider != null && Attack.distance <= 0.5f && Attack.collider != PlayerCollider){
+			// if enemy collider then do damage (Change clip and spawn blood effect)
+			SoundSource.clip = MeleeClipHit;
 			print("Hit a " + Attack.collider.ToString());
 		}
+		else{
+			SoundSource.clip = MeleeClipMiss;
+		}
+		SoundSource.Play();
 	}
 	void Reload(){
 		Reloading = true;

@@ -2322,7 +2322,9 @@ MonoBehaviour:
   MeleeTimer: 0
   MeleeCooldown: 0.6
   MeleeAttacking: 0
-  MeleeClip: {fileID: 8300000, guid: d83f0e3cdc09ddc4294167857c9c37da, type: 3}
+  MeleeClipHit: {fileID: 8300000, guid: 3151badcea109164c93b8e818d47bab3, type: 3}
+  MeleeClipMiss: {fileID: 8300000, guid: 7b8285a6282d6f9498f6b71144ac2c54, type: 3}
+  PlayerCollider: {fileID: 650119037}
 --- !u!1 &715425224
 GameObject:
   m_ObjectHideFlags: 0

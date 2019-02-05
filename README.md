@@ -28,6 +28,8 @@ Full player functionality
 	Exit to menu//
 	Sounds for all players (walking, shooting, reloading, melee, dieing)
 When a player has a different type of weapon change the model//
+Knife model on melee
+Visual ammo counter with name above
 Enemies:
 	sound for impact
 	animation for impact (use decal but change colour)

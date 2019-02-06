@@ -23,8 +23,10 @@ public class ProjectileHandler : MonoBehaviour {
 			Physics2D.IgnoreCollision(Player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 		}
 		else if(Hit.gameObject.tag == "Enemy"){
-			// play blood anim
+			// play blood
 			print("Damaging an enemy");
+			SoundSource.clip = ImpactEnemy;
+			SoundSource.Play();
 		}
 		else{
 

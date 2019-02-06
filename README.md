@@ -12,7 +12,7 @@ exit room with animations for box opening. /
 Allow player to equip a weapon/
 
 Make inventory screen where we can equip new weapons/
-Inventory:
+Inventory:///
 	Deletefucntion /
 	Green leaves no selected thing /
 	sound when selecting /
@@ -22,14 +22,14 @@ Inventory:
 Full player functionality
 	Shooting (Aswell as the projectile that moves and collides with animations) sounds on collisions based on material///
 	Innacuraccy/ firerate ///
-	Reloading /
+	Reloading ////
 	Melee attack////
 	Dieing
 	Exit to menu//
-	Sounds for all players (walking, shooting, reloading, melee, dieing)
+	Sounds for all players (walking, shooting, reloading, melee, dieing) //
 When a player has a different type of weapon change the model//
-Knife model on melee
-Visual ammo counter with name above
+Knife model on melee /// 
+Visual ammo counter with name above ///
 Enemies:
 	sound for impact
 	animation for impact (use decal but change colour)

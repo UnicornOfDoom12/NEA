@@ -41,6 +41,7 @@ music on menu, inventory and game
 Volume for all sounds adjustable
 Mouse button marker
 Idle animation fix so it one frame
+Reload at start
 HandCannon Gen
 Box refactor only commit once exit
 Draw actual Connections

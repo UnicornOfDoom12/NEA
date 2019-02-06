@@ -24,14 +24,15 @@ public class PlayerShoot : MonoBehaviour {
 	public GameObject MuzzleAnimation;
 	public bool Reloading;
 	public float ReloadTime = 2;
-	public float Timer = 0;
+	public float Timer = 2;
 	public float Inaccuracy;
-	public float MeleeTimer = 0;
+	public float MeleeTimer = 0.6f;
 	public float MeleeCooldown = 0.6f;
 	public bool MeleeAttacking = false;
 	public AudioClip MeleeClipHit;
 	public AudioClip MeleeClipMiss;
 	public Collider2D PlayerCollider;
+	public Text AmmoCounter;
 	void Start(){
 		FireRate = Weapon.FireRate;
 		FireRate = FireRate / 60;
@@ -39,10 +40,11 @@ public class PlayerShoot : MonoBehaviour {
 		CurrentAmmo = Weapon.Magazine;
 		Reloading = false;
 		Inaccuracy = Weapon.Inaccuracy;
-		
+		MeleeAttacking = false;
+		AmmoCounter.text = "Ammo = " + CurrentAmmo.ToString() + " / " + Weapon.Magazine.ToString();
 	}
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		float Passed = Time.deltaTime;
 		if (Reloading){
 			Timer += Passed;
@@ -115,6 +117,7 @@ public class PlayerShoot : MonoBehaviour {
 			print("BANG you have " + CurrentAmmo.ToString());
 			var NewFlash = Instantiate(MuzzleAnimation, Barrel.transform.position,Barrel.transform.rotation);
 			Destroy(NewFlash,0.183f);
+			AmmoCounter.text = "Ammo = " + CurrentAmmo.ToString() + " / " + Weapon.Magazine.ToString();
 			
 
 		}
@@ -147,6 +150,6 @@ public class PlayerShoot : MonoBehaviour {
 		Animator.SetBool("IsReloading",true);
 		CurrentAmmo = Weapon.Magazine;
 		print("New ammo = " + CurrentAmmo.ToString());
-		
+		AmmoCounter.text = "Ammo = " + CurrentAmmo.ToString() + " / " + Weapon.Magazine.ToString();
 	}
 }

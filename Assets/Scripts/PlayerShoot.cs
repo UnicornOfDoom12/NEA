@@ -110,6 +110,7 @@ public class PlayerShoot : MonoBehaviour {
 			BulletDirection.x = BulletDirection.x + UnityEngine.Random.Range(-1 * (Inaccuracy/75),(Inaccuracy/75));
 			BulletDirection.y = BulletDirection.y + UnityEngine.Random.Range(-1 * (Inaccuracy/75),(Inaccuracy/75));
 			FiredBullet.AddForce(BulletDirection * ProjectileSpeed);
+			FiredBullet.name = "PlayerProjectile";
 			CurrentAmmo -= 1;
 			SoundSource.clip = ShootClip;
 			SoundSource.Play();

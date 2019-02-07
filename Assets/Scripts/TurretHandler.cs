@@ -6,7 +6,7 @@ public class TurretHandler : MonoBehaviour {
 	public int Damage;
 	public float Inaccuracy;
 	public int Magazine;
-	public int FireRate;
+	public float FireRate;
 	public int CurrentAmmo;
 	public bool SightedPlayer;
 	public GameObject Barrel;
@@ -30,6 +30,8 @@ public class TurretHandler : MonoBehaviour {
 		SightedPlayer = false;
 		// Determine it's position in the scene
 		reloading = false;
+		FireRate = FireRate / 60;
+		FireRate = 1/FireRate;
 	}
 	
 	// Update is called once per frame
@@ -66,7 +68,7 @@ public class TurretHandler : MonoBehaviour {
 			
 			Vector2 RayDirection = new Vector2(Player.transform.position.x - transform.position.x, Player.transform.position.y - transform.position.y);
 			RaycastHit2D Ray = Physics2D.Raycast(Barrel.transform.position, RayDirection);
-			if (Ray.collider != PlayerCollider){
+			if (Ray.collider != PlayerCollider && Ray.transform.tag != "Projectile"){
 				SightedPlayer = false;
 				print("Lost Vision");
 			}
@@ -87,11 +89,12 @@ public class TurretHandler : MonoBehaviour {
 			Reload();
 		}
 		if (CanShoot){
-			Rigidbody2D FiredBullet = Instantiate(Bullet, Barrel.transform.position, Quaternion.LookRotation(transform.position - Player.transform.position, Vector3.forward)) as Rigidbody2D;
-			Vector3 BulletDirection = transform.right;
+			Rigidbody2D FiredBullet = Instantiate(Bullet, Barrel.transform.position, transform.rotation) as Rigidbody2D;
+			Vector3 BulletDirection = transform.up;
 			BulletDirection.x = BulletDirection.x + UnityEngine.Random.Range(-1 * (Inaccuracy/75),(Inaccuracy/75));
 			BulletDirection.y = BulletDirection.y + UnityEngine.Random.Range(-1 * (Inaccuracy/75),(Inaccuracy/75));
 			FiredBullet.AddForce(BulletDirection * speed);
+			FiredBullet.name = "EnemyProjectile";
 			CurrentAmmo -= 1;
 			TurretSource.clip = BulletSound;
 			TurretSource.Play();

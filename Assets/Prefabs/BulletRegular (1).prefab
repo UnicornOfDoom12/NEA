@@ -48,17 +48,29 @@ Prefab:
       propertyPath: ImpactEnemy
       value: 
       objectReference: {fileID: 8300000, guid: df5d36a3bed52044aa562bc74bad5043, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ImpactMetalEnemy
+      value: 
+      objectReference: {fileID: 8300000, guid: d5cf0bca1f745ec4d9ba288091d1cf57, type: 3}
+    - target: {fileID: 0}
+      propertyPath: ImpactPlayer
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c9ec015b03ff3b4190cf5b60ab2b1ed, type: 3}
     m_RemovedComponents:
     - {fileID: 0}
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1429620072218264}
-  m_IsPrefabParent: 0
+  m_IsPrefabAsset: 0
 --- !u!1 &1429620072218264
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4630092169261770}
   - component: {fileID: 212255644221494738}
@@ -67,7 +79,7 @@ GameObject:
   - component: {fileID: 114177370772684926}
   m_Layer: 0
   m_Name: BulletRegular (1)
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +87,7 @@ GameObject:
 --- !u!4 &4630092169261770
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429620072218264}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -89,7 +101,7 @@ Transform:
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429620072218264}
   m_BodyType: 0
@@ -108,7 +120,7 @@ Rigidbody2D:
 --- !u!61 &61308827699351944
 BoxCollider2D:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429620072218264}
   m_Enabled: 1
@@ -133,7 +145,7 @@ BoxCollider2D:
 --- !u!114 &114177370772684926
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429620072218264}
   m_Enabled: 1
@@ -145,12 +157,15 @@ MonoBehaviour:
   SoundSource: {fileID: 0}
   ImpactWall: {fileID: 8300000, guid: 145dd300e164a7d4585bf554422921b5, type: 3}
   ImpactEnemy: {fileID: 8300000, guid: df5d36a3bed52044aa562bc74bad5043, type: 3}
+  ImpactMetalEnemy: {fileID: 8300000, guid: d5cf0bca1f745ec4d9ba288091d1cf57, type: 3}
   ImpactWallDecal: {fileID: 1977176443272236, guid: d009d10795af3fa4e835d70cc05ad000,
     type: 2}
+  ImpactPlayer: {fileID: 8300000, guid: 2c9ec015b03ff3b4190cf5b60ab2b1ed, type: 3}
+  PlayerDeathHandler: {fileID: 0}
 --- !u!212 &212255644221494738
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1429620072218264}
   m_Enabled: 1
@@ -160,6 +175,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -191,3 +207,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0

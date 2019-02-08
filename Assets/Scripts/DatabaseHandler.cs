@@ -18,7 +18,7 @@ public class DatabaseHandler : MonoBehaviour {
 	public PositionUpdater PositionUpdater3;
 	public PositionUpdater PositionUpdater4;
 	public PositionUpdater PositionUpdater5;
-
+	public EnemySpawner EnemySpawner;
 	public BoxHandler BoxHandler;
 	public ExitHandler ExitHandler;
 	public MapExitHandler MapExitHandler;
@@ -125,7 +125,6 @@ public class DatabaseHandler : MonoBehaviour {
 		BoxHandler.determinepresence(); // run to determine a boxes presence
 		ExitHandler.determinepresence();// run to determine a exits presence
 		MapExitHandler.DrawObject();
-		
 	}
 	bool GenEnd(int x,int y,bool happened){ // generates an end value, 25% chance
 		if(happened){

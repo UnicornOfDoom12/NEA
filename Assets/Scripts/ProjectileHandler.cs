@@ -12,10 +12,15 @@ public class ProjectileHandler : MonoBehaviour {
 	public GameObject ImpactWallDecal;
 	public AudioClip ImpactPlayer;
 	public PlayerDeathHandler PlayerDeathHandler;
+	public TurretHandler TurretHandler;
+	public int Damage;
+	public Weapon Weapon;
 	void Start(){
 		Player = GameObject.Find("Player");
 		SoundSource = GameObject.Find("BulletSoundSource").GetComponent<AudioSource>();
 		PlayerDeathHandler = GameObject.Find("Player").GetComponent<PlayerDeathHandler>();
+		Weapon = GameObject.Find("Player").GetComponent<Weapon>();
+		Damage = Weapon.Damage;
 	}
 
 	public void OnCollisionEnter2D(Collision2D Hit)
@@ -29,6 +34,7 @@ public class ProjectileHandler : MonoBehaviour {
 			}
 			else{
 				print("Do damage");
+				Physics2D.IgnoreCollision(Player.GetComponent<Collider2D>(), GetComponent<Collider2D>());
 				PlayerDeathHandler.TakeDamage(20);
 				var NewDecal = Instantiate(ImpactWallDecal, transform.position, transform.rotation);
 				SpriteRenderer DecalSprite = NewDecal.GetComponent<SpriteRenderer>();
@@ -48,6 +54,7 @@ public class ProjectileHandler : MonoBehaviour {
 			Destroy(gameObject);
 			var NewDecal = Instantiate(ImpactWallDecal, transform.position, transform.rotation);
 			Destroy(NewDecal,0.183f);
+			TurretHandler.TakeDamage(Damage);
 		}
 		else{
 

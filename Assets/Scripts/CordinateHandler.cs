@@ -1,7 +1,13 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine; // Imports
-
+using System.Linq;
+using System.IO;
+using Mono.Data;
+using Mono.Data.Sqlite;
+using System.Text;
+using UnityEngine.UI;
+using UnityEngine;
+using System.Threading; // imports including sqlite
 public class CordinateHandler : MonoBehaviour {
 
 	// Use this for initialization
@@ -13,7 +19,7 @@ public class CordinateHandler : MonoBehaviour {
 	public PhysicalConnectionHandler PhysicalConnectionHandler2;
 	public PhysicalConnectionHandler PhysicalConnectionHandler3;
 	public PhysicalConnectionHandler PhysicalConnectionHandler4;
-
+	public EnemySpawner EnemySpawner;
 	public LoadNewScene LoadNewScene;
 	void Start () {
 			Cordx = 0; // assigns values to zero
@@ -31,6 +37,17 @@ public class CordinateHandler : MonoBehaviour {
 			PhysicalConnectionHandler3.DrawConnections();
 			PhysicalConnectionHandler4.DrawConnections();
 			*/
+			EnemySpawner.DeleteEnemies();
+			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
+			RoomDB.Open(); // open the connection
+			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
+			CMD.Parameters.AddWithValue("@x",Cordx);
+			CMD.Parameters.AddWithValue("@y",Cordy);
+			var reader = CMD.ExecuteReader();
+			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+			EnemySpawner.SpawnEnemies(EnemyAmount);
+
 		}
 		if ( Input.GetKeyDown(KeyCode.J) == true && Cordx > 0){ // detects inputs using ijkl instead of wasd
 			Cordx -=1;// changes the variable
@@ -43,6 +60,16 @@ public class CordinateHandler : MonoBehaviour {
 			PhysicalConnectionHandler3.DrawConnections();
 			PhysicalConnectionHandler4.DrawConnections();
 			*/
+			EnemySpawner.DeleteEnemies();
+			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
+			RoomDB.Open(); // open the connection
+			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
+			CMD.Parameters.AddWithValue("@x",Cordx);
+			CMD.Parameters.AddWithValue("@y",Cordy);
+			var reader = CMD.ExecuteReader();
+			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+			EnemySpawner.SpawnEnemies(EnemyAmount);
 			
 			
 		}
@@ -56,6 +83,16 @@ public class CordinateHandler : MonoBehaviour {
 			PhysicalConnectionHandler3.DrawConnections();
 			PhysicalConnectionHandler4.DrawConnections();
 			*/
+			EnemySpawner.DeleteEnemies();
+			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
+			RoomDB.Open(); // open the connection
+			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
+			CMD.Parameters.AddWithValue("@x",Cordx);
+			CMD.Parameters.AddWithValue("@y",Cordy);
+			var reader = CMD.ExecuteReader();
+			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+			EnemySpawner.SpawnEnemies(EnemyAmount);
 			
 			
 		}		
@@ -68,8 +105,17 @@ public class CordinateHandler : MonoBehaviour {
 			PhysicalConnectionHandler2.DrawConnections();
 			PhysicalConnectionHandler3.DrawConnections();
 			PhysicalConnectionHandler4.DrawConnections();
-			*/			
-			
+			*/		
+			EnemySpawner.DeleteEnemies();	
+			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
+			RoomDB.Open(); // open the connection
+			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
+			CMD.Parameters.AddWithValue("@x",Cordx);
+			CMD.Parameters.AddWithValue("@y",Cordy);
+			var reader = CMD.ExecuteReader();
+			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+			EnemySpawner.SpawnEnemies(EnemyAmount);
 		}
 		if (Input.GetKeyDown(KeyCode.Escape) == true){
 			LoadNewScene.LoadSceneByIndex(0);

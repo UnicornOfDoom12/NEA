@@ -22,7 +22,7 @@ public class TurretHandler : MonoBehaviour {
 	public AudioClip TurretReload;
 	public AudioSource TurretSource;
 	public float speed;
-
+	public int health;
 	public GameObject MuzzleAnimation;
 	// Use this for initialization
 	void Start () {
@@ -32,6 +32,8 @@ public class TurretHandler : MonoBehaviour {
 		reloading = false;
 		FireRate = FireRate / 60;
 		FireRate = 1/FireRate;
+		Player = GameObject.Find("Player");
+		PlayerCollider = GameObject.Find("Player").GetComponent<Collider2D>();
 	}
 	
 	// Update is called once per frame
@@ -102,6 +104,14 @@ public class TurretHandler : MonoBehaviour {
 			var flash = Instantiate(MuzzleAnimation, Barrel.transform.position, Barrel.transform.rotation);
 			Destroy(flash, 0.183f);
 
+		}
+	}
+	public void TakeDamage(int Damage){
+		print("TakingDamage");
+		health -= Damage;
+		if (health <= 0){
+			// Play death animation here and sound
+			Destroy(gameObject);
 		}
 	}
 	void Reload(){

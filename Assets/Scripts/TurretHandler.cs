@@ -24,6 +24,7 @@ public class TurretHandler : MonoBehaviour {
 	public float speed;
 	public int health;
 	public GameObject MuzzleAnimation;
+	public GameObject Explosion;
 	// Use this for initialization
 	void Start () {
 		CurrentAmmo = Magazine;
@@ -109,8 +110,11 @@ public class TurretHandler : MonoBehaviour {
 	public void TakeDamage(int Damage){
 		print("TakingDamage");
 		health -= Damage;
+		SightedPlayer = true;
 		if (health <= 0){
 			// Play death animation here and sound
+			GameObject newExplosion = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
+			Destroy(newExplosion,0.350f);
 			Destroy(gameObject);
 		}
 	}

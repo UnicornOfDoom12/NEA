@@ -12,7 +12,7 @@ public class ProjectileHandler : MonoBehaviour {
 	public GameObject ImpactWallDecal;
 	public AudioClip ImpactPlayer;
 	public PlayerDeathHandler PlayerDeathHandler;
-	public TurretHandler TurretHandler;
+	//public TurretHandler TurretHandler;
 	public int Damage;
 	public Weapon Weapon;
 	void Start(){
@@ -47,14 +47,17 @@ public class ProjectileHandler : MonoBehaviour {
 			
 		}
 		else if(Hit.gameObject.tag == "Enemy" && gameObject.name != "EnemyProjectile"){
-			
 			print("Damaging an enemy");
 			SoundSource.clip = ImpactMetalEnemy;
 			SoundSource.Play();
 			Destroy(gameObject);
 			var NewDecal = Instantiate(ImpactWallDecal, transform.position, transform.rotation);
+			SpriteRenderer DecalSprite = NewDecal.GetComponent<SpriteRenderer>();
+			DecalSprite.color = Color.yellow;
 			Destroy(NewDecal,0.183f);
-			TurretHandler.TakeDamage(Damage);
+			TurretHandler Turret = Hit.gameObject.GetComponent<TurretHandler>();
+			print(Damage);
+			Turret.TakeDamage(Damage);
 		}
 		else{
 

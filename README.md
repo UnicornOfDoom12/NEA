@@ -31,19 +31,19 @@ When a player has a different type of weapon change the model//
 Knife model on melee /// 
 Visual ammo counter with name above ///
 turret: ignore projectile, shoots //
-Enemies:
+Enemies: at least two types
 	sound for impact
 	animation for impact (use decal but change colour)
 	Melee and projectile impacts, change sound e.t.c
 	Enemies do shit
 Sound when exit
-Sound when open box
+Player doesnt have to reload at the start of game
 music on menu, inventory and game
 Volume for all sounds adjustable
 Mouse button marker
 Idle animation fix so it one frame
 Reload at start
 HandCannon Gen
-Box refactor only commit once exit
+Box refactor only commit once exit, and only opened by player when melee/ player gains health when they open aswell
 Draw actual Connections
 button prefab

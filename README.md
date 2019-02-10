@@ -36,7 +36,7 @@ Enemies: at least two types
 	animation for impact (use decal but change colour)
 	Melee and projectile impacts, change sound e.t.c
 	Enemies do shit
-Sound when exit
+Sound when exit //
 Player doesnt have to reload at the start of game
 music on menu, inventory and game
 Volume for all sounds adjustable

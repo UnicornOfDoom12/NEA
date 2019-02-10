@@ -15,10 +15,6 @@ public class CordinateHandler : MonoBehaviour {
 	public int Cordy;
 	public DatabaseHandler DatabaseHandler; // imports the database handler script
 	public MapMarkerHandler MapMarkerHandler;
-	public PhysicalConnectionHandler PhysicalConnectionHandler1;
-	public PhysicalConnectionHandler PhysicalConnectionHandler2;
-	public PhysicalConnectionHandler PhysicalConnectionHandler3;
-	public PhysicalConnectionHandler PhysicalConnectionHandler4;
 	public EnemySpawner EnemySpawner;
 	public LoadNewScene LoadNewScene;
 	void Start () {

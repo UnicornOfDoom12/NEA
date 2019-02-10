@@ -33,6 +33,7 @@ public class PlayerShoot : MonoBehaviour {
 	public AudioClip MeleeClipMiss;
 	public Collider2D PlayerCollider;
 	public Text AmmoCounter;
+	public ExitHandler ExitHandler;
 	void Start(){
 		FireRate = Weapon.FireRate;
 		FireRate = FireRate / 60;
@@ -136,6 +137,9 @@ public class PlayerShoot : MonoBehaviour {
 			// if enemy collider then do damage (Change clip and spawn blood effect)
 			SoundSource.clip = MeleeClipHit;
 			print("Hit a " + Attack.collider.ToString());
+		}
+		if (Attack.collider.tag == "Finish"){
+			ExitHandler.Win();
 		}
 		else{
 			SoundSource.clip = MeleeClipMiss;

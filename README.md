@@ -47,3 +47,4 @@ HandCannon Gen
 Box refactor only commit once exit, and only opened by player when melee/ player gains health when they open aswell
 Draw actual Connections
 button prefab
+Difficutly, weapon damage and health.

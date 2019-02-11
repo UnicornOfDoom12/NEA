@@ -34,6 +34,8 @@ public class PlayerShoot : MonoBehaviour {
 	public Collider2D PlayerCollider;
 	public Text AmmoCounter;
 	public ExitHandler ExitHandler;
+	public CordinateHandler CordinateHandler;
+	public AudioClip OpenDoor;
 	void Start(){
 		FireRate = Weapon.FireRate;
 		FireRate = FireRate / 60;
@@ -140,6 +142,34 @@ public class PlayerShoot : MonoBehaviour {
 		}
 		if (Attack.collider.tag == "Finish"){
 			ExitHandler.Win();
+		}
+		if (Attack.collider.name == "North"){
+			print("Move north");
+			CordinateHandler.MoveNorth();
+			transform.position = new Vector3(0.0f, -4.35f, 0.0f);
+			SoundSource.clip = OpenDoor;
+			SoundSource.Play();
+		}
+		if (Attack.collider.name == "South"){
+			print("Move South");
+			CordinateHandler.MoveSouth();
+			transform.position = new Vector3(0.0f, 4.35f, 0.0f);
+			SoundSource.clip = OpenDoor;
+			SoundSource.Play();
+		}
+		if (Attack.collider.name == "East"){
+			print("Move East");
+			CordinateHandler.MoveEast();
+			transform.position = new Vector3(-10.0f, 0.0f, 0.0f);
+			SoundSource.clip = OpenDoor;
+			SoundSource.Play();
+		}
+		if (Attack.collider.name == "West"){
+			print("Move West");
+			CordinateHandler.MoveWest();
+			transform.position = new Vector3(10.0f, 0.0f, 0.0f);
+			SoundSource.clip = OpenDoor;
+			SoundSource.Play();
 		}
 		else{
 			SoundSource.clip = MeleeClipMiss;

@@ -47,10 +47,10 @@ public class TurretHandler : MonoBehaviour {
 			Vector2 RayDirection = new Vector2(Player.transform.position.x - transform.position.x, Player.transform.position.y - transform.position.y);
 			RaycastHit2D Ray = Physics2D.Raycast(Barrel.transform.position, RayDirection);
 			if (Ray.collider == PlayerCollider){
-				//SightedPlayer = true;
+				SightedPlayer = true;
 				//print("Sighted the mofo");
 				TurretSource.clip = SightedAlert;
-				//TurretSource.Play();
+				TurretSource.Play();
 			}
 			else{
 				transform.Rotate(new Vector3(0,0,1));

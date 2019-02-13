@@ -24,9 +24,9 @@ public class PlayerShoot : MonoBehaviour {
 	public GameObject MuzzleAnimation;
 	public bool Reloading;
 	public float ReloadTime = 2;
-	public float Timer = 2;
+	public float Timer = 2.1f;
 	public float Inaccuracy;
-	public float MeleeTimer = 0.6f;
+	public float MeleeTimer = 0.7f;
 	public float MeleeCooldown = 0.6f;
 	public bool MeleeAttacking = false;
 	public AudioClip MeleeClipHit;
@@ -45,6 +45,8 @@ public class PlayerShoot : MonoBehaviour {
 		Inaccuracy = Weapon.Inaccuracy;
 		MeleeAttacking = false;
 		AmmoCounter.text = "Ammo = " + CurrentAmmo.ToString() + " / " + Weapon.Magazine.ToString();
+		Timer = 3;
+		MeleeTimer = 0.7f;
 	}
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -83,8 +85,8 @@ public class PlayerShoot : MonoBehaviour {
 	void Fire(){
 		
 		bool CanShoot = true;
-		print("been reloading for " + Timer.ToString());
 		if (Timer < ReloadTime){
+			print(Timer);
 			print("Still reloading");
 			CanShoot = false;
 		}
@@ -92,6 +94,7 @@ public class PlayerShoot : MonoBehaviour {
 			Reloading = false;
 		}
 		if (MeleeTimer < MeleeCooldown){
+			print(MeleeTimer);
 			print("Still meleeing");
 			CanShoot = false;
 		}
@@ -136,41 +139,50 @@ public class PlayerShoot : MonoBehaviour {
 		Vector2 RayDir = new Vector2(0,transform.rotation.z);
 		RaycastHit2D Attack = Physics2D.Raycast(Barrel.transform.position, RayDir);
 		if (Attack.collider != null && Attack.distance <= 0.5f && Attack.collider != PlayerCollider){
-			// if enemy collider then do damage (Change clip and spawn blood effect)
+			
 			SoundSource.clip = MeleeClipHit;
 			print("Hit a " + Attack.collider.ToString());
+			if (Attack.collider.tag == "Finish"){
+				ExitHandler.Win();
+			}
+			if (Attack.collider.name == "North"){
+				print("Move north");
+				CordinateHandler.MoveNorth();
+				transform.position = new Vector3(0.0f, -4.35f, 0.0f);
+				SoundSource.clip = OpenDoor;
+				SoundSource.Play();
+			}
+			if (Attack.collider.tag == "Box"){
+				WeaponGenerate Box = Attack.collider.gameObject.GetComponent<WeaponGenerate>();
+				Box.OpenBox();
+			}
+			if (Attack.collider.name == "South"){
+				print("Move South");
+				CordinateHandler.MoveSouth();
+				transform.position = new Vector3(0.0f, 4.35f, 0.0f);
+				SoundSource.clip = OpenDoor;
+				SoundSource.Play();
+			}
+			if (Attack.collider.name == "East"){
+				print("Move East");
+				CordinateHandler.MoveEast();
+				transform.position = new Vector3(-10.0f, 0.0f, 0.0f);
+				SoundSource.clip = OpenDoor;
+				SoundSource.Play();
+			}
+			if (Attack.collider.name == "West"){
+				print("Move West");
+				CordinateHandler.MoveWest();
+				transform.position = new Vector3(10.0f, 0.0f, 0.0f);
+				SoundSource.clip = OpenDoor;
+				SoundSource.Play();
+			}
+			if (Attack.collider.tag == "Enemy"){
+				var Turret = Attack.collider.gameObject.GetComponent<TurretHandler>();
+				Turret.TakeDamage(25);
+			}
 		}
-		if (Attack.collider.tag == "Finish"){
-			ExitHandler.Win();
-		}
-		if (Attack.collider.name == "North"){
-			print("Move north");
-			CordinateHandler.MoveNorth();
-			transform.position = new Vector3(0.0f, -4.35f, 0.0f);
-			SoundSource.clip = OpenDoor;
-			SoundSource.Play();
-		}
-		if (Attack.collider.name == "South"){
-			print("Move South");
-			CordinateHandler.MoveSouth();
-			transform.position = new Vector3(0.0f, 4.35f, 0.0f);
-			SoundSource.clip = OpenDoor;
-			SoundSource.Play();
-		}
-		if (Attack.collider.name == "East"){
-			print("Move East");
-			CordinateHandler.MoveEast();
-			transform.position = new Vector3(-10.0f, 0.0f, 0.0f);
-			SoundSource.clip = OpenDoor;
-			SoundSource.Play();
-		}
-		if (Attack.collider.name == "West"){
-			print("Move West");
-			CordinateHandler.MoveWest();
-			transform.position = new Vector3(10.0f, 0.0f, 0.0f);
-			SoundSource.clip = OpenDoor;
-			SoundSource.Play();
-		}
+
 		else{
 			SoundSource.clip = MeleeClipMiss;
 		}

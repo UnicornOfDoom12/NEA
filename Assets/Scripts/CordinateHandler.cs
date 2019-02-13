@@ -18,9 +18,13 @@ public class CordinateHandler : MonoBehaviour {
 	public EnemySpawner EnemySpawner;
 	public LoadNewScene LoadNewScene;
 	public PhysicalConnectionHandler PhysicalConnectionHandler;
+	public MapConnectionHandler MapConnectionHandler;
+	public BoxHandler BoxHandler;
 	void Start () {
 			Cordx = 0; // assigns values to zero
 			Cordy = 0;
+			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
+			MapMarkerHandler.UpdatePosition();
 			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
 			RoomDB.Open(); // open the connection
 			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
@@ -30,13 +34,15 @@ public class CordinateHandler : MonoBehaviour {
 			var reader = CMD.ExecuteReader();
 			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
 			EnemySpawner.SpawnEnemies(EnemyAmount);
-			//PhsyicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+			MapConnectionHandler.DrawConnections();
 		}
 	
 	// Update is called once per frame
 	void Update () {
 		if ( Input.GetKeyDown(KeyCode.L) == true && Cordx < 3){ // detects inputs using ijkl instead of wasd
 			Cordx +=1; // changes the variable
+			BoxHandler.DeleteBoxes();
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();
 			EnemySpawner.DeleteEnemies();
@@ -54,7 +60,7 @@ public class CordinateHandler : MonoBehaviour {
 		}
 		if ( Input.GetKeyDown(KeyCode.J) == true && Cordx > 0){ // detects inputs using ijkl instead of wasd
 			Cordx -=1;// changes the variable
-			
+			BoxHandler.DeleteBoxes();
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();
 			EnemySpawner.DeleteEnemies();
@@ -73,6 +79,7 @@ public class CordinateHandler : MonoBehaviour {
 		}
 		if ( Input.GetKeyDown(KeyCode.I) == true && Cordy > 0){ // detects inputs using ijkl instead of wasd
 			Cordy -=1;// changes the variable
+			BoxHandler.DeleteBoxes();
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();
 			EnemySpawner.DeleteEnemies();
@@ -91,6 +98,7 @@ public class CordinateHandler : MonoBehaviour {
 		}		
 		if ( Input.GetKeyDown(KeyCode.K) == true && Cordy < 3){ // detects inputs using ijkl instead of wasd
 			Cordy +=1;// changes the variable
+			BoxHandler.DeleteBoxes();
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();		
 			EnemySpawner.DeleteEnemies();	
@@ -112,6 +120,7 @@ public class CordinateHandler : MonoBehaviour {
 	}
 	public void MoveSouth(){
 		Cordy +=1;// changes the variable
+		BoxHandler.DeleteBoxes();
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition();		
 		EnemySpawner.DeleteEnemies();	
@@ -128,6 +137,7 @@ public class CordinateHandler : MonoBehaviour {
 	}
 	public void MoveNorth(){
 		Cordy -=1;// changes the variable
+		BoxHandler.DeleteBoxes();
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition();
 		EnemySpawner.DeleteEnemies();
@@ -144,6 +154,7 @@ public class CordinateHandler : MonoBehaviour {
 	}
 	public void MoveEast(){
 		Cordx +=1;// changes the variable
+		BoxHandler.DeleteBoxes();
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition();
 		EnemySpawner.DeleteEnemies();
@@ -160,6 +171,7 @@ public class CordinateHandler : MonoBehaviour {
 	}
 	public void MoveWest(){
 		Cordx -=1;// changes the variable
+		BoxHandler.DeleteBoxes();
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition();
 		EnemySpawner.DeleteEnemies();

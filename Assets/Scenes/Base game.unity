@@ -1910,53 +1910,13 @@ GameObject:
   - component: {fileID: 645240907}
   - component: {fileID: 645240906}
   - component: {fileID: 1797986088}
-  - component: {fileID: 645240904}
-  - component: {fileID: 645240905}
   m_Layer: 0
-  m_Name: Chests_0
+  m_Name: BoxHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &645240904
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 645240903}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.24, y: 0.24}
-    newSize: {x: 0.24, y: 0.24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.24}
-  m_EdgeRadius: 0
---- !u!114 &645240905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 645240903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1739921531c4456478c49f3ea8f2354e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BoxHandler: {fileID: 1797986088}
-  BoxOpened: 0
 --- !u!95 &645240906
 Animator:
   serializedVersion: 3
@@ -2008,7 +1968,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2016,7 +1976,7 @@ SpriteRenderer:
   m_Size: {x: 0.24, y: 0.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
 --- !u!4 &645240908
 Transform:
@@ -2025,7 +1985,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 645240903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.87, y: -0.67, z: 0}
+  m_LocalPosition: {x: -8.53, y: 3.63, z: 0}
   m_LocalScale: {x: 2.6723993, y: 2.6723993, z: 2.6723993}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3335,12 +3295,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1162950076}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -63.19, y: -8.3, z: 0}
   m_LocalScale: {x: 0.6392694, y: 2.1423028, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204552050
 GameObject:
@@ -3645,7 +3605,7 @@ Transform:
   - {fileID: 1959670499}
   - {fileID: 513983276}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1374817639
 MonoBehaviour:
@@ -4354,8 +4314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba20e21c9eb212749983ebe364b7cf4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OpenBoxes: []
-  WeaponGenerate: {fileID: 645240905}
+  Chest: {fileID: 1288120928907912, guid: cb687aa8f0ba3f4449fbece0b8f3c5a0, type: 2}
   SpriteRender: {fileID: 645240907}
   BoxColourDecided: 0
   sprite0: {fileID: 21300000, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
@@ -4372,6 +4331,8 @@ MonoBehaviour:
   sprite11: {fileID: 21300022, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
   SpriteIndex: 0
   CordinateHandler: {fileID: 2012367917}
+  SpriteArray: []
+  BoxArray: []
 --- !u!1 &1802427259
 GameObject:
   m_ObjectHideFlags: 0
@@ -4678,6 +4639,115 @@ Transform:
   m_Father: {fileID: 1342379597}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1991541896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1991541898}
+  - component: {fileID: 1991541897}
+  m_Layer: 0
+  m_Name: MusicSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1991541897
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1991541896}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: a6541611550e94de79a8597db5a309da, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &1991541898
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1991541896}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2012367915
 GameObject:
   m_ObjectHideFlags: 0
@@ -4727,6 +4797,8 @@ MonoBehaviour:
   EnemySpawner: {fileID: 577388961}
   LoadNewScene: {fileID: 2012367916}
   PhysicalConnectionHandler: {fileID: 775000715}
+  MapConnectionHandler: {fileID: 1267028643}
+  BoxHandler: {fileID: 1797986088}
 --- !u!4 &2012367918
 Transform:
   m_ObjectHideFlags: 0

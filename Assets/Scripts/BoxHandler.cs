@@ -10,8 +10,7 @@ using UnityEngine; // imports including sqlite
 public class BoxHandler : MonoBehaviour {
 
 
-	public List<Vector3Int> OpenBoxes = new List<Vector3Int>();
-	public WeaponGenerate WeaponGenerate;
+	public GameObject Chest;
 	public SpriteRenderer SpriteRender; // declare sprite render component
 	public bool BoxColourDecided = false;
 	public Sprite sprite0; // the following variables are all different version of the chest sprite
@@ -28,20 +27,14 @@ public class BoxHandler : MonoBehaviour {
 	public Sprite sprite11;
 	public int SpriteIndex;
 	public CordinateHandler CordinateHandler;
-
+	public List<Sprite> SpriteArray;
+	public List<GameObject> BoxArray;
 	public void determinepresence(){
-		for (int i = 0; i < OpenBoxes.Count; i++){
-			if(OpenBoxes[i].x == CordinateHandler.Cordx && OpenBoxes[i].y == CordinateHandler.Cordy){
-				SpriteIndex = OpenBoxes[i].z;
-			}
-			else{
-				SpriteIndex = UnityEngine.Random.Range(0,5);
-			}
-		}
+		print("Determine Presence");
 		int Cordx = CordinateHandler.Cordx;
 		int Cordy = CordinateHandler.Cordy;
 		SpriteRender = this.gameObject.GetComponent<SpriteRenderer>(); // imports the game object used for the sprite render variable
-		Sprite[] SpriteArray = {sprite0,sprite1,sprite2,sprite3,sprite4,sprite5,sprite6,sprite7,sprite8,sprite9,sprite10,sprite11}; // Creates an array of the different sprites to be used
+		SpriteArray = new List<Sprite>{sprite0,sprite1,sprite2,sprite3,sprite4,sprite5,sprite6,sprite7,sprite8,sprite9,sprite10,sprite11}; // Creates an array of the different sprites to be used
 		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // defines the connection to database
 		RoomDB.Open(); // opens the connection
 		string CMDString = "select Box from tblRoom where Roomx=@Cordx and Roomy=@Cordy"; // declares the string used in the qeury.
@@ -51,23 +44,25 @@ public class BoxHandler : MonoBehaviour {
 		using (var reader = CMD.ExecuteReader()){ // executes the command
 			bool Present = Convert.ToBoolean(reader["Box"]); // assigns the value in the database to a local variable
 			// TODO change this to be based on difficulty
-			SpriteRender.sprite = SpriteArray[SpriteIndex]; // changes the sprite version to the one defined by the random number
+			 // changes the sprite version to the one defined by the random number
 			if (Present){ // if there is a box in the room then move the box into view
 				
-				transform.position = new Vector3(-8f,3f,0);
-			}
-			else{ // else move it out of the players view
-				transform.position = new Vector3(-15,0,0);
+				GameObject TempChest = Instantiate(Chest,transform.position,transform.rotation);
+				WeaponGenerate SpriteImage = TempChest.GetComponent<WeaponGenerate>();
+				SpriteImage.Closed = SpriteArray[SpriteIndex];
+				SpriteImage.Open = SpriteArray[SpriteIndex + 6];
+				print("Box Here");
+				BoxArray.Add(TempChest);
 			}
 		}
 		RoomDB.Close(); // close the connection
 		GC.Collect();
-		GC.WaitForPendingFinalizers();
+		GC.WaitForPendingFinalizers();	
 	}
-	public void ChangeImage(){
-		Sprite[] SpriteArray = {sprite0,sprite1,sprite2,sprite3,sprite4,sprite5,sprite6,sprite7,sprite8,sprite9,sprite10,sprite11};
-		SpriteRender.sprite = SpriteArray[SpriteIndex];
-		OpenBoxes.Add(new Vector3Int(CordinateHandler.Cordx,CordinateHandler.Cordy, SpriteIndex));
+	public void DeleteBoxes(){
+		foreach (GameObject i in BoxArray){
+			Destroy(i);
+		}
 	}
 	
 

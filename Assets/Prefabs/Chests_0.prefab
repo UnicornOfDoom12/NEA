@@ -21,10 +21,11 @@ GameObject:
   - component: {fileID: 4289788024001338}
   - component: {fileID: 212137106593357624}
   - component: {fileID: 95957356009870640}
-  - component: {fileID: 114185491159337472}
+  - component: {fileID: 114911894335391632}
+  - component: {fileID: 61365098151100236}
   m_Layer: 0
   m_Name: Chests_0
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,6 +43,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61365098151100236
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1288120928907912}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.24, y: 0.24}
+    newSize: {x: 0.24, y: 0.24}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.24, y: 0.24}
+  m_EdgeRadius: 0
 --- !u!95 &95957356009870640
 Animator:
   serializedVersion: 3
@@ -59,7 +85,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114185491159337472
+--- !u!114 &114911894335391632
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,15 +93,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1288120928907912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba20e21c9eb212749983ebe364b7cf4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1739921531c4456478c49f3ea8f2354e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprite0: {fileID: 21300000, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
-  sprite1: {fileID: 21300002, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
-  sprite2: {fileID: 21300004, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
-  sprite3: {fileID: 21300006, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
-  sprite4: {fileID: 21300008, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
-  sprite5: {fileID: 21300010, guid: 2573b2cd4a7ff8e468c4540a5901c636, type: 3}
+  BoxHandler: {fileID: 0}
+  CordinateHandler: {fileID: 0}
+  SpriteRenderer: {fileID: 212137106593357624}
+  BoxOpened: 0
+  Closed: {fileID: 0}
+  Open: {fileID: 0}
 --- !u!212 &212137106593357624
 SpriteRenderer:
   m_ObjectHideFlags: 1

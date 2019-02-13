@@ -24,7 +24,7 @@ public class DatabaseHandler : MonoBehaviour {
 	public MapExitHandler MapExitHandler;
 	public MapConnectionHandler MapConnectionHandler;
 	bool Rerun;
-	void Start () { // run on program start
+	void Awake () { // run on program start
 		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
 		RoomDB.Open(); // open the connection
 		string deletequery = "DROP TABLE tblRoom"; // string for query
@@ -107,7 +107,7 @@ public class DatabaseHandler : MonoBehaviour {
 		Rerun = CheckGraph();
 		Rerun = true;
 		if (!Rerun){
-			Start();
+			Awake();
 		}
 		MapConnectionHandler.DrawConnections();
 		ReSelect(); // runs the function that updates the objects and puts them onto the screen, is run whenever a player moves between rooms.

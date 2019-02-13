@@ -37,14 +37,20 @@ Enemies: at least two types
 	Melee and projectile impacts, change sound e.t.c
 	Enemies do shit
 Sound when exit //
-Player doesnt have to reload at the start of game
-music on menu, inventory and game
-Volume for all sounds adjustable
+Player doesnt have to reload at the start of game//
+music on menu, inventory and game //
+Volume for all sounds adjustable//
 Mouse button marker
-Idle animation fix so it one frame
-Reload at start
+Idle animation fix so it one frame //
+Reload at start//
 HandCannon Gen
 Box refactor only commit once exit, and only opened by player when melee/ player gains health when they open aswell
-Draw actual Connections
-button prefab
+Draw actual Connections //
+button prefab //
 Difficutly, weapon damage and health.
+enable the checkgraph
+update help
+increase chance of connection substantially
+health counter
+update database when enemy dies
+art for walls

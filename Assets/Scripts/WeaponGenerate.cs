@@ -13,9 +13,18 @@ public class WeaponGenerate : MonoBehaviour {
 
 	// Use this for initialization
 	public BoxHandler BoxHandler;
+	public CordinateHandler CordinateHandler;
+	public SpriteRenderer SpriteRenderer;
 	public bool BoxOpened = false;
-	void Start(){
+	public Sprite Closed;
+	public Sprite Open;
+	public bool Opened;
 
+	void Start(){
+		BoxHandler = GameObject.Find("BoxHandler").GetComponent<BoxHandler>();
+		CordinateHandler = GameObject.Find("Cordinate Tracker").GetComponent<CordinateHandler>();
+		SpriteRenderer.sprite = Closed;
+		Opened = false;
 	}
 	public void GenerateAndInsert(){
 		print("Starting insertion");
@@ -44,56 +53,53 @@ public class WeaponGenerate : MonoBehaviour {
 			
 		}
 		if (Category == "Hand Cannon"){
-			//GenerateHC(id, FullName, Category);
 			GenerateHC(id, FullName, Category);
 		}
 
 	}
-	public void OnTriggerEnter2D(Collider2D other){
-		print("Enter the trigger");
-		for (int i = 0; i< BoxHandler.OpenBoxes.Count; i++){
-			if (BoxHandler.OpenBoxes[i].x == BoxHandler.CordinateHandler.Cordx && BoxHandler.OpenBoxes[i].y == BoxHandler.CordinateHandler.Cordy){
-				BoxOpened = true;
-			}
-			else{
-				BoxOpened = false;
-			}
-		}
-		if(!BoxOpened){
+	public void OpenBox(){
+		if (!Opened){
+			SpriteRenderer.sprite = Open;
+			SqliteConnection Weapon = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;");
+			Weapon.Open();
+			string RemovalString = "UPDATE tblRoom SET Box = False WHERE Roomx=@x AND Roomy=@y";
+			SqliteCommand CMD = new SqliteCommand(RemovalString,Weapon);
+			CMD.Parameters.AddWithValue("@x",CordinateHandler.Cordx);
+			CMD.Parameters.AddWithValue("@y",CordinateHandler.Cordy);
+			CMD.ExecuteNonQuery();
+			Weapon.Close();
 			GenerateAndInsert();
-			BoxHandler.SpriteIndex += 6;
-			print(BoxHandler.SpriteIndex);
-			BoxHandler.ChangeImage();
 		}
 	}
+
 
 	public void GenerateAR(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(24,49);
 		int FireRate = UnityEngine.Random.Range(500,700);
 		float inaccuracy = UnityEngine.Random.Range(3.0f,6.0f);
 		int Magazine = UnityEngine.Random.Range(20,40);
-		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
+		//Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void GenerateMR(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(40,70);
 		int FireRate = UnityEngine.Random.Range(300,500);
 		float inaccuracy = UnityEngine.Random.Range(1.0f,3.0f);
 		int Magazine = UnityEngine.Random.Range(5,30);
-		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
+		//Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void GenerateSMG(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(15,25);
 		int FireRate = UnityEngine.Random.Range(700,1000);
 		float inaccuracy = UnityEngine.Random.Range(4.0f,8.0f);
 		int Magazine = UnityEngine.Random.Range(30,60);
-		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
+		//Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void GenerateHC(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(60,99);
 		int FireRate = UnityEngine.Random.Range(300,400);
 		float inaccuracy = UnityEngine.Random.Range(6.0f,9.0f);
 		int Magazine = UnityEngine.Random.Range(3,10);
-		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
+		//Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void Insert(int id, string name, string category, int Damage, int FireRate, float inaccuracy, int Magazine){
 		print(id);
@@ -115,8 +121,5 @@ public class WeaponGenerate : MonoBehaviour {
 		print("Insertion Finished");
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+
 }

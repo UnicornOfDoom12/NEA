@@ -20,6 +20,14 @@ Prefab:
       propertyPath: Explode
       value: 
       objectReference: {fileID: 8300000, guid: dd625cfc84ccbb0418b804a32c937fe9, type: 3}
+    - target: {fileID: 0}
+      propertyPath: FireRate
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Inaccuracy
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1581584539725588}
@@ -231,9 +239,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 0
-  Inaccuracy: 5
+  Inaccuracy: 9
   Magazine: 20
-  FireRate: 200
+  FireRate: 150
   CurrentAmmo: 0
   SightedPlayer: 0
   Barrel: {fileID: 1913579373395116}
@@ -253,7 +261,6 @@ MonoBehaviour:
   MuzzleAnimation: {fileID: 1503608257601038, guid: 76c0d737ab7f51e47a9bfab1d1b3cac0,
     type: 2}
   Explosion: {fileID: 1079552568702358, guid: 46549bdc0904c3b4ca3916ad5759576d, type: 2}
-  Explode: {fileID: 8300000, guid: dd625cfc84ccbb0418b804a32c937fe9, type: 3}
 --- !u!212 &212053339394626488
 SpriteRenderer:
   m_ObjectHideFlags: 1

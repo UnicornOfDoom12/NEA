@@ -50,7 +50,7 @@ button prefab //
 Difficutly, weapon damage and health.
 enable the checkgraph
 update help
-increase chance of connection substantially
-health counter
+increase chance of connection substantially//
+health counter //
 update database when enemy dies
 art for walls

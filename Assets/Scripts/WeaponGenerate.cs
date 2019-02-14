@@ -15,7 +15,6 @@ public class WeaponGenerate : MonoBehaviour {
 	public BoxHandler BoxHandler;
 	public CordinateHandler CordinateHandler;
 	public SpriteRenderer SpriteRenderer;
-	public bool BoxOpened = false;
 	public Sprite Closed;
 	public Sprite Open;
 	public bool Opened;
@@ -60,14 +59,15 @@ public class WeaponGenerate : MonoBehaviour {
 	public void OpenBox(){
 		if (!Opened){
 			SpriteRenderer.sprite = Open;
-			SqliteConnection Weapon = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;");
-			Weapon.Open();
-			string RemovalString = "UPDATE tblRoom SET Box = False WHERE Roomx=@x AND Roomy=@y";
-			SqliteCommand CMD = new SqliteCommand(RemovalString,Weapon);
+			SqliteConnection Room = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;");
+			Room.Open();
+			string RemovalString = "UPDATE tblRoom SET Box=@f WHERE Roomx=@x AND Roomy=@y";
+			SqliteCommand CMD = new SqliteCommand(RemovalString,Room);
+			CMD.Parameters.AddWithValue("@f", false);
 			CMD.Parameters.AddWithValue("@x",CordinateHandler.Cordx);
 			CMD.Parameters.AddWithValue("@y",CordinateHandler.Cordy);
 			CMD.ExecuteNonQuery();
-			Weapon.Close();
+			Room.Close();
 			GenerateAndInsert();
 		}
 	}
@@ -116,7 +116,7 @@ public class WeaponGenerate : MonoBehaviour {
 		InsertCommand.Parameters.AddWithValue("@Magazine", Magazine);
 		InsertCommand.ExecuteNonQuery();
 		WeaponDB.Close();
-		BoxOpened = true;
+		Opened = true;
 		
 		print("Insertion Finished");
 

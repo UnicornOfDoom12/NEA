@@ -40,7 +40,7 @@ Sound when exit //
 Player doesnt have to reload at the start of game//
 music on menu, inventory and game //
 Volume for all sounds adjustable//
-Mouse button marker
+Mouse button marker //
 Idle animation fix so it one frame //
 Reload at start//
 HandCannon Gen

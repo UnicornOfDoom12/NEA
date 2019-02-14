@@ -198,10 +198,10 @@ public class DatabaseHandler : MonoBehaviour {
 		}
 		else
 		{
-			x += y;
-			int chance = 10 * x;
+			
+			int chance = 75;
 			int Roll = UnityEngine.Random.Range(0,100);
-			if (Roll < chance){
+			if (Roll <= chance){
 				return true;
 			}
 			else{

@@ -34,6 +34,7 @@ public class WeaponGenerate : MonoBehaviour {
 		string CMDString = "SELECT MAX(id) from tblWeapon";
 		SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
 		int Data = int.Parse(CMD.ExecuteScalar().ToString());
+		WeaponDB.Close();
 		int id = Data + 1; // To be inserted
 		string NamePt1 = Names[UnityEngine.Random.Range(0,6)];
 		string NamePt2 = UnityEngine.Random.Range(1,99).ToString();

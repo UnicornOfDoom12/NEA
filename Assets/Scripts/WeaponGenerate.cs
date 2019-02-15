@@ -60,16 +60,20 @@ public class WeaponGenerate : MonoBehaviour {
 	public void OpenBox(){
 		if (!Opened){
 			SpriteRenderer.sprite = Open;
-			SqliteConnection Room = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;");
-			Room.Open();
-			string RemovalString = "UPDATE tblRoom SET Box=@f WHERE Roomx=@x AND Roomy=@y";
-			SqliteCommand CMD = new SqliteCommand(RemovalString,Room);
-			CMD.Parameters.AddWithValue("@f", false);
-			CMD.Parameters.AddWithValue("@x",CordinateHandler.Cordx);
-			CMD.Parameters.AddWithValue("@y",CordinateHandler.Cordy);
-			CMD.ExecuteNonQuery();
-			Room.Close();
-			GenerateAndInsert();
+			using (SqliteConnection RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){
+				RoomDB.Open();
+				string RemovalString = "UPDATE tblRoom SET Box=@f WHERE Roomx=@x AND Roomy=@y";
+				using(SqliteCommand CMD = new SqliteCommand(RemovalString,RoomDB)){
+					CMD.Parameters.AddWithValue("@f", false);
+					CMD.Parameters.AddWithValue("@x",CordinateHandler.Cordx);
+					CMD.Parameters.AddWithValue("@y",CordinateHandler.Cordy);
+					CMD.ExecuteNonQuery();
+					RoomDB.Close();
+					GenerateAndInsert();
+				}
+
+			}
+
 		}
 	}
 

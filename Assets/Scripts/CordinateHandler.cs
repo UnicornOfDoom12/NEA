@@ -25,15 +25,19 @@ public class CordinateHandler : MonoBehaviour {
 			Cordy = 0;
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition();
-			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-			RoomDB.Open(); // open the connection
-			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-			CMD.Parameters.AddWithValue("@x",Cordx);
-			CMD.Parameters.AddWithValue("@y",Cordy);
-			var reader = CMD.ExecuteReader();
-			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-			EnemySpawner.SpawnEnemies(EnemyAmount);
+			using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){
+				RoomDB.Open(); // open the connection
+				string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+				using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
+					CMD.Parameters.AddWithValue("@y",Cordy);
+					CMD.Parameters.AddWithValue("@x",Cordx);
+					var reader = CMD.ExecuteReader();
+					int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+					RoomDB.Close();
+					EnemySpawner.SpawnEnemies(EnemyAmount);
+				}
+
+			} // define connection to database
 			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 			MapConnectionHandler.DrawConnections();
 		}
@@ -56,6 +60,7 @@ public class CordinateHandler : MonoBehaviour {
 			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
 			EnemySpawner.SpawnEnemies(EnemyAmount);
 			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+			RoomDB.Close();
 
 		}
 		if ( Input.GetKeyDown(KeyCode.J) == true && Cordx > 0){ // detects inputs using ijkl instead of wasd
@@ -72,6 +77,7 @@ public class CordinateHandler : MonoBehaviour {
 			CMD.Parameters.AddWithValue("@y",Cordy);
 			var reader = CMD.ExecuteReader();
 			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+			RoomDB.Close();
 			EnemySpawner.SpawnEnemies(EnemyAmount);
 			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 			
@@ -91,6 +97,7 @@ public class CordinateHandler : MonoBehaviour {
 			CMD.Parameters.AddWithValue("@y",Cordy);
 			var reader = CMD.ExecuteReader();
 			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+			RoomDB.Close();
 			EnemySpawner.SpawnEnemies(EnemyAmount);
 			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 			
@@ -110,6 +117,7 @@ public class CordinateHandler : MonoBehaviour {
 			CMD.Parameters.AddWithValue("@y",Cordy);
 			var reader = CMD.ExecuteReader();
 			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+			RoomDB.Close();
 			EnemySpawner.SpawnEnemies(EnemyAmount);
 			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 		}
@@ -132,6 +140,7 @@ public class CordinateHandler : MonoBehaviour {
 		CMD.Parameters.AddWithValue("@y",Cordy);
 		var reader = CMD.ExecuteReader();
 		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+		RoomDB.Close();
 		EnemySpawner.SpawnEnemies(EnemyAmount);
 		PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 	}
@@ -149,6 +158,7 @@ public class CordinateHandler : MonoBehaviour {
 		CMD.Parameters.AddWithValue("@y",Cordy);
 		var reader = CMD.ExecuteReader();
 		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+		RoomDB.Close();
 		EnemySpawner.SpawnEnemies(EnemyAmount);
 		PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);		
 	}
@@ -166,6 +176,7 @@ public class CordinateHandler : MonoBehaviour {
 		CMD.Parameters.AddWithValue("@y",Cordy);
 		var reader = CMD.ExecuteReader();
 		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+		RoomDB.Close();
 		EnemySpawner.SpawnEnemies(EnemyAmount);
 		PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);		
 	}
@@ -183,6 +194,7 @@ public class CordinateHandler : MonoBehaviour {
 		CMD.Parameters.AddWithValue("@y",Cordy);
 		var reader = CMD.ExecuteReader();
 		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+		RoomDB.Close();
 		EnemySpawner.SpawnEnemies(EnemyAmount);
 		PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);		
 	}

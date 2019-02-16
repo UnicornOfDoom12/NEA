@@ -200,7 +200,7 @@ public class DatabaseHandler : MonoBehaviour {
 		else
 		{
 			
-			int chance = 75;
+			int chance = 66;
 			int Roll = UnityEngine.Random.Range(0,100);
 			if (Roll <= chance){
 				return true;

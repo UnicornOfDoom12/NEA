@@ -30,6 +30,18 @@ public class CroshairMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Weapon.Category == "Assault Rifle"){
+			SpriteRenderer.sprite = AR;
+		}
+		else if (Weapon.Category == "SMG"){
+			SpriteRenderer.sprite = SMG;
+		}
+		else if (Weapon.Category == "Hand Cannon"){
+			SpriteRenderer.sprite = HC;
+		}
+		else if (Weapon.Category == "Marksman Rifle"){
+			SpriteRenderer.sprite = MR;
+		}
 		mousePos = Input.mousePosition;
         mousePos = Camera.main.ScreenToWorldPoint(mousePos);
         transform.position = Vector2.Lerp(transform.position, mousePos, Speed);

@@ -27,44 +27,55 @@ public class WeaponGenerate : MonoBehaviour {
 	public static List<int> FireRates = new List<int>{};
 	public static List<int> Magazines = new List<int>{};
 	public static List<float> Inaccuracies = new List<float>{};
+	public int MaxValue;
+	public PlayerDeathHandler PlayerDeathHandler;
 	void Start(){
-		BoxHandler = GameObject.Find("BoxHandler").GetComponent<BoxHandler>();
-		CordinateHandler = GameObject.Find("Cordinate Tracker").GetComponent<CordinateHandler>();
-		SpriteRenderer.sprite = Closed;
-		Opened = false;
-		if (BoxHandler.OpenBoxes.Contains(new Vector2Int(CordinateHandler.Cordx,CordinateHandler.Cordy))){
-			Opened = true;
-			SpriteRenderer.sprite = Open;
+		if(gameObject.name != "WeaponDisplay"){
+			BoxHandler = GameObject.Find("BoxHandler").GetComponent<BoxHandler>();
+			CordinateHandler = GameObject.Find("Cordinate Tracker").GetComponent<CordinateHandler>();
+			SpriteRenderer.sprite = Closed;
+			Opened = false;
+			PlayerDeathHandler = GameObject.Find("Player").GetComponent<PlayerDeathHandler>();
+			if (BoxHandler.OpenBoxes.Contains(new Vector2Int(CordinateHandler.Cordx,CordinateHandler.Cordy))){
+				Opened = true;
+				SpriteRenderer.sprite = Open;
+			}
+			SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
+			WeaponDB.Open();
+			string CMDString = "SELECT MAX(id) from tblWeapon";
+			SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
+			MaxValue = int.Parse(CMD.ExecuteScalar().ToString());
+			WeaponDB.Close();
+			MaxValue += IDs.Count();
 		}
 	}
 	public void GenerateAndInsert(){
 		print("Starting insertion");
-		string[] Categories = new string[] { "Assault Rifle", "Marksman Rifle", "SMG","Hand Cannon"};
+		string[] Categories = new string[] { "Assault Rifle", "Hand Cannon", "SMG","Marksman Rifle"};
 		string[] Names = new string[] {"MK", "M","MP","AR","AK","AN","QBZ"};
-		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
-		WeaponDB.Open();
-		string CMDString = "SELECT MAX(id) from tblWeapon";
-		SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
-		int Data = int.Parse(CMD.ExecuteScalar().ToString());
-		WeaponDB.Close();
-		int id = Data + 1; // To be inserted
+		MaxValue += 1;
+		int id = MaxValue; // To be inserted
 		string NamePt1 = Names[UnityEngine.Random.Range(0,6)];
 		string NamePt2 = UnityEngine.Random.Range(1,99).ToString();
 		string Category = Categories[UnityEngine.Random.Range(0,3)]; // To be inserted as category
 		string FullName = NamePt1 + NamePt2 + "-" + Category; // To be inserted as name
 		if (Category == "Assault Rifle"){
+			print("Genning a AR because of " + Category);
 			GenerateAR(id, FullName, Category);
 			
 		}
-		if (Category == "Marksman Rifle"){
+		else if (Category == "Marksman Rifle"){
+			print("Genning a MR because of " + Category);
 			GenerateMR(id, FullName, Category);
 			
 		}
-		if (Category == "SMG"){
+		else if (Category == "SMG"){
+			print("Genning a SMG because of " + Category);
 			GenerateSMG(id, FullName, Category);
 			
 		}
-		if (Category == "Hand Cannon"){
+		else if (Category == "Hand Cannon"){
+			print("Genning a HC because of " + Category);
 			GenerateHC(id, FullName, Category);
 		}
 
@@ -75,6 +86,7 @@ public class WeaponGenerate : MonoBehaviour {
 			GenerateAndInsert();
 			Opened = true;
 			BoxHandler.OpenBoxes.Add(new Vector2Int(CordinateHandler.Cordx, CordinateHandler.Cordy));
+			PlayerDeathHandler.RemoveDamage(15);
 		}
 	}
 
@@ -139,16 +151,22 @@ public class WeaponGenerate : MonoBehaviour {
 	public void Insert(){
 		for (int i = 0; i < IDs.Count(); i++){
 			using(SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;")){
+				WeaponDB.Open();
 				string InsetString = "INSERT INTO tblWeapon (id,name,Category,Damage,Inaccuracy,Magazine,FireRate)VALUES(@id, @name, @category, @damage, @inaccuracy, @magazine, @firerate)";
 				using (SqliteCommand CMD = new SqliteCommand(InsetString,WeaponDB)){
+					print("Added with the id " + IDs[i].ToString());
+					print("Added the " + Names[i]);
+					print("=============");
 					CMD.Parameters.AddWithValue("@id",IDs[i]);
-					CMD.Parameters.AddWithValue("@name",name[i]);
+					CMD.Parameters.AddWithValue("@name",Names[i]);
 					CMD.Parameters.AddWithValue("@category",WeaponCategories[i]);
 					CMD.Parameters.AddWithValue("@damage",Damages[i]);
 					CMD.Parameters.AddWithValue("@inaccuracy",Inaccuracies[i]);
 					CMD.Parameters.AddWithValue("@magazine",Magazines[i]);
 					CMD.Parameters.AddWithValue("@firerate",FireRates[i]);
 					CMD.ExecuteNonQuery();
+					WeaponDB.Close();
+
 				}
 			}
 		}

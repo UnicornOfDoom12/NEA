@@ -43,16 +43,19 @@ Volume for all sounds adjustable//
 Mouse button marker //
 Idle animation fix so it one frame //
 Reload at start//
-HandCannon Gen
-Box refactor only commit once exit, and only opened by player when melee/ player gains health when they open aswell
+HandCannon Gen //
+Box refactor only commit once exit, and only opened by player when melee/ player gains health when they open aswell //
 Draw actual Connections //
 button prefab //
-Difficutly, weapon damage and health.
-enable the checkgraph
-update help
 increase chance of connection substantially//
 health counter //
 update database when enemy dies
+
 art for walls
 renable the knife thingy
 Fix multiple connections
+Difficutly, weapon damage and health.
+enable the checkgraph
+update help
+one more enemy type
+testing for hc gen

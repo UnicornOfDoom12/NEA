@@ -9,7 +9,7 @@ public class SelectInput : MonoBehaviour {
 	public GameObject selectedObject;
 	private bool buttonSelected = false;
 	void Start () {
-		
+		Cursor.visible = true;
 	}
 	
 	// Update is called once per frame

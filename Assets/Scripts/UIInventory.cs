@@ -9,12 +9,14 @@ public class UIInventory : MonoBehaviour {
 
     void Awake()
     {
+        Cursor.visible = true;
         for(int i = 0; i < 24; i++)
         {
             GameObject instance = Instantiate(slotPrefab);
             instance.transform.SetParent(slotPanel);
             uiItems.Add(instance.GetComponentInChildren<UIItem>());
         }
+        
     }
 
     public void UpdateSlot(int slot, Item item)

@@ -30,6 +30,7 @@ public class BoxHandler : MonoBehaviour {
 	public List<Sprite> SpriteArray;
 	public List<GameObject> BoxArray;
 	public List<Vector2Int> OpenBoxes;
+	public WeaponGenerate WeaponGenerate;
 	public void determinepresence(){
 		print("Determine Presence");
 		int Cordx = CordinateHandler.Cordx;

@@ -29,6 +29,7 @@ public class BoxHandler : MonoBehaviour {
 	public CordinateHandler CordinateHandler;
 	public List<Sprite> SpriteArray;
 	public List<GameObject> BoxArray;
+	public List<Vector2Int> OpenBoxes;
 	public void determinepresence(){
 		print("Determine Presence");
 		int Cordx = CordinateHandler.Cordx;
@@ -45,8 +46,8 @@ public class BoxHandler : MonoBehaviour {
 			bool Present = Convert.ToBoolean(reader["Box"]); // assigns the value in the database to a local variable
 			// TODO change this to be based on difficulty
 			 // changes the sprite version to the one defined by the random number
+			Vector2Int TempBoxVector = new Vector2Int(Cordx,Cordy);
 			if (Present){ // if there is a box in the room then move the box into view
-				
 				GameObject TempChest = Instantiate(Chest,transform.position,transform.rotation);
 				WeaponGenerate SpriteImage = TempChest.GetComponent<WeaponGenerate>();
 				SpriteImage.Closed = SpriteArray[SpriteIndex];
@@ -55,7 +56,8 @@ public class BoxHandler : MonoBehaviour {
 				BoxArray.Add(TempChest);
 			}
 		}
-		RoomDB.Close(); // close the connection
+		RoomDB.Close(); // closes the connection properly
+		RoomDB.Dispose();
 		GC.Collect();
 		GC.WaitForPendingFinalizers();	
 	}

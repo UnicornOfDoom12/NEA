@@ -34,5 +34,7 @@ public class MapExitHandler : MonoBehaviour {
 				}
 			}
 		}
+		RoomDB.Close();
+		RoomDB.Dispose();
 	}
 }

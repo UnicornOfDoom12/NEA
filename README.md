@@ -55,3 +55,4 @@ health counter //
 update database when enemy dies
 art for walls
 renable the knife thingy
+Fix multiple connections

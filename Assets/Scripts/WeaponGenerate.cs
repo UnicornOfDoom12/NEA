@@ -18,12 +18,24 @@ public class WeaponGenerate : MonoBehaviour {
 	public Sprite Closed;
 	public Sprite Open;
 	public bool Opened;
-
+	public AudioSource SoundSource;
+	public AudioClip OpenClip;
+	public static List<int> IDs = new List<int>{};
+	public static List<string> Names = new List<string>{};
+	public static List<string> WeaponCategories = new List<string>{};
+	public static List<int> Damages = new List<int>{};
+	public static List<int> FireRates = new List<int>{};
+	public static List<int> Magazines = new List<int>{};
+	public static List<float> Inaccuracies = new List<float>{};
 	void Start(){
 		BoxHandler = GameObject.Find("BoxHandler").GetComponent<BoxHandler>();
 		CordinateHandler = GameObject.Find("Cordinate Tracker").GetComponent<CordinateHandler>();
 		SpriteRenderer.sprite = Closed;
 		Opened = false;
+		if (BoxHandler.OpenBoxes.Contains(new Vector2Int(CordinateHandler.Cordx,CordinateHandler.Cordy))){
+			Opened = true;
+			SpriteRenderer.sprite = Open;
+		}
 	}
 	public void GenerateAndInsert(){
 		print("Starting insertion");
@@ -60,20 +72,9 @@ public class WeaponGenerate : MonoBehaviour {
 	public void OpenBox(){
 		if (!Opened){
 			SpriteRenderer.sprite = Open;
-			using (SqliteConnection RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){
-				RoomDB.Open();
-				string RemovalString = "UPDATE tblRoom SET Box=@f WHERE Roomx=@x AND Roomy=@y";
-				using(SqliteCommand CMD = new SqliteCommand(RemovalString,RoomDB)){
-					CMD.Parameters.AddWithValue("@f", false);
-					CMD.Parameters.AddWithValue("@x",CordinateHandler.Cordx);
-					CMD.Parameters.AddWithValue("@y",CordinateHandler.Cordy);
-					CMD.ExecuteNonQuery();
-					RoomDB.Close();
-					GenerateAndInsert();
-				}
-
-			}
-
+			GenerateAndInsert();
+			Opened = true;
+			BoxHandler.OpenBoxes.Add(new Vector2Int(CordinateHandler.Cordx, CordinateHandler.Cordy));
 		}
 	}
 
@@ -83,48 +84,74 @@ public class WeaponGenerate : MonoBehaviour {
 		int FireRate = UnityEngine.Random.Range(500,700);
 		float inaccuracy = UnityEngine.Random.Range(3.0f,6.0f);
 		int Magazine = UnityEngine.Random.Range(20,40);
-		//Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
+		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void GenerateMR(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(40,70);
 		int FireRate = UnityEngine.Random.Range(300,500);
 		float inaccuracy = UnityEngine.Random.Range(1.0f,3.0f);
 		int Magazine = UnityEngine.Random.Range(5,30);
-		//Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
+		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void GenerateSMG(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(15,25);
 		int FireRate = UnityEngine.Random.Range(700,1000);
 		float inaccuracy = UnityEngine.Random.Range(4.0f,8.0f);
 		int Magazine = UnityEngine.Random.Range(30,60);
-		//Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
+		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void GenerateHC(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(60,99);
 		int FireRate = UnityEngine.Random.Range(300,400);
 		float inaccuracy = UnityEngine.Random.Range(6.0f,9.0f);
 		int Magazine = UnityEngine.Random.Range(3,10);
-		//Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
+		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
 	public void Insert(int id, string name, string category, int Damage, int FireRate, float inaccuracy, int Magazine){
 		print(id);
-		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
-		WeaponDB.Open();
-		string InsertQuery = "INSERT INTO tblWeapon (id, Name, Category, Damage, FireRate, Inaccuracy, Magazine)VALUES(@id,@Name,@Category,@Damage,@FireRate,@Inaccuracy,@Magazine)";
-		SqliteCommand InsertCommand = new SqliteCommand(InsertQuery, WeaponDB);
-		InsertCommand.Parameters.AddWithValue("@id",id);
-		InsertCommand.Parameters.AddWithValue("@Name",name);
-		InsertCommand.Parameters.AddWithValue("@Category", category);
-		InsertCommand.Parameters.AddWithValue("@Damage", Damage);
-		InsertCommand.Parameters.AddWithValue("@FireRate", FireRate);
-		InsertCommand.Parameters.AddWithValue("@Inaccuracy", inaccuracy);
-		InsertCommand.Parameters.AddWithValue("@Magazine", Magazine);
-		InsertCommand.ExecuteNonQuery();
-		WeaponDB.Close();
+		IDs.Add(id);
+		Names.Add(name);
+		WeaponCategories.Add(category);
+		Damages.Add(Damage);
+		FireRates.Add(FireRate);
+		Inaccuracies.Add(inaccuracy);
+		Magazines.Add(Magazine);
 		Opened = true;
-		
 		print("Insertion Finished");
-
+	}
+	public string Display(bool Won){
+		string itemString;
+		if (Won){
+			itemString = "The items you gained: ";
+		}
+		else{
+			itemString = "The items you lost: ";
+		}
+		foreach (string i in Names){
+			itemString += i;
+			itemString += ", "; 
+		}
+		if (Won){
+			Insert();
+		}
+		return itemString;
+	}
+	public void Insert(){
+		for (int i = 0; i < IDs.Count(); i++){
+			using(SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;")){
+				string InsetString = "INSERT INTO tblWeapon (id,name,Category,Damage,Inaccuracy,Magazine,FireRate)VALUES(@id, @name, @category, @damage, @inaccuracy, @magazine, @firerate)";
+				using (SqliteCommand CMD = new SqliteCommand(InsetString,WeaponDB)){
+					CMD.Parameters.AddWithValue("@id",IDs[i]);
+					CMD.Parameters.AddWithValue("@name",name[i]);
+					CMD.Parameters.AddWithValue("@category",WeaponCategories[i]);
+					CMD.Parameters.AddWithValue("@damage",Damages[i]);
+					CMD.Parameters.AddWithValue("@inaccuracy",Inaccuracies[i]);
+					CMD.Parameters.AddWithValue("@magazine",Magazines[i]);
+					CMD.Parameters.AddWithValue("@firerate",FireRates[i]);
+					CMD.ExecuteNonQuery();
+				}
+			}
+		}
 	}
 
 }

@@ -41,6 +41,7 @@ public class ExitHandler : MonoBehaviour {
 			}
 		}
 		RoomDB.Close(); // closes the connection properly
+		RoomDB.Dispose();
 		GC.Collect();
 		GC.WaitForPendingFinalizers();
 	}

@@ -57,6 +57,7 @@ public class Weapon : MonoBehaviour {
 		Inaccuracy = Convert.ToInt32(reader["Inaccuracy"]);
 		Magazine = Convert.ToInt32(reader["Magazine"]);
 		FireRate = Convert.ToInt32(reader["FireRate"]);
+		reader.Close();
 		WeaponDB.Close();
 		Weapon EquippedWeapon = new Weapon(SelectedEquip.EquippedId, Category, Damage, Magazine, FireRate, Inaccuracy);
 		print(EquippedWeapon.Category);

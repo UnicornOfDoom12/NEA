@@ -27,6 +27,7 @@ public class PhysicalConnectionHandler : MonoBehaviour {
 		bool East = Convert.ToBoolean(reader["ECon"]);
 		bool West = Convert.ToBoolean(reader["WCon"]);
 		RoomDB.Close();
+		RoomDB.Dispose();
 		bool FromAbove = false;
 		bool FromBelow = false;
 		bool FromRight = false;
@@ -72,17 +73,20 @@ public class PhysicalConnectionHandler : MonoBehaviour {
 	}
 
 	public bool FromOutside(string Direction, int x, int y){
-		SqliteConnection RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-		RoomDB.Open();
-		string CMDString = "SELECT " + Direction + " FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-		SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-		CMD.Parameters.AddWithValue("@x", x);
-		CMD.Parameters.AddWithValue("@y", y);
-		var reader = CMD.ExecuteReader();
-		print(x);
-		print(y);
-		print(Direction);
-		bool Present = Convert.ToBoolean(reader[Direction]);
-		return Present;
+		using(SqliteConnection RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+			RoomDB.Open();
+			string CMDString = "SELECT " + Direction + " FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
+				CMD.Parameters.AddWithValue("@x", x);
+				CMD.Parameters.AddWithValue("@y", y);
+				using(var reader = CMD.ExecuteReader()){
+					bool Present = Convert.ToBoolean(reader[Direction]);
+					return Present;
+					reader.Close();
+					RoomDB.Close();
+					RoomDB.Dispose();
+				}
+			}
+		}
 	}
 }

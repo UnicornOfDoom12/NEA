@@ -31,10 +31,15 @@ public class CordinateHandler : MonoBehaviour {
 				using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
 					CMD.Parameters.AddWithValue("@y",Cordy);
 					CMD.Parameters.AddWithValue("@x",Cordx);
-					var reader = CMD.ExecuteReader();
+					using(var reader = CMD.ExecuteReader()){
 					int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-					RoomDB.Close();
+					RoomDB.Close(); // closes the connection properly
+					RoomDB.Dispose();
+					GC.Collect();
+					GC.WaitForPendingFinalizers();
+					reader.Close();
 					EnemySpawner.SpawnEnemies(EnemyAmount);
+					}
 				}
 
 			} // define connection to database
@@ -45,81 +50,18 @@ public class CordinateHandler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if ( Input.GetKeyDown(KeyCode.L) == true && Cordx < 3){ // detects inputs using ijkl instead of wasd
-			Cordx +=1; // changes the variable
-			BoxHandler.DeleteBoxes();
-			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
-			MapMarkerHandler.UpdatePosition();
-			EnemySpawner.DeleteEnemies();
-			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-			RoomDB.Open(); // open the connection
-			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-			CMD.Parameters.AddWithValue("@x",Cordx);
-			CMD.Parameters.AddWithValue("@y",Cordy);
-			var reader = CMD.ExecuteReader();
-			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-			EnemySpawner.SpawnEnemies(EnemyAmount);
-			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
-			RoomDB.Close();
-
+			MoveEast();
 		}
 		if ( Input.GetKeyDown(KeyCode.J) == true && Cordx > 0){ // detects inputs using ijkl instead of wasd
-			Cordx -=1;// changes the variable
-			BoxHandler.DeleteBoxes();
-			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
-			MapMarkerHandler.UpdatePosition();
-			EnemySpawner.DeleteEnemies();
-			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-			RoomDB.Open(); // open the connection
-			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-			CMD.Parameters.AddWithValue("@x",Cordx);
-			CMD.Parameters.AddWithValue("@y",Cordy);
-			var reader = CMD.ExecuteReader();
-			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-			RoomDB.Close();
-			EnemySpawner.SpawnEnemies(EnemyAmount);
-			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
-			
-			
+			MoveWest();
 		}
 		if ( Input.GetKeyDown(KeyCode.I) == true && Cordy > 0){ // detects inputs using ijkl instead of wasd
-			Cordy -=1;// changes the variable
-			BoxHandler.DeleteBoxes();
-			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
-			MapMarkerHandler.UpdatePosition();
-			EnemySpawner.DeleteEnemies();
-			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-			RoomDB.Open(); // open the connection
-			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-			CMD.Parameters.AddWithValue("@x",Cordx);
-			CMD.Parameters.AddWithValue("@y",Cordy);
-			var reader = CMD.ExecuteReader();
-			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-			RoomDB.Close();
-			EnemySpawner.SpawnEnemies(EnemyAmount);
-			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+			MoveNorth();
 			
 			
 		}		
 		if ( Input.GetKeyDown(KeyCode.K) == true && Cordy < 3){ // detects inputs using ijkl instead of wasd
-			Cordy +=1;// changes the variable
-			BoxHandler.DeleteBoxes();
-			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
-			MapMarkerHandler.UpdatePosition();		
-			EnemySpawner.DeleteEnemies();	
-			var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-			RoomDB.Open(); // open the connection
-			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-			SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-			CMD.Parameters.AddWithValue("@x",Cordx);
-			CMD.Parameters.AddWithValue("@y",Cordy);
-			var reader = CMD.ExecuteReader();
-			int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-			RoomDB.Close();
-			EnemySpawner.SpawnEnemies(EnemyAmount);
-			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+			MoveSouth();
 		}
 		if (Input.GetKeyDown(KeyCode.Escape) == true){
 			LoadNewScene.LoadSceneByIndex(0);
@@ -132,17 +74,24 @@ public class CordinateHandler : MonoBehaviour {
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition();		
 		EnemySpawner.DeleteEnemies();	
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-		RoomDB.Open(); // open the connection
-		string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-		SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-		CMD.Parameters.AddWithValue("@x",Cordx);
-		CMD.Parameters.AddWithValue("@y",Cordy);
-		var reader = CMD.ExecuteReader();
-		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-		RoomDB.Close();
-		EnemySpawner.SpawnEnemies(EnemyAmount);
-		PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+		using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+			RoomDB.Open(); // open the connection
+			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
+				CMD.Parameters.AddWithValue("@x",Cordx);
+				CMD.Parameters.AddWithValue("@y",Cordy);
+				using(var reader = CMD.ExecuteReader()){
+					int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+					reader.Close();
+					RoomDB.Close(); // closes the connection properly
+					RoomDB.Dispose();
+					GC.Collect();
+					GC.WaitForPendingFinalizers();
+					EnemySpawner.SpawnEnemies(EnemyAmount);
+					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+				}
+			}
+		}
 	}
 	public void MoveNorth(){
 		Cordy -=1;// changes the variable
@@ -150,17 +99,24 @@ public class CordinateHandler : MonoBehaviour {
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition();
 		EnemySpawner.DeleteEnemies();
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-		RoomDB.Open(); // open the connection
-		string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-		SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-		CMD.Parameters.AddWithValue("@x",Cordx);
-		CMD.Parameters.AddWithValue("@y",Cordy);
-		var reader = CMD.ExecuteReader();
-		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-		RoomDB.Close();
-		EnemySpawner.SpawnEnemies(EnemyAmount);
-		PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);		
+		using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+			RoomDB.Open(); // open the connection
+			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
+				CMD.Parameters.AddWithValue("@x",Cordx);
+				CMD.Parameters.AddWithValue("@y",Cordy);
+				using(var reader = CMD.ExecuteReader()){
+					int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+					reader.Close();
+					RoomDB.Close(); // closes the connection properly
+					RoomDB.Dispose();
+					GC.Collect();
+					GC.WaitForPendingFinalizers();
+					EnemySpawner.SpawnEnemies(EnemyAmount);
+					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+				}
+			}
+		}		
 	}
 	public void MoveEast(){
 		Cordx +=1;// changes the variable
@@ -168,17 +124,24 @@ public class CordinateHandler : MonoBehaviour {
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition();
 		EnemySpawner.DeleteEnemies();
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-		RoomDB.Open(); // open the connection
-		string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-		SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-		CMD.Parameters.AddWithValue("@x",Cordx);
-		CMD.Parameters.AddWithValue("@y",Cordy);
-		var reader = CMD.ExecuteReader();
-		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-		RoomDB.Close();
-		EnemySpawner.SpawnEnemies(EnemyAmount);
-		PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);		
+		using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+			RoomDB.Open(); // open the connection
+			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
+				CMD.Parameters.AddWithValue("@x",Cordx);
+				CMD.Parameters.AddWithValue("@y",Cordy);
+				using(var reader = CMD.ExecuteReader()){
+					int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+					reader.Close();
+					RoomDB.Close(); // closes the connection properly
+					RoomDB.Dispose();
+					GC.Collect();
+					GC.WaitForPendingFinalizers();
+					EnemySpawner.SpawnEnemies(EnemyAmount);
+					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+				}
+			}
+		}		
 	}
 	public void MoveWest(){
 		Cordx -=1;// changes the variable
@@ -186,16 +149,23 @@ public class CordinateHandler : MonoBehaviour {
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition();
 		EnemySpawner.DeleteEnemies();
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
-		RoomDB.Open(); // open the connection
-		string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
-		SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
-		CMD.Parameters.AddWithValue("@x",Cordx);
-		CMD.Parameters.AddWithValue("@y",Cordy);
-		var reader = CMD.ExecuteReader();
-		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
-		RoomDB.Close();
-		EnemySpawner.SpawnEnemies(EnemyAmount);
-		PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);		
+		using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+			RoomDB.Open(); // open the connection
+			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
+				CMD.Parameters.AddWithValue("@x",Cordx);
+				CMD.Parameters.AddWithValue("@y",Cordy);
+				using(var reader = CMD.ExecuteReader()){
+					int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+					reader.Close();
+					RoomDB.Close(); // closes the connection properly
+					RoomDB.Dispose();
+					GC.Collect();
+					GC.WaitForPendingFinalizers();
+					EnemySpawner.SpawnEnemies(EnemyAmount);
+					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+				}
+			}
+		}	
 	}
 }

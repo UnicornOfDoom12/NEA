@@ -111,5 +111,7 @@ public class MapConnectionHandler : MonoBehaviour {
 				}
 			}
 		}
+		CheckingConnection.Close();
+		CheckingConnection.Dispose();
 	}
 }

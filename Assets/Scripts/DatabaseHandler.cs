@@ -133,6 +133,7 @@ public class DatabaseHandler : MonoBehaviour {
 		var reader = CMD.ExecuteReader();
 		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
 		EnemySpawner.SpawnEnemies(EnemyAmount);*/
+		
 	}
 	bool GenEnd(int x,int y,bool happened){ // generates an end value, 25% chance
 		if(happened){
@@ -266,7 +267,6 @@ public class DatabaseHandler : MonoBehaviour {
 			AboveNodeCMD.Parameters.Add(new SqliteParameter("@StartNodey", (startNodey - 1)));
 			using(var reader = AboveNodeCMD.ExecuteReader()){
 				ConFromAbove = Convert.ToBoolean(reader["SCon"]);
-
 			}
 			}
 			if ((startNodey + 1) <= 3){
@@ -337,6 +337,8 @@ public class DatabaseHandler : MonoBehaviour {
 
 
 		}
+		CheckingConnection.Close();
+		CheckingConnection.Dispose();
 		print("This graph aint shit");
 		EndValueFound = false;
 		return EndValueFound;

@@ -181,6 +181,10 @@ public class PlayerShoot : MonoBehaviour {
 				var Turret = Attack.collider.gameObject.GetComponent<TurretHandler>();
 				Turret.TakeDamage(25);
 			}
+			if (Attack.collider.tag == "Monster"){
+				var Monster = Attack.collider.gameObject.GetComponent<MonsterHandler>();
+				Monster.TakeDamage(25);
+			}
 		}
 
 		else{

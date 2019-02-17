@@ -1878,6 +1878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Turret: {fileID: 1581584539725588, guid: 16ab11e1a5d4e304ea49b0cba2395e01, type: 2}
+  Monster: {fileID: 1295910049391398, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
   Enemies: []
 --- !u!4 &577388962
 Transform:
@@ -3609,6 +3610,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1322819769
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4698500215355028, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -13.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698500215355028, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698500215355028, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698500215355028, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698500215355028, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698500215355028, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698500215355028, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698500215355028, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 114141918762233182, guid: 4fdf96c023a7ec04c8fde760bbac7179,
+        type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 650119032}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1339728891
 GameObject:
   m_ObjectHideFlags: 0
@@ -4454,6 +4502,8 @@ MonoBehaviour:
   CordinateHandler: {fileID: 2012367917}
   SpriteArray: []
   BoxArray: []
+  OpenBoxes: []
+  WeaponGenerate: {fileID: 0}
 --- !u!1 &1799062328
 GameObject:
   m_ObjectHideFlags: 0

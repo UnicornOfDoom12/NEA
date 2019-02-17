@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
 	public GameObject Turret;
-	// add more enemy types here
+	public GameObject Monster;
 	public List<GameObject> Enemies = new List<GameObject>();
+	public List<GameObject> EnemyTypes = new List<GameObject>();
 	void Start () {
-		
+		EnemyTypes.Add(Turret);
+		EnemyTypes.Add(Monster);
 	}
 	public void SpawnEnemies(int AmountOfEnemies){
 		for (int i = 1; i <= AmountOfEnemies; i++){
@@ -18,7 +20,8 @@ public class EnemySpawner : MonoBehaviour {
 			pos.y = UnityEngine.Random.Range(-3.5f,3.5f);
 			transform.position = pos;
 			print("The position for the " + i.ToString() +" is " + transform.position.ToString());
-			GameObject NewTurret = Instantiate(Turret,transform.position,Quaternion.Euler(new Vector3(0,0,0)));
+			GameObject EnemyToSpawn = EnemyTypes[Random.Range(0, EnemyTypes.Count )];
+			GameObject NewTurret = Instantiate(EnemyToSpawn,transform.position,Quaternion.Euler(new Vector3(0,0,0)));
 			Enemies.Add(NewTurret);
 		}
 	}

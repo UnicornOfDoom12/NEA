@@ -59,6 +59,17 @@ public class ProjectileHandler : MonoBehaviour {
 			print(Damage);
 			Turret.TakeDamage(Damage);
 		}
+		else if(Hit.gameObject.tag == "Monster" && gameObject.name != "EnemyProjectile"){
+			SoundSource.clip = ImpactPlayer;
+			SoundSource.Play();
+			Destroy(gameObject);
+			var NewDecal = Instantiate(ImpactWallDecal, transform.position, transform.rotation);
+			SpriteRenderer DecalSprite = NewDecal.GetComponent<SpriteRenderer>();
+			DecalSprite.color = Color.red;
+			Destroy(NewDecal,0.183f);
+			MonsterHandler MonsterHandler = Hit.gameObject.GetComponent<MonsterHandler>();
+			MonsterHandler.TakeDamage(Damage);
+		}
 		else{
 
 			SoundSource.clip = ImpactWall;

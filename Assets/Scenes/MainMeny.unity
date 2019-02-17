@@ -131,7 +131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &73050713
 RectTransform:
   m_ObjectHideFlags: 0
@@ -388,7 +388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &125680412
 RectTransform:
   m_ObjectHideFlags: 0
@@ -401,6 +401,7 @@ RectTransform:
   m_Children:
   - {fileID: 2052790554}
   - {fileID: 197222767}
+  - {fileID: 2014159386}
   - {fileID: 1886417596}
   m_Father: {fileID: 1665987161}
   m_RootOrder: 2
@@ -845,10 +846,10 @@ RectTransform:
   m_Father: {fileID: 125680412}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 287, y: -160.23387}
-  m_SizeDelta: {x: 434, y: 204.34045}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.50000006}
 --- !u!114 &197222768
 MonoBehaviour:
@@ -882,16 +883,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This game is a procedurally generated action game. Once you press the start
-    button you will be thrown into a randomly generated series of rooms, it is your
-    job to fight your way through to the exit of the game which will be marked on
-    the minimap on the upper right of your screen. You will also notice red lines
-    on your minimap, these represent doorways between two rooms you can walk through.
-    However escape is not your only priority, you must also be on the lookout for
-    loot boxes that will give you better weapons, you will need these as the game
-    will get progressively harder. But remember you can only use a new weapon once
-    you escape and equip it via the main menu, so don't get too greedy or you could
-    lose all your progress.
+  m_Text: Once you press start you will be given the chance to select a weapon, I
+    highly suggest you choose something as fighting with a knife is not ideal. Once
+    you have your weapon you will be thrown into a maze of randomly generated rooms
+    filled with monsters and turrets that have a strong desire to kill you. Your job
+    is to find the exit before being killed however if you look carefully you might
+    find boxes that will contain new weapons. Be careful you only get access to these
+    weapons if you escape so don't get too greedy.
 --- !u!222 &197222769
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1114,10 +1112,10 @@ RectTransform:
   m_Father: {fileID: 73050713}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 320.5, y: -212.875}
+  m_SizeDelta: {x: 501, y: 65.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &364315135
 MonoBehaviour:
@@ -1456,10 +1454,10 @@ RectTransform:
   m_Father: {fileID: 73050713}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 320.5, y: -147.725}
+  m_SizeDelta: {x: 501, y: 65.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &590821623
 MonoBehaviour:
@@ -1927,10 +1925,10 @@ RectTransform:
   m_Father: {fileID: 73050713}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 320.5, y: -278.02502}
+  m_SizeDelta: {x: 501, y: 65.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &974917964
 MonoBehaviour:
@@ -2303,10 +2301,10 @@ RectTransform:
   m_Father: {fileID: 73050713}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 320.5, y: -82.575}
+  m_SizeDelta: {x: 501, y: 65.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1055068704
 MonoBehaviour:
@@ -3096,12 +3094,12 @@ RectTransform:
   m_Children:
   - {fileID: 221122240}
   m_Father: {fileID: 125680412}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 287, y: -267.90207}
-  m_SizeDelta: {x: 434, y: 10.995899}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1886417597
 MonoBehaviour:
@@ -6668,6 +6666,88 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &2014159385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2014159386}
+  - component: {fileID: 2014159388}
+  - component: {fileID: 2014159387}
+  m_Layer: 5
+  m_Name: HelpText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2014159386
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2014159385}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 125680412}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.50000006}
+--- !u!114 &2014159387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2014159385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 7cb2912222469634ba17a77055919ea8, type: 3}
+    m_FontSize: 15
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Controls:
+
+    Left click = shoot
+
+    WASD = Move
+
+    V = Open doors, Open boxes and melee attack
+
+    R = reload'
+--- !u!222 &2014159388
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2014159385}
 --- !u!1 &2038161617
 GameObject:
   m_ObjectHideFlags: 0
@@ -6772,10 +6852,10 @@ RectTransform:
   m_Father: {fileID: 125680412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 287, y: -54.03183}
-  m_SizeDelta: {x: 434, y: 8.06366}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.50000006}
 --- !u!114 &2052790555
 MonoBehaviour:

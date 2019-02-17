@@ -51,11 +51,13 @@ increase chance of connection substantially//
 health counter //
 update database when enemy dies
 
-art for walls
-renable the knife thingy
-Fix multiple connections
-Difficutly, weapon damage and health.
-enable the checkgraph
-update help
+
+renable the knife thingy ////
+Fix multiple connections ////
+Difficutly, weapon damage and health. ////
+enable the checkgraph /////
+update help /////
 one more enemy type //////
-testing for hc gen
+testing for hc gen ////
+art for walls
+Database update when clearing a room.

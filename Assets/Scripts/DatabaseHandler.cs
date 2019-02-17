@@ -105,7 +105,6 @@ public class DatabaseHandler : MonoBehaviour {
 		RoomDB.Dispose();
 		GC.Collect();
 		Rerun = CheckGraph();
-		Rerun = true;
 		if (!Rerun){
 			Awake();
 		}

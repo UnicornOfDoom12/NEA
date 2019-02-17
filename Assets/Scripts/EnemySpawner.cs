@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour {
 	public GameObject Monster;
 	public List<GameObject> Enemies = new List<GameObject>();
 	public List<GameObject> EnemyTypes = new List<GameObject>();
+	public DifficultyScoreTracker DifficultyScoreTracker;
 	void Start () {
 		EnemyTypes.Add(Turret);
 		EnemyTypes.Add(Monster);
@@ -22,6 +23,16 @@ public class EnemySpawner : MonoBehaviour {
 			print("The position for the " + i.ToString() +" is " + transform.position.ToString());
 			GameObject EnemyToSpawn = EnemyTypes[Random.Range(0, EnemyTypes.Count )];
 			GameObject NewTurret = Instantiate(EnemyToSpawn,transform.position,Quaternion.Euler(new Vector3(0,0,0)));
+			if(EnemyToSpawn == EnemyTypes[0]){
+				TurretHandler HealthChanger = NewTurret.GetComponent<TurretHandler>();
+				float TempHealth= HealthChanger.health * DifficultyScoreTracker.FinalScore;
+				HealthChanger.health = (int)TempHealth;
+			}
+			else{
+				MonsterHandler HealthChanger = NewTurret.GetComponent<MonsterHandler>();
+				float TempHealth = HealthChanger.Health * DifficultyScoreTracker.FinalScore;
+				HealthChanger.Health = (int)TempHealth;
+			}
 			Enemies.Add(NewTurret);
 		}
 	}

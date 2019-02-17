@@ -1880,6 +1880,7 @@ MonoBehaviour:
   Turret: {fileID: 1581584539725588, guid: 16ab11e1a5d4e304ea49b0cba2395e01, type: 2}
   Monster: {fileID: 1295910049391398, guid: 4fdf96c023a7ec04c8fde760bbac7179, type: 2}
   Enemies: []
+  EnemyTypes: []
 --- !u!4 &577388962
 Transform:
   m_ObjectHideFlags: 0
@@ -2360,6 +2361,46 @@ MonoBehaviour:
   DeathClip: {fileID: 8300000, guid: 3e86cffdf142a8246a9542ee8eaeb50a, type: 3}
   LoadNewScene: {fileID: 487314692}
   HealthCounter: {fileID: 1799062330}
+--- !u!1 &690142254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 690142256}
+  - component: {fileID: 690142255}
+  m_Layer: 0
+  m_Name: DifficultScoreTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &690142255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 690142254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d40be3c730723a34397511c9ea6ac76f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &690142256
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 690142254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3955534, y: 1.738848, z: 2.4335938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &715425224
 GameObject:
   m_ObjectHideFlags: 0
@@ -3109,7 +3150,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1113439635}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -18.251, y: 0.091, z: 0}
+  m_LocalPosition: {x: -18.61, y: 0.5, z: 0}
   m_LocalScale: {x: 2.278129, y: 2.278129, z: 2.278129}
   m_Children: []
   m_Father: {fileID: 0}

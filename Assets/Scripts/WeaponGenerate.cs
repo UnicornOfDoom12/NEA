@@ -29,6 +29,7 @@ public class WeaponGenerate : MonoBehaviour {
 	public static List<float> Inaccuracies = new List<float>{};
 	public int MaxValue;
 	public PlayerDeathHandler PlayerDeathHandler;
+	public DifficultyScoreTracker DifficultyScoreTracker;
 	void Start(){
 		if(gameObject.name != "WeaponDisplay"){
 			BoxHandler = GameObject.Find("BoxHandler").GetComponent<BoxHandler>();
@@ -93,6 +94,8 @@ public class WeaponGenerate : MonoBehaviour {
 
 	public void GenerateAR(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(24,49);
+		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
+		Damage = (int)TempDamage;
 		int FireRate = UnityEngine.Random.Range(500,700);
 		float inaccuracy = UnityEngine.Random.Range(3.0f,6.0f);
 		int Magazine = UnityEngine.Random.Range(20,40);
@@ -100,6 +103,8 @@ public class WeaponGenerate : MonoBehaviour {
 	}
 	public void GenerateMR(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(40,70);
+		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
+		Damage = (int)TempDamage;
 		int FireRate = UnityEngine.Random.Range(300,500);
 		float inaccuracy = UnityEngine.Random.Range(1.0f,3.0f);
 		int Magazine = UnityEngine.Random.Range(5,30);
@@ -107,6 +112,8 @@ public class WeaponGenerate : MonoBehaviour {
 	}
 	public void GenerateSMG(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(15,25);
+		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
+		Damage = (int)TempDamage;
 		int FireRate = UnityEngine.Random.Range(700,1000);
 		float inaccuracy = UnityEngine.Random.Range(4.0f,8.0f);
 		int Magazine = UnityEngine.Random.Range(30,60);
@@ -114,6 +121,8 @@ public class WeaponGenerate : MonoBehaviour {
 	}
 	public void GenerateHC(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(60,99);
+		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
+		Damage = (int)TempDamage;
 		int FireRate = UnityEngine.Random.Range(300,400);
 		float inaccuracy = UnityEngine.Random.Range(6.0f,9.0f);
 		int Magazine = UnityEngine.Random.Range(3,10);

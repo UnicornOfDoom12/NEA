@@ -20,6 +20,7 @@ public class CordinateHandler : MonoBehaviour {
 	public PhysicalConnectionHandler PhysicalConnectionHandler;
 	public MapConnectionHandler MapConnectionHandler;
 	public BoxHandler BoxHandler;
+	public DifficultyScoreTracker DifficultyScoreTracker;
 	void Start () {
 			Cordx = 0; // assigns values to zero
 			Cordy = 0;
@@ -38,6 +39,7 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					reader.Close();
+					DifficultyScoreTracker.ChangeScore();
 					EnemySpawner.SpawnEnemies(EnemyAmount);
 					}
 				}
@@ -87,6 +89,7 @@ public class CordinateHandler : MonoBehaviour {
 					RoomDB.Dispose();
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
+					DifficultyScoreTracker.ChangeScore();
 					EnemySpawner.SpawnEnemies(EnemyAmount);
 					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 				}
@@ -112,6 +115,7 @@ public class CordinateHandler : MonoBehaviour {
 					RoomDB.Dispose();
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
+					DifficultyScoreTracker.ChangeScore();
 					EnemySpawner.SpawnEnemies(EnemyAmount);
 					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 				}
@@ -137,6 +141,7 @@ public class CordinateHandler : MonoBehaviour {
 					RoomDB.Dispose();
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
+					DifficultyScoreTracker.ChangeScore();
 					EnemySpawner.SpawnEnemies(EnemyAmount);
 					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 				}
@@ -162,6 +167,7 @@ public class CordinateHandler : MonoBehaviour {
 					RoomDB.Dispose();
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
+					DifficultyScoreTracker.ChangeScore();
 					EnemySpawner.SpawnEnemies(EnemyAmount);
 					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
 				}

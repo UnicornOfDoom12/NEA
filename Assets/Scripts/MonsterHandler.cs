@@ -37,6 +37,7 @@ public class MonsterHandler : MonoBehaviour {
 		MeleeAttacking = false;
 		PlayerDeathHandler = GameObject.Find("Player").GetComponent<PlayerDeathHandler>();
 		Dieing = false;
+		Health = 100;
 	}
 	
 	// Update is called once per frame
@@ -98,8 +99,8 @@ public class MonsterHandler : MonoBehaviour {
 			MeleeAttack();
 		}
 	}
-	public void OnTriggerStay2D(Collision2D Hit){
-		if(Hit.collider == PlayerCollider && !MeleeAttacking){
+	public void OnTriggerStay2D(Collider2D Hit){
+		if(Hit == PlayerCollider && !MeleeAttacking){
 			MeleeAttack();
 		}
 	}

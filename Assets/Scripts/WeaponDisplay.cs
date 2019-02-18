@@ -10,6 +10,7 @@ public class WeaponDisplay : MonoBehaviour {
 	public Text ItemsGained;
 	void Start () {
 		string gained = WeaponGenerate.Display(true);
+		print(gained);
 		ItemsGained.text = gained;
 	}
 }

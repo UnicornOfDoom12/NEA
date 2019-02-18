@@ -10,16 +10,11 @@ public class LoadNewScene : MonoBehaviour {
 	void Start () {
 		SoundSource.clip = SoundClip;
 	}
-	
 	public void LoadSceneByIndex (int scene)
 	{
 		SoundSource.Play();
 		//WaitForTime(0.5f);
 		SceneManager.LoadScene(scene);
 	}
-	IEnumerator WaitForTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-    }
 }
 

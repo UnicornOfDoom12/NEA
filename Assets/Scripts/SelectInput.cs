@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class SelectInput : MonoBehaviour {
 
-	// Use this for initialization
-	public EventSystem eventSystem;
-	public GameObject selectedObject;
+	public EventSystem eventSystem; // Used to detect user inputs
+	public GameObject selectedObject; // A gameobject that is selected by the user
 	private bool buttonSelected = false;
 	void Start () {
 		Cursor.visible = true;
@@ -14,12 +13,12 @@ public class SelectInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if( Input.GetAxisRaw("Vertical") != 0 && !buttonSelected){
+		if( Input.GetAxisRaw("Vertical") != 0 && !buttonSelected){ // If the user has clicked on a button in the menu
 			eventSystem.SetSelectedGameObject(selectedObject);
-			buttonSelected = true;
+			buttonSelected = true; // Selects the button 
 		}
 	}
 	private void Disabled(){
-		buttonSelected = false;
+		buttonSelected = false; // If the menu is disabled, disabled the button
 	}
 }

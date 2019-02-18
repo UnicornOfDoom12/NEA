@@ -48,6 +48,7 @@ public class WeaponGenerate : MonoBehaviour {
 			MaxValue = int.Parse(CMD.ExecuteScalar().ToString());
 			WeaponDB.Close();
 			MaxValue += IDs.Count();
+			DifficultyScoreTracker = GameObject.Find("DifficultScoreTracker").GetComponent<DifficultyScoreTracker>();
 		}
 	}
 	public void GenerateAndInsert(){
@@ -153,11 +154,11 @@ public class WeaponGenerate : MonoBehaviour {
 			itemString += ", "; 
 		}
 		if (Won){
-			Insert();
+			InsertToDB();
 		}
 		return itemString;
 	}
-	public void Insert(){
+	public void InsertToDB(){
 		for (int i = 0; i < IDs.Count(); i++){
 			using(SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;")){
 				WeaponDB.Open();

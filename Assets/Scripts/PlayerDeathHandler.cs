@@ -23,7 +23,7 @@ public class PlayerDeathHandler : MonoBehaviour {
 	public void TakeDamage(int Damage){
 		Health = Health - Damage;
 		if (Health <= 0){
-			//KillPlayer();
+			KillPlayer();
 		}
 		HealthCounter.text = "Health = "+ Health.ToString() + "/100";
 	}

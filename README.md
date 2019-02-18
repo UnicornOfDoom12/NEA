@@ -59,5 +59,5 @@ enable the checkgraph /////
 update help /////
 one more enemy type //////
 testing for hc gen ////
-art for walls
+art for walls ///
 Database update when clearing a room.

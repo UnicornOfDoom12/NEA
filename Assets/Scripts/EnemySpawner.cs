@@ -23,17 +23,22 @@ public class EnemySpawner : MonoBehaviour {
 			print("The position for the " + i.ToString() +" is " + transform.position.ToString());
 			GameObject EnemyToSpawn = EnemyTypes[Random.Range(0, EnemyTypes.Count )];
 			GameObject NewTurret = Instantiate(EnemyToSpawn,transform.position,Quaternion.Euler(new Vector3(0,0,0)));
-			if(EnemyToSpawn == EnemyTypes[0]){
+			Enemies.Add(NewTurret);
+			if(NewTurret.tag == "Enemy"){
+				print("Changing health");
 				TurretHandler HealthChanger = NewTurret.GetComponent<TurretHandler>();
 				float TempHealth= HealthChanger.health * DifficultyScoreTracker.FinalScore;
 				HealthChanger.health = (int)TempHealth;
+				print("Changed for a turret");
 			}
 			else{
+				print("Changing health");
 				MonsterHandler HealthChanger = NewTurret.GetComponent<MonsterHandler>();
 				float TempHealth = HealthChanger.Health * DifficultyScoreTracker.FinalScore;
 				HealthChanger.Health = (int)TempHealth;
+				print("Changed for a monster");
 			}
-			Enemies.Add(NewTurret);
+			
 		}
 	}
 	public void DeleteEnemies(){

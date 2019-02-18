@@ -40,13 +40,14 @@ public class CordinateHandler : MonoBehaviour {
 					GC.WaitForPendingFinalizers();
 					reader.Close();
 					DifficultyScoreTracker.ChangeScore();
+					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+					MapConnectionHandler.DrawConnections();
 					EnemySpawner.SpawnEnemies(EnemyAmount);
 					}
 				}
 
 			} // define connection to database
-			PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
-			MapConnectionHandler.DrawConnections();
+
 		}
 	
 	// Update is called once per frame
@@ -90,8 +91,8 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					DifficultyScoreTracker.ChangeScore();
-					EnemySpawner.SpawnEnemies(EnemyAmount);
 					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+					EnemySpawner.SpawnEnemies(EnemyAmount);
 				}
 			}
 		}
@@ -116,8 +117,9 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					DifficultyScoreTracker.ChangeScore();
-					EnemySpawner.SpawnEnemies(EnemyAmount);
 					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+					EnemySpawner.SpawnEnemies(EnemyAmount);
+					
 				}
 			}
 		}		
@@ -142,8 +144,8 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					DifficultyScoreTracker.ChangeScore();
-					EnemySpawner.SpawnEnemies(EnemyAmount);
 					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+					EnemySpawner.SpawnEnemies(EnemyAmount);
 				}
 			}
 		}		
@@ -168,8 +170,8 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					DifficultyScoreTracker.ChangeScore();
-					EnemySpawner.SpawnEnemies(EnemyAmount);
 					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy);
+					EnemySpawner.SpawnEnemies(EnemyAmount);
 				}
 			}
 		}	

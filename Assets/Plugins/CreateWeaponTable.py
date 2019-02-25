@@ -9,8 +9,8 @@ cursor.execute("""CREATE TABLE tblWeapon
             Name STRING,
             Category STRING,
             Damage INTEGER,
-            Inaccuracy INTEGER,
+            Inaccuracy FLOAT,
             Magazine INTEGER,
-            FireRate FLOAT,
+            FireRate INTEGER,
             PRIMARY KEY(id))""")
 conn.commit()

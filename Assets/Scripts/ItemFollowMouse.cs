@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemFollowMouse : MonoBehaviour {
-	// Update is called once per frame
-	void LateUpdate() {
-        transform.position = Input.mousePosition;
+	void LateUpdate() { // runs after update
+        transform.position = Input.mousePosition; // changes the selected items transform to the mouse
 	}
 }

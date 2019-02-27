@@ -10,7 +10,6 @@ public class Tooltip : MonoBehaviour {
         tooltipText = GetComponentInChildren<Text>();
         gameObject.SetActive(false);
 	}
-
     public void GenerateTooltip(Item item)
     {
         string statText = "";
@@ -21,7 +20,6 @@ public class Tooltip : MonoBehaviour {
                 statText += stat.Key.ToString() + ": " + stat.Value + "\n";
             }
         }
-
         string tooltip = string.Format("<b>{0}</b>\n{1}\n\n<b>{2}</b><b>{3}</b>", item.title, item.Category, statText, "Inaccuracy:" + item.Inaccuracy);
         tooltipText.text = tooltip;
         gameObject.SetActive(true);

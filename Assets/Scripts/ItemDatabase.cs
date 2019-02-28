@@ -9,75 +9,41 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Threading; // imports including sqlite
 public class ItemDatabase : MonoBehaviour {
-    public List<Item> items = new List<Item>();
+    public List<Item> items = new List<Item>(); // Creates a new list of items, this is all items in the game
 
     void Awake()
     {
-        SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
+        SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;"); // Connects to database
         WeaponDB.Open();
-		string CMDString = "SELECT MAX(id) from tblWeapon";
+		string CMDString = "SELECT MAX(id) from tblWeapon"; // Max value in the database
 		SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
 		int Data = int.Parse(CMD.ExecuteScalar().ToString());
-
-        for (int x = 1; x<=Data; x++){
-            
-            BuildData2(x);
+        for (int x = 1; x<=Data; x++){  
+            BuildData(x); // Iterates through for every record in the database
         }
-
-        
     }
-
-    public Item GetItem(int id)
+    public Item GetItem(int id) // Returns the item with a particular ID
     {
         return items.Find(item=> item.id == id);
     }
-
-    public Item GetItem(string itemName)
+    public Item GetItem(string itemName) // returns the item with a particular Name
     {
         return items.Find(item => item.title == itemName);
     }
-
-    void BuildDatabase()
-    {
-        items = new List<Item>() {
-            new Item(0, "Starter", "Assualt Rifle",
-            new Dictionary<string, int> {
-                { "Damage", 25 },
-                { "Fire Rate", 500 }
-            }, 6f),
-            new Item(1, "Big gun", "SMG",
-            new Dictionary<string, int> {
-                { "Value", 300 }
-            },6f),
-            new Item(2, "Small gun", "Marksman Rifle",
-            new Dictionary<string, int> {
-                { "Power", 5 },
-                { "Mining", 20}
-            },6f),
-            new Item(3, "Smaller gun", "Hand Cannon",
-            new Dictionary<string, int> {
-                { "Power", 5 },
-                { "Mining", 20}
-            },6f)
-        };
-    }
-    void BuildData2(int Id){
-        SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
+    void BuildData(int Id){
+        SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;"); // Connects to DB
         WeaponDB.Open();
         string CMDString = "select Name, Category, Damage, Magazine, FireRate, Inaccuracy from tblWeapon where id=@Id";
         SqliteCommand CMD = new SqliteCommand(CMDString,WeaponDB);
         CMD.Parameters.AddWithValue("@Id", Id);
-        using(var reader = CMD.ExecuteReader()){ // executes the comman
-           // print(Id);
+        using(var reader = CMD.ExecuteReader()){ // executes the command
             string Name = Convert.ToString(reader["Name"]);
-           // print("Name = " + Name);
             string Category = Convert.ToString(reader["Category"]);
 			int Damage = Convert.ToInt32(reader["Damage"]); // assings local variables to the correct value in the table
-            //print(Damage.GetType().Name);
 			int Magazine = Convert.ToInt32(reader["Magazine"]);
             int FireRate = Convert.ToInt32(reader["FireRate"]);
             float Inaccuracy = Convert.ToSingle(reader["Inaccuracy"]); // float = single?
-            items.Add(new Item(Id, Name, Category, new Dictionary<string, int> {{"Damage",Damage},{"Fire Rate",FireRate},{"Magazine",Magazine}}, Inaccuracy));
+            items.Add(new Item(Id, Name, Category, new Dictionary<string, int> {{"Damage",Damage},{"Fire Rate",FireRate},{"Magazine",Magazine}}, Inaccuracy)); // adds a new item to the list
         }
         
     }

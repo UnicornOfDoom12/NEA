@@ -7,9 +7,13 @@ using System.Text;
 using UnityEngine.UI;
 using UnityEngine; // Importing required modules
 public class PositionUpdater : MonoBehaviour{
+
+	// Use this for initialization
+
 	public string yArg; // Assigned in unity editor these values are used to determine which row of the database to use
 	public string xArg;
 	public string rotArg;
+
 	public void SelectData(){ // Function used to read data from the database
 		GameObject Tracker = GameObject.Find("Cordinate Tracker"); // Finds the gameobject resposible for tracking cordx and cordy
 		CordinateHandler CordinateHandler = Tracker.GetComponent<CordinateHandler>(); // adds the script with the values of cordx inside
@@ -21,6 +25,8 @@ public class PositionUpdater : MonoBehaviour{
 		if (rotArg == "None"){
 			CMDString = "select " + xArg + ", " + yArg + " from tblRoom where Roomx=@Cordx and Roomy=@Cordy"; // constructs query differently if there are is no rotation
 		}
+		
+		
 		SqliteCommand CMD = new SqliteCommand(CMDString, RoomDB); // constructs the query command
 		CMD.Parameters.AddWithValue("@Cordx", Cordx);// adds the parameters for the query
 		CMD.Parameters.AddWithValue("@Cordy", Cordy);// adds the parameters for the query
@@ -34,9 +40,12 @@ public class PositionUpdater : MonoBehaviour{
 				int Rotation = Convert.ToInt32(reader[rotArg]); // finds the rotation value needed
 				transform.rotation = Quaternion.Euler(0,0,Rotation); // changes the rotation of the object.
 			}
+			
 		}
 		RoomDB.Close();	// closes connection
 		GC.Collect();// closes connection
 		GC.WaitForPendingFinalizers();// closes connection
+
 	}
+
 }

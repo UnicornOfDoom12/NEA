@@ -124,6 +124,15 @@ public class DatabaseHandler : MonoBehaviour {
 		BoxHandler.determinepresence(); // run to determine a boxes presence
 		ExitHandler.determinepresence();// run to determine a exits presence
 		MapExitHandler.DrawObject();
+		/* var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
+		RoomDB.Open(); // open the connection
+		string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
+		SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
+		CMD.Parameters.AddWithValue("@x",0);
+		CMD.Parameters.AddWithValue("@y",0);
+		var reader = CMD.ExecuteReader();
+		int EnemyAmount = Convert.ToInt32(reader["EnemyNo"]);
+		EnemySpawner.SpawnEnemies(EnemyAmount);*/
 	}
 	bool GenEnd(int x,int y,bool happened){ // generates an end value, 25% chance
 		if(happened){

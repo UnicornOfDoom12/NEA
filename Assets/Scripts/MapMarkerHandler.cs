@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MapMarkerHandler : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-
-	}
-
 	public void UpdatePosition(){
 		GameObject Tracker = GameObject.Find("Cordinate Tracker"); // Finds the gameobject resposible for tracking cordx and cordy
 		CordinateHandler CordinateHandler = Tracker.GetComponent<CordinateHandler>(); // adds the script with the values of cordx inside
@@ -18,10 +12,5 @@ public class MapMarkerHandler : MonoBehaviour {
 		float posy = 3.0f - (2 * Cordy);
 		Vector3 NewPosition = new Vector3(posx,posy,0);
 		transform.position = NewPosition;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

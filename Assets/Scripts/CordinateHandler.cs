@@ -90,7 +90,7 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					DifficultyScoreTracker.ChangeScore(); // Changes the difficulty score
-					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy); // Will draw doors in the correct position
+					//PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy); // Will draw doors in the correct position
 					EnemySpawner.SpawnEnemies(EnemyAmount); // Spawns enemies
 				}
 			}
@@ -116,7 +116,7 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					DifficultyScoreTracker.ChangeScore(); // Changes the difficulty score
-					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy); // Draws physicial connections
+					//PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy); // Draws physicial connections
 					EnemySpawner.SpawnEnemies(EnemyAmount); // Spawns enemies in the room
 					
 				}
@@ -143,7 +143,7 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					DifficultyScoreTracker.ChangeScore(); // Changes the difficulty score
-					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy); // draws physicial connections
+					//PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy); // draws physicial connections
 					EnemySpawner.SpawnEnemies(EnemyAmount); // spawns the enemies in the room
 				}
 			}
@@ -169,7 +169,7 @@ public class CordinateHandler : MonoBehaviour {
 					GC.Collect();
 					GC.WaitForPendingFinalizers();
 					DifficultyScoreTracker.ChangeScore(); // Changes the diifficulty score of the game
-					PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy); //  Draws the physicial connections
+					//PhysicalConnectionHandler.DetermineConnections(Cordx,Cordy); //  Draws the physicial connections
 					EnemySpawner.SpawnEnemies(EnemyAmount); // spawns the enemies in the room
 				}
 			}

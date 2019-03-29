@@ -109,7 +109,7 @@ public class DatabaseHandler : MonoBehaviour {
 		if (!Rerun){
 			Awake();
 		}
-		MapConnectionHandler.DrawConnections();
+		//MapConnectionHandler.DrawConnections();
 		ReSelect(); // runs the function that updates the objects and puts them onto the screen, is run whenever a player moves between rooms.
 
 

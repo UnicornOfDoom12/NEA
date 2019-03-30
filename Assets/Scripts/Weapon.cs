@@ -17,30 +17,12 @@ public class Weapon : MonoBehaviour {
 	public int Magazine;
 	public int FireRate;
     public float Inaccuracy;
-	public Weapon EquippedWeapon;
 	public PlayerMovement PlayerMovement;
 	public SelectedEquip SelectedEquip;
 	void Start(){
 		animator = GetComponent<Animator>();
 		WeaponId = SelectedEquip.EquippedId;
-		print("The weapon I have is " + WeaponId.ToString());
 		EquipWeapon();
-	}
-	public Weapon(int WeaponId, string Category, int Damage, int Magazine, int FireRate, float Inaccuracy){
-		this.WeaponId = WeaponId;
-		this.Category = Category;
-		this.Damage = Damage;
-		this.Magazine = Magazine;
-		this.FireRate = FireRate;
-		this.Inaccuracy = Inaccuracy;
-	}
-	public Weapon(Weapon weapon){
-		this.WeaponId = weapon.WeaponId;
-		this.Category = weapon.Category;
-		this.Damage = weapon.Damage;
-		this.Magazine = weapon.Magazine;
-		this.FireRate = weapon.FireRate;
-		this.Inaccuracy = weapon.Inaccuracy;
 	}
 	public void EquipWeapon(){
 		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
@@ -56,12 +38,6 @@ public class Weapon : MonoBehaviour {
 		FireRate = Convert.ToInt32(reader["FireRate"]);
 		reader.Close();
 		WeaponDB.Close();
-		Weapon EquippedWeapon = new Weapon(SelectedEquip.EquippedId, Category, Damage, Magazine, FireRate, Inaccuracy);
-		print(EquippedWeapon.Category);
-		print(EquippedWeapon.Damage);
-		print(EquippedWeapon.Magazine);
-
-		PlayerMovement.ChangeImageValue(EquippedWeapon.Category);
-
+		PlayerMovement.ChangeImageValue(Category);
 	}
 }

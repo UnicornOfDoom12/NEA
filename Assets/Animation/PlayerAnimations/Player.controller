@@ -3,7 +3,7 @@
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Player
   serializedVersion: 5
@@ -54,7 +54,7 @@ AnimatorController:
 --- !u!114 &114354466402902216
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -62,10 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ef902b24ce64a840bd5f761773f5b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CorrespondingSourceObject: {fileID: 0}
 --- !u!1101 &1101016024678749256
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -89,7 +90,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101075721696688628
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -113,7 +114,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101091378443444710
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -137,7 +138,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101174994545942208
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -161,7 +162,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101188170605235280
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -185,7 +186,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101213597370206850
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -209,7 +210,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101225382051375068
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions: []
@@ -230,7 +231,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101259786553621562
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -254,7 +255,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101324536619614238
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -278,7 +279,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101326471653591260
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -302,7 +303,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101353052309111404
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -326,7 +327,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101360654816782962
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -350,7 +351,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101381288152871932
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -374,7 +375,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101418312195427870
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -398,7 +399,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101444045180986936
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -422,7 +423,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101467503500979678
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions: []
@@ -443,7 +444,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101469964584233872
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -467,7 +468,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101509769211119312
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -491,7 +492,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101620402214569014
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -515,7 +516,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101640816245276626
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -539,7 +540,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101654564157545104
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -563,7 +564,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101707049976783370
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -587,7 +588,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101738789819133338
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -611,7 +612,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101739062250245552
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -635,7 +636,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101758863065466320
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -659,7 +660,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101797720134367156
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -683,7 +684,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101823162701674534
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -707,7 +708,7 @@ AnimatorStateTransition:
 --- !u!1101 &1101948422371700344
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
@@ -732,7 +733,7 @@ AnimatorStateTransition:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ShootSMG
   m_Speed: 1
@@ -758,7 +759,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MeleeSMG
   m_Speed: 1
@@ -784,7 +785,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ShootMRAR
   m_Speed: 1
@@ -810,7 +811,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MeleeHC
   m_Speed: 1
@@ -836,7 +837,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: IdleRifle
   m_Speed: 1
@@ -865,7 +866,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ReloadSMG
   m_Speed: 1
@@ -891,7 +892,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: IdleSMG
   m_Speed: 1
@@ -920,7 +921,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ReloadARMR
   m_Speed: 1
@@ -946,7 +947,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MeleeKnife
   m_Speed: 1
@@ -972,7 +973,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: IdleHC
   m_Speed: 1
@@ -1001,7 +1002,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: IdleKnife
   m_Speed: 1
@@ -1030,7 +1031,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ReloadHC
   m_Speed: 1
@@ -1056,7 +1057,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: MeleeARMR
   m_Speed: 1
@@ -1082,7 +1083,7 @@ AnimatorState:
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ShootHC
   m_Speed: 1
@@ -1108,7 +1109,7 @@ AnimatorState:
 AnimatorStateMachine:
   serializedVersion: 5
   m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Base Layer
   m_ChildStates:
@@ -1117,22 +1118,22 @@ AnimatorStateMachine:
     m_Position: {x: 252, y: 24, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102448562015580006}
-    m_Position: {x: 276, y: 180, z: 0}
+    m_Position: {x: 252, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102418100111857804}
     m_Position: {x: 252, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102635617555218286}
-    m_Position: {x: 288, y: 276, z: 0}
+    m_Position: {x: 264, y: 288, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102455170044948754}
-    m_Position: {x: 516, y: -240, z: 0}
+    m_Position: {x: 564, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102426398232627378}
-    m_Position: {x: 516, y: -192, z: 0}
+    m_Position: {x: 564, y: -120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102763368180308594}
-    m_Position: {x: 516, y: -120, z: 0}
+    m_Position: {x: 564, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102913370569251330}
     m_Position: {x: 12, y: 288, z: 0}
@@ -1141,16 +1142,16 @@ AnimatorStateMachine:
     m_Position: {x: 0, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102089706055717110}
-    m_Position: {x: 24, y: 180, z: 0}
+    m_Position: {x: 0, y: 192, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102413606376691982}
-    m_Position: {x: 540, y: 276, z: 0}
+    m_Position: {x: 564, y: 276, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102868509807598152}
-    m_Position: {x: 528, y: 108, z: 0}
+    m_Position: {x: 552, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102194067644656484}
-    m_Position: {x: 540, y: 180, z: 0}
+    m_Position: {x: 564, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102504334000848822}
     m_Position: {x: 564, y: 12, z: 0}
@@ -1159,8 +1160,8 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 792, y: 156, z: 0}
+  m_AnyStatePosition: {x: 948, y: -564, z: 0}
   m_EntryPosition: {x: 264, y: -36, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 972, y: -612, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102636854245572482}

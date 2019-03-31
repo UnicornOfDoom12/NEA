@@ -5,89 +5,71 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 	public float Walkspeed;
 	private Rigidbody2D rb;
-	//public Weapon EquippedWeapon;
 	static public bool ForwardFacing;
-
 	Animator Animator;
-
-	// Use this for initialization
-	void Start () {
-		rb = GetComponent<Rigidbody2D>();
-		Animator = GetComponent<Animator>();
-		
+	void Start () { // Start, run at the start of the scene
+		rb = GetComponent<Rigidbody2D>(); // inherits the rigidbody of the player
+		Animator = GetComponent<Animator>(); // Inherits the animator of the player
 	}
-	void WalkHandler (){
-		float xinput = Input.GetAxis("Horizontal");
-		float yinput = Input.GetAxis("Vertical");
-		xinput = xinput * Walkspeed * Time.deltaTime;
-		yinput = yinput * Walkspeed * Time.deltaTime;
+	void WalkHandler (){ // First method of walking, player walks towards the mouse
+		float xinput = Input.GetAxis("Horizontal"); // Gets the inputs of the user in X direction
+		float yinput = Input.GetAxis("Vertical"); // Gets the inputs of the user in Y direction
+		xinput = xinput * Walkspeed; // Multiplies the values by walkspeed
+		yinput = yinput * Walkspeed; // Multiplies the values by walkspeed,
 
-		Vector3 Vec = new Vector3 (xinput, yinput, 0);
-		Vector3 NewPos = transform.position + Vec;
-		rb.MovePosition(NewPos);
+		Vector3 Vec = new Vector3 (xinput, yinput, 0); // Makes a new vector out of the inputs
+		Vector3 NewPos = transform.position + Vec; // Creates a new position of of the vector + transform
+		rb.MovePosition(NewPos); // Uses a rigidbody method to move over there
 		if (xinput != 0 || yinput != 0){
-			Animator.SetBool("IsWalking",true);
-			// Play footstep
+			Animator.SetBool("IsWalking",true); // Sets is walking to true if player is moving
 		}
 		else{
-			Animator.SetBool("IsWalking",false);
+			Animator.SetBool("IsWalking",false); // else sets to false.
 		}
 	}
-	void WalkHandler1 (){
-		float xinput = Input.GetAxis("Vertical");
-		float yinput = Input.GetAxis("Horizontal");
-		rb.AddForce(gameObject.transform.right * Walkspeed * xinput);
-		rb.AddForce(gameObject.transform.up * yinput * Walkspeed * -1);
-
+	void WalkHandler1 (){ // second method of walking player moves in a constant directions
+		float xinput = Input.GetAxis("Vertical"); // gets the inputs 
+		float yinput = Input.GetAxis("Horizontal"); // gets the inputs
+		rb.AddForce(gameObject.transform.right * Walkspeed * xinput);  // adds a force to the players based on those inputs, multiplied by walkspeed
+		rb.AddForce(gameObject.transform.up * yinput * Walkspeed * -1); // adds a force to the player based on inputs, multiplied by walkspeed
 		if (xinput != 0 || yinput != 0){
-			Animator.SetBool("IsWalking",true);
+			Animator.SetBool("IsWalking",true); // Sets walking to true if the player is moving
 		}
 		else{
-			Animator.SetBool("IsWalking",false);
+			Animator.SetBool("IsWalking",false); // sets walking to false if the player isnt moving
 		}
 	}
-	void FaceMouse(){
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		Quaternion Rotation = Quaternion.LookRotation(transform.position - mousePos, Vector3.forward);
-
-		transform.rotation = Rotation;
-		transform.eulerAngles = new Vector3 (0,0, transform.eulerAngles.z + 90);
-		rb.angularVelocity = 0;
-
+	void FaceMouse(){ // rotates the player to face the mouse
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // gets the mouses position as a vector
+		Quaternion Rotation = Quaternion.LookRotation(transform.position - mousePos, Vector3.forward); // Creates a new rotation that is looking toward the mouse
+		transform.rotation = Rotation; // sets the players rotation to equal the new rotation
+		transform.eulerAngles = new Vector3 (0,0, transform.eulerAngles.z + 90); // This creates an off set of 90 degrees due to sprite orientation
+		rb.angularVelocity = 0; // Sets angluar velocity to 0 to prevent continous spinning
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		FaceMouse();
+	void FixedUpdate () { // Works similar to update but always at a fixed time
+		FaceMouse(); // Makes player face mouse
 		if (!ForwardFacing){
-			WalkHandler1();
+			WalkHandler1(); // Based on the users preference use the correct walkhandler
 		}
 		else{
-			Walkspeed = 10;
-			WalkHandler();
+			Walkspeed = 10; // adjusts walkspeed here to balance the two movements
+			WalkHandler(); // Based on the users preference use the correct walkhandler
 		}
-		//ChangeImageValue();
-		
-		
 	}
-	public void ChangeImageValue(string Category){
-		print(Category.ToString());
-		int catint = 0;
-		if (Category == "Assault Rifle" || Category == "Marksman Rifle"){
+	public void ChangeImageValue(string Category){ // Is run in the Weapon script, changes players animation
+		int catint = 0; 
+		if (Category == "Assault Rifle" || Category == "Marksman Rifle"){ // based on the category of weapon change the animation
 			catint = 1;
-			print("chaning weapon type to 1");
 		}
 		if (Category == "SMG"){
 			catint = 3;
-			print("chaning weapon type to 3");
 		}
 		if (Category == "Hand Cannon"){
 			catint = 2;
-			print("chaning weapon type to 2");
 		}
-		Animator.SetInteger("WeaponType", catint);
+		Animator.SetInteger("WeaponType", catint); // set the parameter to the correct weapon type
 	}
-	public void ToggleForward(){
+	public void ToggleForward(){ // Is run in the menu, switched the value of the forward facing variable.
 		if (ForwardFacing){
 			ForwardFacing = false;
 		}

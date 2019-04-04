@@ -70,10 +70,10 @@ public class PlayerShoot : MonoBehaviour {
 				Fire(); // run the fire function
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.V)){ // if user presses V
+		if (Input.GetKeyDown(KeyCode.V) && MeleeTimer >= MeleeCooldown && Timer >= ReloadTime){ // if user presses V
 			MeleeAttack(); // melee attack
 		}
-		if (Input.GetKeyDown(KeyCode.R)){ // if user presses R
+		if (Input.GetKeyDown(KeyCode.R) && MeleeTimer >= MeleeCooldown && Timer >= ReloadTime){ // if user presses R
 			Reload(); // reload
 		}
 	}

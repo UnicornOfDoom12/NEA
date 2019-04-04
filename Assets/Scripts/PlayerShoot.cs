@@ -62,6 +62,7 @@ public class PlayerShoot : MonoBehaviour {
 		}
 		if(Timer >= ReloadTime){//if they have reloaded for long enough then they are not reloading anymore
 			Animator.SetBool("IsReloading",false);
+			Reloading = false;
 		}
 		if (Input.GetMouseButton(0)){ // If the user presses left mouse button
 			Animator.SetBool("IsShooting",false); // set to false as a base
@@ -79,13 +80,10 @@ public class PlayerShoot : MonoBehaviour {
 	}
 	void Fire(){ // Ran when user presses left click
 		bool CanShoot = true; // Is set to true until proven false
-		if (Timer < ReloadTime){ // If they are still reloading, set it to false
+		if (Reloading){ // If they are still reloading, set it to false
 			CanShoot = false;
 		}
-		else{
-			Reloading = false; // if not reloading, reloading = false
-		}
-		if (MeleeTimer < MeleeCooldown){ // if they are meleeing then we cant shoot
+		if (MeleeAttacking){ // if they are meleeing then we cant shoot
 			CanShoot = false;
 		}
 		if (Weapon.Category == ""){ // if they have a knife, melee attack instead

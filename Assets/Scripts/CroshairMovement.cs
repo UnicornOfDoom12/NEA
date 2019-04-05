@@ -11,39 +11,24 @@ public class CroshairMovement : MonoBehaviour {
 	public Sprite SMG;
 	public Weapon Weapon;
 	public SpriteRenderer SpriteRenderer;
-	// Use this for initialization
-	void Start () {
-		if (Weapon.Category == "Assault Rifle"){
-			SpriteRenderer.sprite = AR;
+	void Start () { // Run at start
+		if (Weapon.Category == "Assault Rifle"){ // if they have an Assualt rifle change the sprite to AR
+			SpriteRenderer.sprite = AR; 
 		}
-		if (Weapon.Category == "SMG"){
+		if (Weapon.Category == "SMG"){// if they have an SMG change the sprite to SMG
 			SpriteRenderer.sprite = SMG;
 		}
-		if (Weapon.Category == "Hand Cannon"){
+		if (Weapon.Category == "Hand Cannon"){// if they have an Hand Cannon change the sprite to HC
 			SpriteRenderer.sprite = HC;
 		}
-		if (Weapon.Category == "Marksman Rifle"){
+		if (Weapon.Category == "Marksman Rifle"){// if they have an Marksman Rifle change the sprite to MR
 			SpriteRenderer.sprite = MR;
 		}
-		Cursor.visible = false;
+		Cursor.visible = false; // Makes the mouse invisible
 	}
-	
-	// Update is called once per frame
 	void Update () {
-		if (Weapon.Category == "Assault Rifle"){
-			SpriteRenderer.sprite = AR;
-		}
-		else if (Weapon.Category == "SMG"){
-			SpriteRenderer.sprite = SMG;
-		}
-		else if (Weapon.Category == "Hand Cannon"){
-			SpriteRenderer.sprite = HC;
-		}
-		else if (Weapon.Category == "Marksman Rifle"){
-			SpriteRenderer.sprite = MR;
-		}
-		mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        transform.position = Vector2.Lerp(transform.position, mousePos, Speed);
+		mousePos = Input.mousePosition; // Gets the Mouse position
+        mousePos = Camera.main.ScreenToWorldPoint(mousePos); // Convert it to a world space
+        transform.position = Vector2.Lerp(transform.position, mousePos, Speed); // Moves the crosshair to the correct position, with purposefull lag
 	}
 }

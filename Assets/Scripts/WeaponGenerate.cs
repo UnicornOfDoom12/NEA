@@ -30,55 +30,54 @@ public class WeaponGenerate : MonoBehaviour {
 	public int MaxValue;
 	public PlayerDeathHandler PlayerDeathHandler;
 	public DifficultyScoreTracker DifficultyScoreTracker;
-	void Start(){
-		if(gameObject.name != "WeaponDisplay"){
-			BoxHandler = GameObject.Find("BoxHandler").GetComponent<BoxHandler>();
-			CordinateHandler = GameObject.Find("Cordinate Tracker").GetComponent<CordinateHandler>();
-			SpriteRenderer.sprite = Closed;
-			Opened = false;
-			PlayerDeathHandler = GameObject.Find("Player").GetComponent<PlayerDeathHandler>();
-			if (BoxHandler.OpenBoxes.Contains(new Vector2Int(CordinateHandler.Cordx,CordinateHandler.Cordy))){
-				Opened = true;
-				SpriteRenderer.sprite = Open;
+	void Start(){ // run at the start
+		if(gameObject.name != "WeaponDisplay"){ // If this isnt on the weapon display object
+			BoxHandler = GameObject.Find("BoxHandler").GetComponent<BoxHandler>(); // find the boxhander
+			CordinateHandler = GameObject.Find("Cordinate Tracker").GetComponent<CordinateHandler>(); // find cordinate tracker
+			SpriteRenderer.sprite = Closed; // Set the box to be closed
+			Opened = false; // open = false at the start
+			PlayerDeathHandler = GameObject.Find("Player").GetComponent<PlayerDeathHandler>(); // get the deathhandler object
+			if (BoxHandler.OpenBoxes.Contains(new Vector2Int(CordinateHandler.Cordx,CordinateHandler.Cordy))){ // if this box was already opened then:
+				Opened = true; //set the box to be opened
+				SpriteRenderer.sprite = Open; // change the sprite to be open
 			}
-			SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
+			SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;"); // WeaponDB connection
 			WeaponDB.Open();
-			string CMDString = "SELECT MAX(id) from tblWeapon";
+			string CMDString = "SELECT MAX(id) from tblWeapon"; // select the max id
 			SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
 			MaxValue = int.Parse(CMD.ExecuteScalar().ToString());
 			WeaponDB.Close();
-			MaxValue += IDs.Count();
-			DifficultyScoreTracker = GameObject.Find("DifficultScoreTracker").GetComponent<DifficultyScoreTracker>();
+			MaxValue += IDs.Count(); // add one to it, for the ids
+			DifficultyScoreTracker = GameObject.Find("DifficultScoreTracker").GetComponent<DifficultyScoreTracker>(); // get the difficulty score
 		}
 	}
 	public void GenerateAndInsert(){
-		print("Starting insertion");
-		string[] Categories = new string[] { "Assault Rifle", "Hand Cannon", "SMG","Marksman Rifle"};
-		string[] Names = new string[] {"MK", "M","MP","AR","AK","AN","QBZ"};
-		MaxValue += 1;
+		string[] Categories = new string[] { "Assault Rifle", "Hand Cannon", "SMG","Marksman Rifle"}; // defines list of categories
+		string[] Names = new string[] {"MK", "M","MP","AR","AK","AN","QBZ"}; // defines list of possible names
+		MaxValue += 1; // adds one to the max value
 		int id = MaxValue; // To be inserted
-		string NamePt1 = Names[UnityEngine.Random.Range(0,6)];
-		string NamePt2 = UnityEngine.Random.Range(1,99).ToString();
+		string NamePt1 = Names[UnityEngine.Random.Range(0,6)]; // generates the first part of the name
+		string NamePt2 = UnityEngine.Random.Range(1,99).ToString(); // generates second part
 		string Category = Categories[UnityEngine.Random.Range(0,3)]; // To be inserted as category
 		string FullName = NamePt1 + NamePt2 + "-" + Category; // To be inserted as name
 		if (Category == "Assault Rifle"){
-			print("Genning a AR because of " + Category);
-			GenerateAR(id, FullName, Category);
+			
+			GenerateAR(id, FullName, Category); // if the categroy is AR generate values for an AR
 			
 		}
 		else if (Category == "Marksman Rifle"){
-			print("Genning a MR because of " + Category);
-			GenerateMR(id, FullName, Category);
+			
+			GenerateMR(id, FullName, Category);// if the categroy is MR generate values for an MR
 			
 		}
 		else if (Category == "SMG"){
-			print("Genning a SMG because of " + Category);
-			GenerateSMG(id, FullName, Category);
+			
+			GenerateSMG(id, FullName, Category);// if the categroy is SMG generate values for an SMG
 			
 		}
 		else if (Category == "Hand Cannon"){
-			print("Genning a HC because of " + Category);
-			GenerateHC(id, FullName, Category);
+			
+			GenerateHC(id, FullName, Category);// if the categroy is HC generate values for an HC
 		}
 
 	}
@@ -91,8 +90,6 @@ public class WeaponGenerate : MonoBehaviour {
 			PlayerDeathHandler.RemoveDamage(15);
 		}
 	}
-
-
 	public void GenerateAR(int id, string name, string category){
 		int Damage = UnityEngine.Random.Range(24,49);
 		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
@@ -139,7 +136,7 @@ public class WeaponGenerate : MonoBehaviour {
 		Inaccuracies.Add(inaccuracy);
 		Magazines.Add(Magazine);
 		Opened = true;
-		print("Insertion Finished");
+		
 	}
 	public string Display(bool Won){
 		string itemString;
@@ -164,9 +161,6 @@ public class WeaponGenerate : MonoBehaviour {
 				WeaponDB.Open();
 				string InsetString = "INSERT INTO tblWeapon (id,name,Category,Damage,Inaccuracy,Magazine,FireRate)VALUES(@id, @name, @category, @damage, @inaccuracy, @magazine, @firerate)";
 				using (SqliteCommand CMD = new SqliteCommand(InsetString,WeaponDB)){
-					print("Added with the id " + IDs[i].ToString());
-					print("Added the " + Names[i]);
-					print("=============");
 					CMD.Parameters.AddWithValue("@id",IDs[i]);
 					CMD.Parameters.AddWithValue("@name",Names[i]);
 					CMD.Parameters.AddWithValue("@category",WeaponCategories[i]);

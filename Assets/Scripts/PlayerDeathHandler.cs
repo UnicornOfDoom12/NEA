@@ -15,34 +15,27 @@ public class PlayerDeathHandler : MonoBehaviour {
 	public AudioClip DeathClip;
 	public LoadNewScene LoadNewScene;
 	public Text HealthCounter;
-	// Use this for initialization
-	void Start () {
-		Health = 100;
-		HealthCounter.text = "Health = "+ Health.ToString() + "/100";
+	void Start () { // Run at the start
+		Health = 100; // sets health = 100
+		HealthCounter.text = "Health = "+ Health.ToString() + "/100"; // updates the counter string
 	}
-	public void TakeDamage(int Damage){
-		Health = Health - Damage;
-		if (Health <= 0){
-			KillPlayer();
+	public void TakeDamage(int Damage){ // Take damage used when the player is hit
+		Health = Health - Damage; // Removes this ammount from the player
+		if (Health <= 0){ // if the player has no health left
+			KillPlayer(); // kill the player
 		}
-		HealthCounter.text = "Health = "+ Health.ToString() + "/100";
+		HealthCounter.text = "Health = "+ Health.ToString() + "/100"; // update the counter string
 	}
-	void KillPlayer(){
-		SoundSource.clip = DeathClip;
+	void KillPlayer(){ // run when player dies
+		SoundSource.clip = DeathClip; // load an play the sound of a player dieing
 		SoundSource.Play();
-		LoadNewScene.LoadSceneByIndex(3);
+		LoadNewScene.LoadSceneByIndex(3); // load the loss scene
 	}
-	public void RemoveDamage(int Healing){
-		Health = Health + Healing;
-		if (Health > 100){
+	public void RemoveDamage(int Healing){ // When the player heals
+		Health = Health + Healing; // Adds health to the player
+		if (Health > 100){ // makes sure they cannot exceede max health
 			Health = 100;
 		}
-		HealthCounter.text = "Health = "+ Health.ToString() + "/100";
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		HealthCounter.text = "Health = "+ Health.ToString() + "/100"; // updates the counter string
 	}
 }

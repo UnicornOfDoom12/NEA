@@ -25,104 +25,89 @@ public class TurretHandler : MonoBehaviour {
 	public int health;
 	public GameObject MuzzleAnimation;
 	public GameObject Explosion;
-	// Use this for initialization
-	void Start () {
-		CurrentAmmo = Magazine;
-		SightedPlayer = false;
-		// Determine it's position in the scene
+	void Start () { // run at the start
+		CurrentAmmo = Magazine; // sets the starting variables
+		SightedPlayer = false; // two bools that start off false
 		reloading = false;
 		FireRate = FireRate / 60;
-		FireRate = 1/FireRate;
-		Player = GameObject.Find("Player");
-		PlayerCollider = GameObject.Find("Player").GetComponent<Collider2D>();
+		FireRate = 1/FireRate; // determines the fire rate in time between shots
+		Player = GameObject.Find("Player"); // finds the player
+		PlayerCollider = GameObject.Find("Player").GetComponent<Collider2D>(); // finds the Player Collider
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
-		float Passed = Time.deltaTime;
-		if (reloading){
+	void FixedUpdate () { // called once a frame, used for physics
+		float Passed = Time.deltaTime; // get the time passed since last call
+		if (reloading){ // if the turret is reloading then add the time that has passed to the Timer
 			Timer += Passed;
 		}
-		if(!SightedPlayer){
-			Vector2 RayDirection = new Vector2(Player.transform.position.x - transform.position.x, Player.transform.position.y - transform.position.y);
-			RaycastHit2D Ray = Physics2D.Raycast(Barrel.transform.position, RayDirection);
-			if (Ray.collider == PlayerCollider){
-				SightedPlayer = true;
-				//print("Sighted the mofo");
+		if(!SightedPlayer){ // if we have not yet seen the player, search for the player
+			Vector2 RayDirection = new Vector2(Player.transform.position.x - transform.position.x, Player.transform.position.y - transform.position.y); // cast a ray to the player
+			RaycastHit2D Ray = Physics2D.Raycast(Barrel.transform.position, RayDirection); // Get the first thing that the ray hits
+			if (Ray.collider == PlayerCollider){ // if the ray hit the player then we can see them
+				SightedPlayer = true; // set this variable to true
 				TurretSource.clip = SightedAlert;
-				TurretSource.Play();
+				TurretSource.Play(); // play a sound
 			}
 			else{
-				transform.Rotate(new Vector3(0,0,1));
-
+				transform.Rotate(new Vector3(0,0,1)); // if we cannot see the player rotate by 1 degree
 			}
 		}
-		if (SightedPlayer){
-			// Look in their direction
-			// Fire  three round burst if time has passed
-			Vector3 Rotation = transform.position - Player.transform.position;
-			Rotation.Normalize();
-         	float rot = Mathf.Atan2(Rotation.y, Rotation.x) * Mathf.Rad2Deg;
-         	transform.rotation = Quaternion.Euler(0f, 0f, rot - 270);
-			if (Time.time >= TimeSinceFire){
-				TimeSinceFire = Time.time + FireRate;
-				Fire();
+		if (SightedPlayer){ // if we can see the player
+			Vector3 Rotation = transform.position - Player.transform.position; // get vector between the player and the turret
+			Rotation.Normalize(); // gives the vector a magnitude of 1, used to keep rotation ammount constant
+         	float rot = Mathf.Atan2(Rotation.y, Rotation.x) * Mathf.Rad2Deg;  // turn it into a rotation value
+         	transform.rotation = Quaternion.Euler(0f, 0f, rot - 270);// Look in their direction
+			if (Time.time >= TimeSinceFire){ // if the turret can fire, determine by fire rate
+				TimeSinceFire = Time.time + FireRate; // reset the timer
+				Fire(); // fire the weapon
 			}
-			
-			Vector2 RayDirection = new Vector2(Player.transform.position.x - transform.position.x, Player.transform.position.y - transform.position.y);
-			RaycastHit2D Ray = Physics2D.Raycast(Barrel.transform.position, RayDirection);
-			if (Ray.collider != PlayerCollider && Ray.transform.tag != "Projectile"){
+			Vector2 RayDirection = new Vector2(Player.transform.position.x - transform.position.x, Player.transform.position.y - transform.position.y);// send out ray to confirm we can still see player
+			RaycastHit2D Ray = Physics2D.Raycast(Barrel.transform.position, RayDirection); 
+			if (Ray.collider != PlayerCollider && Ray.transform.tag != "Projectile"){ // if the ray hits anything but the player or projectile then we can no longer see them
 				SightedPlayer = false;
-				print("Lost Vision");
 			}
-
 		}
 	}
-	void Fire(){
-		bool CanShoot = true;
-		if (Timer <  ReloadTime){
+	void Fire(){ // used for shooting at the player
+		bool CanShoot = true; // Can shoot starts true and gets disproved
+		if (Timer <  ReloadTime){ // if still reloading then we cant shoot
 			CanShoot = false;
-			print("Still reloading for the enemy");
 		}
-		else{
+		else{ // if were not then reloading = false
 			reloading = false;
 		}
-		if(CurrentAmmo <= 0){
+		if(CurrentAmmo <= 0){ // if we got no ammo we cant shoot
 			CanShoot = false;
-			Reload();
+			Reload(); // runs reload function
 		}
-		if (CanShoot){
-			Rigidbody2D FiredBullet = Instantiate(Bullet, Barrel.transform.position, transform.rotation) as Rigidbody2D;
+		if (CanShoot){ // if we can shoot
+			Rigidbody2D FiredBullet = Instantiate(Bullet, Barrel.transform.position, transform.rotation) as Rigidbody2D; // instantiate a projectile
 			Vector3 BulletDirection = transform.up;
 			BulletDirection.x = BulletDirection.x + UnityEngine.Random.Range(-1 * (Inaccuracy/75),(Inaccuracy/75));
 			BulletDirection.y = BulletDirection.y + UnityEngine.Random.Range(-1 * (Inaccuracy/75),(Inaccuracy/75));
-			FiredBullet.AddForce(BulletDirection * speed);
-			FiredBullet.name = "EnemyProjectile";
-			CurrentAmmo -= 1;
+			FiredBullet.AddForce(BulletDirection * speed); // find a direction based on inaccuracy and add a force to the projectile based on speed
+			FiredBullet.name = "EnemyProjectile"; // change name to enemy projectile for collision detection
+			CurrentAmmo -= 1; // reduce the ammo in the turret
 			TurretSource.clip = BulletSound;
-			TurretSource.Play();
-			print("Turret Fired");
-			var flash = Instantiate(MuzzleAnimation, Barrel.transform.position, Barrel.transform.rotation);
-			Destroy(flash, 0.183f);
+			TurretSource.Play(); // play a gunfire sound
+			var flash = Instantiate(MuzzleAnimation, Barrel.transform.position, Barrel.transform.rotation); // instantiate a muzzle flash
+			Destroy(flash, 0.183f); // destroy muzzle flash after animation
 
 		}
 	}
-	public void TakeDamage(int Damage){
-		print("TakingDamage");
-		health -= Damage;
-		SightedPlayer = true;
-		if (health <= 0){
-			// Play death animation here and sound
-			GameObject newExplosion = Instantiate(Explosion, transform.position, transform.rotation) as GameObject;
-			Destroy(newExplosion,0.350f);
-			Destroy(gameObject);
+	public void TakeDamage(int Damage){ // used for when the turret gets hit
+		health -= Damage; // Take away from turret health
+		SightedPlayer = true; // if the turret gets hit it will turn to face the player
+		if (health <= 0){ // if the turret dies
+			GameObject newExplosion = Instantiate(Explosion, transform.position, transform.rotation) as GameObject; // instantiate explosion
+			Destroy(newExplosion,0.350f); // destroy explosion after animation
+			Destroy(gameObject); // destroy the turret
 		}
 	}
-	void Reload(){
-		reloading = true;
-		Timer = 0;
+	void Reload(){ // reload function
+		reloading = true; // sets reloading to true
+		Timer = 0; // resets timer
 		TurretSource.clip = TurretReload;
-		TurretSource.Play();
-		CurrentAmmo = Magazine;
+		TurretSource.Play(); // plays turret reloading sound
+		CurrentAmmo = Magazine; // resets the ammo counter
 	}
 }

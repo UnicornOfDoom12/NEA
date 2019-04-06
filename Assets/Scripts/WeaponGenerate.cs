@@ -10,8 +10,6 @@ using UnityEngine;
 using System.Threading; // imports including sqlite
 
 public class WeaponGenerate : MonoBehaviour {
-
-	// Use this for initialization
 	public BoxHandler BoxHandler;
 	public CordinateHandler CordinateHandler;
 	public SpriteRenderer SpriteRenderer;
@@ -81,16 +79,16 @@ public class WeaponGenerate : MonoBehaviour {
 		}
 
 	}
-	public void OpenBox(){
-		if (!Opened){
-			SpriteRenderer.sprite = Open;
-			GenerateAndInsert();
-			Opened = true;
-			BoxHandler.OpenBoxes.Add(new Vector2Int(CordinateHandler.Cordx, CordinateHandler.Cordy));
-			PlayerDeathHandler.RemoveDamage(15);
+	public void OpenBox(){ // When the box is opened by the player
+		if (!Opened){ // if not already opened
+			SpriteRenderer.sprite = Open; // change the sprite
+			GenerateAndInsert(); // Run the generate and insert
+			Opened = true; // change the variable
+			BoxHandler.OpenBoxes.Add(new Vector2Int(CordinateHandler.Cordx, CordinateHandler.Cordy)); // Add the boxes postion to the box array
+			PlayerDeathHandler.RemoveDamage(15); // Heal the player for 15 health
 		}
 	}
-	public void GenerateAR(int id, string name, string category){
+	public void GenerateAR(int id, string name, string category){ // Randomly generates values for the weapon based on ranges, then runs insert
 		int Damage = UnityEngine.Random.Range(24,49);
 		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
 		Damage = (int)TempDamage;
@@ -99,7 +97,7 @@ public class WeaponGenerate : MonoBehaviour {
 		int Magazine = UnityEngine.Random.Range(20,40);
 		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
-	public void GenerateMR(int id, string name, string category){
+	public void GenerateMR(int id, string name, string category){ // Randomly generates values for the weapon based on ranges, then runs insert
 		int Damage = UnityEngine.Random.Range(40,70);
 		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
 		Damage = (int)TempDamage;
@@ -108,7 +106,7 @@ public class WeaponGenerate : MonoBehaviour {
 		int Magazine = UnityEngine.Random.Range(5,30);
 		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
-	public void GenerateSMG(int id, string name, string category){
+	public void GenerateSMG(int id, string name, string category){ // Randomly generates values for the weapon based on ranges, then runs insert
 		int Damage = UnityEngine.Random.Range(15,25);
 		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
 		Damage = (int)TempDamage;
@@ -117,7 +115,7 @@ public class WeaponGenerate : MonoBehaviour {
 		int Magazine = UnityEngine.Random.Range(30,60);
 		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
-	public void GenerateHC(int id, string name, string category){
+	public void GenerateHC(int id, string name, string category){ // Randomly generates values for the weapon based on ranges, then runs insert
 		int Damage = UnityEngine.Random.Range(60,99);
 		float TempDamage = Damage * DifficultyScoreTracker.FinalScore;
 		Damage = (int)TempDamage;
@@ -126,8 +124,7 @@ public class WeaponGenerate : MonoBehaviour {
 		int Magazine = UnityEngine.Random.Range(3,10);
 		Insert(id, name, category, Damage, FireRate, inaccuracy, Magazine);
 	}
-	public void Insert(int id, string name, string category, int Damage, int FireRate, float inaccuracy, int Magazine){
-		print(id);
+	public void Insert(int id, string name, string category, int Damage, int FireRate, float inaccuracy, int Magazine){ // Adds the values to the array of IDs, to be put in the database later
 		IDs.Add(id);
 		Names.Add(name);
 		WeaponCategories.Add(category);
@@ -136,32 +133,31 @@ public class WeaponGenerate : MonoBehaviour {
 		Inaccuracies.Add(inaccuracy);
 		Magazines.Add(Magazine);
 		Opened = true;
-		
 	}
-	public string Display(bool Won){
+	public string Display(bool Won){ // display, run in the win or loss screen
 		string itemString;
 		if (Won){
-			itemString = "The items you gained: ";
+			itemString = "The items you gained: "; // Creates the string based on if the player won
 		}
 		else{
 			itemString = "The items you lost: ";
 		}
 		foreach (string i in Names){
-			itemString += i;
+			itemString += i; // adds the names to the string
 			itemString += ", "; 
 		}
 		if (Won){
-			InsertToDB();
+			InsertToDB(); // if they won put these values in the database
 		}
-		return itemString;
+		return itemString; // return the string to be displayed
 	}
-	public void InsertToDB(){
-		for (int i = 0; i < IDs.Count(); i++){
+	public void InsertToDB(){ // only run if the player has won
+		for (int i = 0; i < IDs.Count(); i++){ // for all the weapons the player gained
 			using(SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;")){
-				WeaponDB.Open();
+				WeaponDB.Open(); // open a connection to the database
 				string InsetString = "INSERT INTO tblWeapon (id,name,Category,Damage,Inaccuracy,Magazine,FireRate)VALUES(@id, @name, @category, @damage, @inaccuracy, @magazine, @firerate)";
 				using (SqliteCommand CMD = new SqliteCommand(InsetString,WeaponDB)){
-					CMD.Parameters.AddWithValue("@id",IDs[i]);
+					CMD.Parameters.AddWithValue("@id",IDs[i]); // add all the required values to the db
 					CMD.Parameters.AddWithValue("@name",Names[i]);
 					CMD.Parameters.AddWithValue("@category",WeaponCategories[i]);
 					CMD.Parameters.AddWithValue("@damage",Damages[i]);
@@ -170,10 +166,8 @@ public class WeaponGenerate : MonoBehaviour {
 					CMD.Parameters.AddWithValue("@firerate",FireRates[i]);
 					CMD.ExecuteNonQuery();
 					WeaponDB.Close();
-
 				}
 			}
 		}
 	}
-
 }

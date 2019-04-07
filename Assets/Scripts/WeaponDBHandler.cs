@@ -11,42 +11,31 @@ using System.Threading; // imports including sqlite
 
 public class WeaponDBHandler : MonoBehaviour {
 	public bool CanContinue = false;
-	// Use this for initialization
-	public void CheckDataExists () {
+	public void CheckDataExists () { // Checks if there is data in the table
 		
 		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
 		WeaponDB.Open();
-		string CMDString = "SELECT COUNT(*) from tblWeapon";
+		string CMDString = "SELECT COUNT(*) from tblWeapon"; // Counts all values in the database
 		SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
 		int Data = int.Parse(CMD.ExecuteScalar().ToString());
-		if (Data > 0){
-			print("Table Exists");
-				
+		if (Data > 0){ // if there is any data
+			return; // dont do anything
 		}
-
-		else{
-
-			print("Table does not exist");
+		else{ // no data
 			string InsertQuery = "INSERT INTO tblWeapon (id, Name, Category, Damage, FireRate, Inaccuracy, Magazine)VALUES(@id,@Name,@Category,@Damage,@FireRate,@Inaccuracy,@Magazine)";
-			SqliteCommand InsertCommand = new SqliteCommand(InsertQuery, WeaponDB);
+			SqliteCommand InsertCommand = new SqliteCommand(InsertQuery, WeaponDB); // Insert a starter weapon into the db
 			InsertCommand.Parameters.AddWithValue("@id",1);
-			InsertCommand.Parameters.AddWithValue("@Name","Starter");
+			InsertCommand.Parameters.AddWithValue("@Name","Starter"); // basic AR weapon with minimum stats
 			InsertCommand.Parameters.AddWithValue("@Category", "AssualtRifle");
 			InsertCommand.Parameters.AddWithValue("@Damage", 25);
 			InsertCommand.Parameters.AddWithValue("@FireRate", 500);
 			InsertCommand.Parameters.AddWithValue("@Inaccuracy", 6.0);
 			InsertCommand.Parameters.AddWithValue("@Magazine", 20);
 			InsertCommand.ExecuteNonQuery();
-			WeaponDB.Close();
-			print("Table now has data");
-				
+			WeaponDB.Close();	
 		}
-
 	}
-
-	
-	void Start(){
-		CheckDataExists();
+	void Start(){ // run at start
+		CheckDataExists(); // checks data exists
 	}
-	
 }

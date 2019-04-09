@@ -105,11 +105,9 @@ public class DatabaseHandler : MonoBehaviour {
 		RoomDB.Dispose();
 		GC.Collect();
 		Rerun = CheckGraph();
-		Rerun = true;
 		if (!Rerun){
 			Awake();
 		}
-		//MapConnectionHandler.DrawConnections();
 		ReSelect(); // runs the function that updates the objects and puts them onto the screen, is run whenever a player moves between rooms.
 
 
@@ -138,15 +136,15 @@ public class DatabaseHandler : MonoBehaviour {
 		if(happened){
 			return false;
 		}
-		x += y;
+		int addition =  x + y;
 		int Selection = UnityEngine.Random.Range(0,100);
 		if (x > 0){
-			Selection = Selection / x;
+			Selection = Selection / addition;
 		}
-		if (x == 0){
+		if (x == 0 || y == 0){
 			return false;
 		}
-		if (Selection < 25){
+		else if (Selection < 10){
 			return true;
 		}
 		else{
@@ -199,7 +197,7 @@ public class DatabaseHandler : MonoBehaviour {
 		else
 		{
 			
-			int chance = 75;
+			int chance = 50;
 			int Roll = UnityEngine.Random.Range(0,100);
 			if (Roll <= chance){
 				return true;

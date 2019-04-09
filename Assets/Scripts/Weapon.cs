@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour {
 	public SelectedEquip SelectedEquip;
 	void Start(){ // run at the start
 		WeaponId = SelectedEquip.EquippedId; // Determines the ID of the selected weapon
+		
 		EquipWeapon(); // runs the EquipWeapon function
 	}
 	public void EquipWeapon(){

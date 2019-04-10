@@ -161,14 +161,14 @@ public class DatabaseHandler : MonoBehaviour {
 		if (Big){
 			ycord = UnityEngine.Random.Range(1,2);
 			if (ycord == 1){
-				ycord = 1.78f;
+				ycord = 2.95f;
 			}
 			else{
-				ycord = -1.7f;
+				ycord = -1.83f;
 			}
 		}
 		else{
-			ycord = UnityEngine.Random.Range(-4.0f, 4.0f);
+			ycord = UnityEngine.Random.Range(-5.0f, 5.0f);
 		}
 		return ycord;
 	}

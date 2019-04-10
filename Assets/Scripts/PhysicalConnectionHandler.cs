@@ -46,13 +46,13 @@ public class PhysicalConnectionHandler : MonoBehaviour {
 		}
 
 		if (North || FromAbove){
-			NorthObj.transform.position = new Vector3 (0.0f, 4.45f, 0.0f); // if there is a connectiong outgoing up, or one coming down move the north object into position
+			NorthObj.transform.position = new Vector3 (0.0f, 4.95f, 0.0f); // if there is a connectiong outgoing up, or one coming down move the north object into position
 		}
 		else{
 			NorthObj.transform.position = new Vector3 (0.0f, 10.0f, 0.0f); // else move out of players view
 		}
 		if (South || FromBelow){
-			SouthObj.transform.position = new Vector3(0.0f, -4.45f, 0.0f); // if there is a connection outgoing down, or one coming up move the south object into position
+			SouthObj.transform.position = new Vector3(0.0f, -4.95f, 0.0f); // if there is a connection outgoing down, or one coming up move the south object into position
 		}
 		else{
 			SouthObj.transform.position = new Vector3 (0.0f, -10.0f, 0.0f); // else move it out of players view

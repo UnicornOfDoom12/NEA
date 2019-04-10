@@ -13,7 +13,9 @@ public class ItemDatabase : MonoBehaviour {
 
     void Awake()
     {
-        SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;"); // Connects to database
+        string path = Application.dataPath;
+		path = path + "/Plugins/WeaponsTable.db";
+		var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
         WeaponDB.Open();
 		string CMDString = "SELECT MAX(id) from tblWeapon"; // Max value in the database
 		SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
@@ -31,7 +33,9 @@ public class ItemDatabase : MonoBehaviour {
         return items.Find(item => item.title == itemName);
     }
     void BuildData(int Id){
-        SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;"); // Connects to DB
+        string path = Application.dataPath;
+		path = path + "/Plugins/WeaponsTable.db";
+		var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
         WeaponDB.Open();
         string CMDString = "select Name, Category, Damage, Magazine, FireRate, Inaccuracy from tblWeapon where id=@Id";
         SqliteCommand CMD = new SqliteCommand(CMDString,WeaponDB);

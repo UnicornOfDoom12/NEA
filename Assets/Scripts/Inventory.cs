@@ -16,7 +16,9 @@ public class Inventory : MonoBehaviour {
 
     void Start()
     {
-        SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
+        string path = Application.dataPath;
+		path = path + "/Plugins/WeaponsTable.db";
+		var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
         WeaponDB.Open();
 		string CMDString = "SELECT MAX(id) from tblWeapon";
 		SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);

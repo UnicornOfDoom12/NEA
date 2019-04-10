@@ -25,7 +25,9 @@ public class DeleteSelectedItems : MonoBehaviour {
 		SoundSource.clip = SoundClip; // Sets the sound clip
 	}
 	public void DeleteFromTable(){ // Deletes items from the array
-		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
+		string path = Application.dataPath;
+		path = path + "/Plugins/WeaponsTable.db";
+		var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		WeaponDB.Open();
 		foreach(int i in SelectedDelete.ItemsToDelete){
 			string CMDString = "DELETE FROM tblWeapon WHERE id=@i";

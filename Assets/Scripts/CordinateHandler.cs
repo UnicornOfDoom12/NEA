@@ -21,12 +21,16 @@ public class CordinateHandler : MonoBehaviour {
 	public MapConnectionHandler MapConnectionHandler;
 	public BoxHandler BoxHandler;
 	public DifficultyScoreTracker DifficultyScoreTracker;
+	string path;
 	void Start () {
 			Cordx = 0; // assigns values to zero
 			Cordy = 0;
 			DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 			MapMarkerHandler.UpdatePosition(); // Changes the minimap
-			using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){
+			path = Application.dataPath;
+			path = path + "/Plugins/Rooms Table.db";
+			//var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
+			using(var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;")){
 				RoomDB.Open(); // open the connection
 				string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y"; // Pulls the amount of enemies in the room
 				using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
@@ -75,7 +79,7 @@ public class CordinateHandler : MonoBehaviour {
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition(); // Updates map marker position
 		EnemySpawner.DeleteEnemies();	// Deletes enemies so they are not carried over
-		using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+		using(var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;")){ // define connection to database
 			RoomDB.Open(); // open the connection
 			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
 			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
@@ -101,7 +105,7 @@ public class CordinateHandler : MonoBehaviour {
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition(); // Changes the position of the minimp marker
 		EnemySpawner.DeleteEnemies(); // Deletes previous enemies
-		using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+		using(var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;")){ // define connection to database
 			RoomDB.Open(); // open the connection
 			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
 			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
@@ -128,7 +132,7 @@ public class CordinateHandler : MonoBehaviour {
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition(); // Updates the position of the map marker
 		EnemySpawner.DeleteEnemies(); // Deletes enemies so they are not carried over
-		using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+		using(var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;")){ // define connection to database
 			RoomDB.Open(); // open the connection
 			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y"; // Selects enemies number
 			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){
@@ -154,7 +158,7 @@ public class CordinateHandler : MonoBehaviour {
 		DatabaseHandler.ReSelect();  // runs the function in database handler that updates the objects.
 		MapMarkerHandler.UpdatePosition(); // updates the map marker position
 		EnemySpawner.DeleteEnemies(); // Deletes the old enemies so they do not get carried over
-		using(var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+		using(var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;")){ // define connection to database
 			RoomDB.Open(); // open the connection
 			string CMDString = "SELECT EnemyNo FROM tblRoom WHERE Roomx=@x AND Roomy=@y";
 			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){

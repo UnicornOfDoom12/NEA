@@ -25,7 +25,10 @@ public class DatabaseHandler : MonoBehaviour {
 	public MapConnectionHandler MapConnectionHandler;
 	bool Rerun;
 	void Awake () { // run on program start
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		print("PATH PATH PATH" + path);
+		var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		RoomDB.Open(); // open the connection
 		string deletequery = "DROP TABLE tblRoom"; // string for query
 		SqliteCommand deletecmd = new SqliteCommand(deletequery, RoomDB); // construct the query
@@ -234,7 +237,9 @@ public class DatabaseHandler : MonoBehaviour {
 		string ThisNodeQuery = "";
 		List<Vector2Int> ReachableNodes = new List<Vector2Int>();
 		ReachableNodes.Add(new Vector2Int(0,0));
-		SqliteConnection CheckingConnection = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;");
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		var CheckingConnection = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		CheckingConnection.Open();
 		bool EndValueFound;
 		int i = 0;

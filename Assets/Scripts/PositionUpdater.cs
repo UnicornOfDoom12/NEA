@@ -19,7 +19,10 @@ public class PositionUpdater : MonoBehaviour{
 		CordinateHandler CordinateHandler = Tracker.GetComponent<CordinateHandler>(); // adds the script with the values of cordx inside
 		int Cordx = CordinateHandler.Cordx; // assigns the values of cordx to a local variable
 		int Cordy = CordinateHandler.Cordy; // assigns the values of cordx to a local variable
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // adds a connection to the correct database
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
+		//var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // adds a connection to the correct database
 		RoomDB.Open(); // opens connection
 		string CMDString = "select " + xArg + ", " + yArg + ", " + rotArg + " from tblRoom where Roomx=@Cordx and Roomy=@Cordy"; // constructs sql query with rotation
 		if (rotArg == "None"){

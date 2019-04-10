@@ -36,7 +36,9 @@ public class BoxHandler : MonoBehaviour {
 		int Cordy = CordinateHandler.Cordy;
 		//SpriteRender = this.gameObject.GetComponent<SpriteRenderer>(); // imports the game object used for the sprite render variable
 		SpriteArray = new List<Sprite>{sprite0,sprite1,sprite2,sprite3,sprite4,sprite5,sprite6,sprite7,sprite8,sprite9,sprite10,sprite11}; // Creates an array of the different sprites to be used
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // defines the connection to database
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		RoomDB.Open(); // opens the connection
 		string CMDString = "select Box from tblRoom where Roomx=@Cordx and Roomy=@Cordy"; // declares the string used in the qeury.
 		SqliteCommand CMD = new SqliteCommand (CMDString, RoomDB); // constructs the query

@@ -15,7 +15,9 @@ public class PhysicalConnectionHandler : MonoBehaviour {
 	public GameObject SouthObj;
 	public GameObject NorthObj;
 	public void DetermineConnections(int x, int y){
-		SqliteConnection RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // define connection to database
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		RoomDB.Open();
 		string CMDString = "SELECT NCon, SCon, ECon, WCon FROM tblRoom WHERE Roomx=@x AND Roomy=@y"; // Selects if there are connections inside this node
 		SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB);
@@ -71,7 +73,10 @@ public class PhysicalConnectionHandler : MonoBehaviour {
 		}
 	}
 	public bool FromOutside(string Direction, int x, int y){ // parameters = direction and coordinates of node to search, returns a boolean
-		using(SqliteConnection RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;")){ // define connection to database
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		 // define connection to database
+		using(var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;")){ // define connection to database
 			RoomDB.Open();
 			string CMDString = "SELECT " + Direction + " FROM tblRoom WHERE Roomx=@x AND Roomy=@y"; // select the correct direction from the specified node
 			using(SqliteCommand CMD = new SqliteCommand(CMDString,RoomDB)){

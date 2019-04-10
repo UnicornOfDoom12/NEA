@@ -18,7 +18,9 @@ public class MapConnectionHandler : MonoBehaviour {
 		bool ConFromBelow = false;
 		bool ConFromRight = false;
 		bool ConFromLeft = false;
-		SqliteConnection CheckingConnection = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // connects to the database
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		var CheckingConnection = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		CheckingConnection.Open();
 		for (int x = 0; x<=3; x++){ // iterates through each room
 			for (int y=0; y<=3; y++){

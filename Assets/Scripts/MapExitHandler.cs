@@ -13,7 +13,9 @@ public class MapExitHandler : MonoBehaviour {
 
 
 	public void DrawObject () {
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;");
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		RoomDB.Open();
 		string CMDString;
 		SqliteCommand CMD;

@@ -39,7 +39,10 @@ public class WeaponGenerate : MonoBehaviour {
 				Opened = true; //set the box to be opened
 				SpriteRenderer.sprite = Open; // change the sprite to be open
 			}
-			SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;"); // WeaponDB connection
+			string path = Application.dataPath;
+			path = path + "/Plugins/WeaponsTable.db";
+			var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
+			//SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;"); // WeaponDB connection
 			WeaponDB.Open();
 			string CMDString = "SELECT MAX(id) from tblWeapon"; // select the max id
 			SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);
@@ -153,7 +156,9 @@ public class WeaponGenerate : MonoBehaviour {
 	}
 	public void InsertToDB(){ // only run if the player has won
 		for (int i = 0; i < IDs.Count(); i++){ // for all the weapons the player gained
-			using(SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;")){
+			string path = Application.dataPath;
+			path = path + "/Plugins/WeaponsTable.db";
+			using(var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;")){
 				WeaponDB.Open(); // open a connection to the database
 				string InsetString = "INSERT INTO tblWeapon (id,name,Category,Damage,Inaccuracy,Magazine,FireRate)VALUES(@id, @name, @category, @damage, @inaccuracy, @magazine, @firerate)";
 				using (SqliteCommand CMD = new SqliteCommand(InsetString,WeaponDB)){

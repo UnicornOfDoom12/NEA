@@ -24,7 +24,9 @@ public class Weapon : MonoBehaviour {
 		EquipWeapon(); // runs the EquipWeapon function
 	}
 	public void EquipWeapon(){
-		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;"); // Connects to DB
+		string path = Application.dataPath;
+		path = path + "/Plugins/WeaponsTable.db";
+		var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		WeaponDB.Open(); // Opens the DB
 		string CMDString = "SELECT Category, Damage, Inaccuracy, Magazine, FireRate FROM tblWeapon WHERE id=@ID"; // Selects all the attributes of the weapons
 		SqliteCommand CMD = new SqliteCommand(CMDString,WeaponDB);

@@ -19,7 +19,9 @@ public class ExitHandler : MonoBehaviour {
 		int Cordx = CordinateHandler.Cordx; // assigns the values of cordx to a local variable
 		int Cordy = CordinateHandler.Cordy; // assigns the values of cordx to a local variable
 		SpriteRender = this.gameObject.GetComponent<SpriteRenderer>(); // imports the sprite render function used to change the sprite
-		var RoomDB = new SqliteConnection("Data Source=Assets\\Plugins\\Rooms Table.db;Version=3;"); // establishes connection to database
+		string path = Application.dataPath;
+		path = path + "/Plugins/Rooms Table.db";
+		var RoomDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		RoomDB.Open(); // opens connection
 		string CMDString = "select End from tblRoom where Roomx=@Cordx and Roomy=@Cordy"; // creates a string for the query
 		SqliteCommand CMD = new SqliteCommand (CMDString, RoomDB); // constructs the query

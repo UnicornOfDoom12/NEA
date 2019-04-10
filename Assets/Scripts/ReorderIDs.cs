@@ -13,7 +13,9 @@ public class ReorderIDs : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
+		string path = Application.dataPath;
+		path = path + "/Plugins/WeaponsTable.db";
+		var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		WeaponDB.Open();
 		List<int> NewIds = new List<int>();
 		string CMDString1 = "SELECT COUNT(*) FROM tblWeapon";

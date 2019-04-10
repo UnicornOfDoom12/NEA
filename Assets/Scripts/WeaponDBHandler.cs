@@ -13,7 +13,9 @@ public class WeaponDBHandler : MonoBehaviour {
 	public bool CanContinue = false;
 	public void CheckDataExists () { // Checks if there is data in the table
 		
-		SqliteConnection WeaponDB = new SqliteConnection("Data Source=Assets\\Plugins\\WeaponsTable.db;Version=3;");
+		string path = Application.dataPath;
+		path = path + "/Plugins/WeaponsTable.db";
+		var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
 		WeaponDB.Open();
 		string CMDString = "SELECT COUNT(*) from tblWeapon"; // Counts all values in the database
 		SqliteCommand CMD = new SqliteCommand(CMDString, WeaponDB);

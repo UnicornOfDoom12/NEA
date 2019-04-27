@@ -12,7 +12,7 @@ using System.Threading; // imports including sqlite
 public class ReorderIDs : MonoBehaviour {
 
 	// Use this for initialization
-	void Awake () {
+	public void Awake () {
 		string path = Application.dataPath;
 		path = path + "/Plugins/WeaponsTable.db";
 		var WeaponDB = new SqliteConnection("Data Source="+path+";Version=3;"); // define connection to database
@@ -42,4 +42,8 @@ public class ReorderIDs : MonoBehaviour {
 		}	
 		WeaponDB.Close();
 	}
+	public void Reorder(){
+		Awake();
+	}
+
 }

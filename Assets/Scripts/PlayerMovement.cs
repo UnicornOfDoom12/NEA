@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour {
 	void WalkHandler (){ // First method of walking, player walks towards the mouse
 		float xinput = Input.GetAxis("Horizontal"); // Gets the inputs of the user in X direction
 		float yinput = Input.GetAxis("Vertical"); // Gets the inputs of the user in Y direction
-		xinput = xinput * (Walkspeed/40); // Multiplies the values by walkspeed
-		yinput = yinput * (Walkspeed/40); // Multiplies the values by walkspeed,
+		xinput = xinput * (Walkspeed/80); // Multiplies the values by walkspeed
+		yinput = yinput * (Walkspeed/80); // Multiplies the values by walkspeed,
 
 		Vector3 Vec = new Vector3 (xinput, yinput, 0); // Makes a new vector out of the inputs
 		Vector3 NewPos = transform.position + Vec; // Creates a new position of of the vector + transform

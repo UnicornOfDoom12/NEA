@@ -95,6 +95,7 @@ public class MonsterHandler : MonoBehaviour {
 	public void OnCollisionEnter2D(Collision2D Hit){ 
 		if(Hit.collider == PlayerCollider && !MeleeAttacking){ // if the player touches the monster
 			MeleeAttack(); // hit the player
+			SightedPlayer = true;
 		}
 	}
 	public void OnTriggerStay2D(Collider2D Hit){
@@ -122,6 +123,7 @@ public class MonsterHandler : MonoBehaviour {
 	}
 	public void TakeDamage(int damage){ // when the monster takes damage
 		Health =  Health - damage; // take away the damage from health
+		SightedPlayer = true;
 		if (Health <= 0){ // if the monster is dead
 			Animator.SetBool("IsDead",true); // play death animation
 			Dieing = true; // set dieing to true so monster cant move anymore

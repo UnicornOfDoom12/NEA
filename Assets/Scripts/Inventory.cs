@@ -54,10 +54,12 @@ public class Inventory : MonoBehaviour {
         return characterItems.Find(item => item.id == id); // Returns the the item if the player has it.
     }
     public void RemoveItem(int id) // removes and item from the UI
-    {
+    {  
+        print("In remove item");
         Item itemToRemove = CheckForItem(id); // Checks for the item first
         if (itemToRemove != null)
         {
+            print("item found");
             characterItems.Remove(itemToRemove); // if the items there remove it from players inventory
             inventoryUI.RemoveItem(itemToRemove); // and from the UI
         }

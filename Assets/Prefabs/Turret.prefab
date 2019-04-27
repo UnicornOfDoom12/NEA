@@ -9,7 +9,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: health
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Explosion
@@ -257,7 +257,7 @@ MonoBehaviour:
   TurretReload: {fileID: 8300000, guid: 15b64cf9ef5e62b42a45ae9a916a0a1b, type: 3}
   TurretSource: {fileID: 82266688849027972}
   speed: 300
-  health: 100
+  health: 150
   MuzzleAnimation: {fileID: 1503608257601038, guid: 76c0d737ab7f51e47a9bfab1d1b3cac0,
     type: 2}
   Explosion: {fileID: 1079552568702358, guid: 46549bdc0904c3b4ca3916ad5759576d, type: 2}

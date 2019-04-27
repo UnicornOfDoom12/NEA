@@ -28,7 +28,7 @@ public class WeaponDBHandler : MonoBehaviour {
 			SqliteCommand InsertCommand = new SqliteCommand(InsertQuery, WeaponDB); // Insert a starter weapon into the db
 			InsertCommand.Parameters.AddWithValue("@id",1);
 			InsertCommand.Parameters.AddWithValue("@Name","Starter"); // basic AR weapon with minimum stats
-			InsertCommand.Parameters.AddWithValue("@Category", "AssualtRifle");
+			InsertCommand.Parameters.AddWithValue("@Category", "Assault Rifle");
 			InsertCommand.Parameters.AddWithValue("@Damage", 25);
 			InsertCommand.Parameters.AddWithValue("@FireRate", 500);
 			InsertCommand.Parameters.AddWithValue("@Inaccuracy", 6.0);

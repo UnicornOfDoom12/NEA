@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour {
 		EnemyTypes.Add(Monster);
 	}
 	public void SpawnEnemies(int AmountOfEnemies){ // Amount of enemies is passed in, and determined in coordinate handler
+	
 		for (int i = 1; i <= AmountOfEnemies; i++){ // for every enemy in the room
 			Vector3 pos = transform.position;
 			pos.x = UnityEngine.Random.Range(0.0f,8.0f);
